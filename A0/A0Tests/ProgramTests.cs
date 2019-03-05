@@ -29,31 +29,31 @@ namespace A0.Tests
         [TestMethod()]
         public void NegateTest()
         {
-            Assert.Fail();
+            Assert.Inconclusive();
         }
 
         [TestMethod()]
         public void ProductTest()
         {
-            Assert.Fail();
+            Assert.Inconclusive();
         }
 
         [TestMethod()]
         public void SquareTest()
         {
-            Assert.Fail();
+            Assert.Inconclusive();
         }
 
         [TestMethod()]
         public void FactorialTest()
         {
-            Assert.Fail();
+            Assert.Inconclusive();
         }
 
         [TestMethod()]
         public void SqrtTest()
         {
-            Assert.Fail();
+            Assert.Inconclusive();
         }
     }
 }
