@@ -65,7 +65,7 @@ namespace A1S1.Tests
             filePath = GetTestFile(out lineCount, out charCount);
             Assert.AreEqual(lineCount, Program.FileLineCount(filePath));
         }
-        
+
         [TestMethod()]
         public void ListFilesTest()
         {
@@ -75,7 +75,7 @@ namespace A1S1.Tests
             //Array.Sort(a);
             if (expectedFiles.Length != actualFile.Length)
                 Assert.Fail();
-            for(int i = 0; i < expectedFiles.Length; i++)
+            for (int i = 0; i < expectedFiles.Length; i++)
             {
                 Assert.AreEqual(expectedFiles[i], actualFile[i]);
             }

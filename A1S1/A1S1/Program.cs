@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace A1S1
 {
@@ -47,16 +45,17 @@ namespace A1S1
             int[] Numbers = new int[16];
             try
             {
-                
-                for(int i = 0; i < files.Count; i++)
+
+                for (int i = 0; i < files.Count; i++)
                 {
-                    //It's .Txt File ! 4 characters to numeric part!
+                    //It's "*.Txt" File ! 4 characters to numeric part!
                     int index = files[i].Length - 5;
                     if (char.IsDigit(files[i][index]))
                     {
                         int j = index;
                         string digitPart = "";
-                        while (char.IsDigit(files[i][j])){
+                        while (char.IsDigit(files[i][j]))
+                        {
                             digitPart = files[i][j] + digitPart;
                             j--;
                         }
@@ -69,15 +68,15 @@ namespace A1S1
                     files[Numbers[i]] = temp;
                     i = 0;
                 }
-               
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //Give Some Errors
             }
-            for(int i = 0; i < Numbers.Length; i++)
+            for (int i = 0; i < Numbers.Length; i++)
             {
-                
+
             }
             return files.ToArray();
         }
