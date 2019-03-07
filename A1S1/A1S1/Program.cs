@@ -74,16 +74,18 @@ namespace A1S1
             {
                 //Give Some Errors
             }
-            for (int i = 0; i < Numbers.Length; i++)
-            {
-
-            }
             return files.ToArray();
         }
 
         public static double FileSize(string filePath)
         {
-            return File.ReadAllText(filePath).Length;
+            string[] lines = File.ReadAllLines(filePath);
+            int linesCount = 0;
+            for(int i = 0; i < lines.Length; i++)
+            {
+                linesCount += lines[i].Length;
+            }
+            return linesCount;
         }
     }
 }

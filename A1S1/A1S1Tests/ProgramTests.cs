@@ -104,7 +104,7 @@ namespace A1S1.Tests
             {
                 string line = $"Line number {i}";
                 //Because Of "\n\r" Cahracters When Write To file Adding to Line Length
-                charCount += line.Length + 2;
+                charCount += line.Length;
                 lines.Add(line);
             }
             File.WriteAllLines(tmpFile, lines);
