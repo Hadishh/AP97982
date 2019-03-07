@@ -113,8 +113,9 @@ namespace A1S1.Tests
         }
         private static string[] GetTestDir(out string tmpDir)
         {
-            tmpDir = Path.GetTempPath();
-            tmpDir = Path.Combine(tmpDir, "VSTest");
+            tmpDir = Path.GetTempFileName();
+            if (File.Exists(tmpDir))
+                File.Delete(tmpDir);
             Directory.CreateDirectory(tmpDir);
             int rndNum = new Random(0).Next(10, 20);
             List<string> files = new List<string>();
