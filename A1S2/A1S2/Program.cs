@@ -11,6 +11,23 @@ namespace A1S2
     {
         static void Main(string[] args)
         {
+            
+            if (args.Length != 0 && (args[0] == "--size" || args[0] == "-s"))
+            {
+                try
+                {
+                    Console.WriteLine(SizeOfFiles(args[1]));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("I couldn't Find Directory! or it might be some ohter problem here!");
+                }
+            }
+            else
+            {
+                Console.Write("Command Not Found!\nUsage : <--size or -s> <DirectoryPath>\n");
+
+            }
         }
         public static long SizeOfFiles(string dirPath)
         {
