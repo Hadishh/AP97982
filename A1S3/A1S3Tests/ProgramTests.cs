@@ -75,7 +75,7 @@ namespace A1S3.Tests
             string tweet1 = goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)] + " " +
                goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)]
                + " " + badWords[rndHandler.Next(0, 4)];
-            string[] tweets = new string[] { "متن اولیه توئیت که باید رد بشود !",
+            string[] tweets = new string[] { "متن اولیه توئیت که باید رد بشود مربوط به صاحب اکانت است!",
                 "حال خوب و خوش خود را با حال بد و ناخوشایند یک انسان زشت و مهربان عوض نمیکنم! پس باید زشت و مهربان نباشیم بلکه زیبا باشیم و خوب"
                                         , tweet1};
             Assert.AreEqual(2.5f, Program.Q5_GetAvgPopChargeOfTweets(tweets, badWords, goodWords));
