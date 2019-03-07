@@ -11,7 +11,7 @@ namespace A1S2
     {
         static void Main(string[] args)
         {
-            
+
             if (args.Length != 0 && (args[0] == "--size" || args[0] == "-s"))
             {
                 try
@@ -33,13 +33,13 @@ namespace A1S2
         {
             string[] directories = Directory.GetDirectories(dirPath);
             string[] files = Directory.GetFiles(dirPath);
-            long size = 0;           
-            for(int i = 0; i < files.Length; i++)
+            long size = 0;
+            for (int i = 0; i < files.Length; i++)
             {
                 FileInfo info = new FileInfo(files[i]);
                 size += info.Length;
             }
-            for(int i = 0; i < directories.Length; i++)
+            for (int i = 0; i < directories.Length; i++)
             {
                 size += SizeOfFiles(directories[i]);
             }

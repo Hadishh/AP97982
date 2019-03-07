@@ -60,8 +60,8 @@ namespace A1S3.Tests
             Random rndHandler = new Random();
             string tweet1 = "حال خوب و خوش خود را با حال بد و ناخوشایند یک انسان زشت و مهربان عوض نمیکنم! پس باید زشت و مهربان نباشیم بلکه زیبا باشیم و خوب:)";
             Assert.AreEqual(2, Program.Q4_GetPopChargeOfTweet(tweet1, goodWords, badWords));
-            tweet1 = goodWords[rndHandler.Next(0, 4)] +  " " + goodWords[rndHandler.Next(0, 4)] + " " + 
-                goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)] 
+            tweet1 = goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)] + " " +
+                goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)]
                 + " " + badWords[rndHandler.Next(0, 4)];
             Assert.AreEqual(3, Program.Q4_GetPopChargeOfTweet(tweet1, goodWords, badWords));
         }

@@ -18,7 +18,7 @@ namespace A1S3
             string[] negWords = File.ReadAllLines(negWordsPath);
             string[] tweetFiles = Directory.GetFiles(@"..\..\TwitterData\Tweets");
             File.WriteAllText(resultPath, "");
-            foreach(string tweetFile in tweetFiles)
+            foreach (string tweetFile in tweetFiles)
             {
                 string result = null;
                 double charge = 0f;
@@ -32,7 +32,7 @@ namespace A1S3
         }
         public static string[] Q1_GetWords(string path)
         {
-            char[] delims = new char[] { '\n', '\r'};
+            char[] delims = new char[] { '\n', '\r' };
             string[] words = File.ReadAllText(path).Split(delims, StringSplitOptions.RemoveEmptyEntries);
             return words;
         }

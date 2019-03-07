@@ -81,7 +81,7 @@ namespace A1S1
         {
             string[] lines = File.ReadAllLines(filePath);
             int linesCount = 0;
-            for(int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 linesCount += lines[i].Length;
             }
