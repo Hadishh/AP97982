@@ -8,10 +8,21 @@ namespace A3
 {
     public class City
     {
-        public string Name;
-
+        public string _Name;
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+            }
+        }
         public City(string name)
         {
+            Name = name;
         }
     }
 }

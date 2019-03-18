@@ -8,7 +8,7 @@ namespace A3
 {
     public class Program
     {
-        public static void S()
+        public static void Main(string[] args)
         {
 
         }
