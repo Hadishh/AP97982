@@ -50,10 +50,13 @@ namespace L1
         /// <param name="ticket"></param>
         public void Cancel(Ticket ticket)
         {
-            ticket.Buyer = null;
-            Account += ticket.Price * 40 / 100f;
-            ticket.Flight.Capacity++;
-            Tickets.Remove(ticket);
+            if (ticket.Buyer == this)
+            {
+                ticket.Buyer = null;
+                Account += ticket.Price * 40 / 100f;
+                ticket.Flight.Capacity++;
+                Tickets.Remove(ticket);
+            }
         }
 
         /// <summary>
@@ -69,8 +72,8 @@ namespace L1
             foreach(Ticket item in allTickets)
             {
                 int firstCompare = DateTime.Compare(startDateTime, item.Flight.FlyDate);
-                int secondCmpare = DateTime.Compare(item.Flight.FlyDate, endDateTime);
-                if (firstCompare >= 0 && secondCmpare >= 0)
+                int secondCompare = DateTime.Compare(item.Flight.FlyDate, endDateTime);
+                if (firstCompare <= 0 && secondCompare <= 0)
                     dateFilteredTickets.Add(item);
             }
             if (dateFilteredTickets.Count == 0)

@@ -97,7 +97,7 @@ namespace L1
         {
             get
             {
-                return FlyDate;
+                return _FlyDate;
             }
             set
             {

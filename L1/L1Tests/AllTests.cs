@@ -26,7 +26,19 @@ namespace L1.Tests
         [TestMethod()]
         public void FlightTest()
         {
-           // Assert.AreEqual("1144", TestData.)
+            Assert.AreEqual("1144", TestData.allFlights[0].FlightID);
+            Assert.AreEqual(TestData.airline1, TestData.allFlights[0].AirLine);
+            Assert.AreEqual(100, TestData.allFlights[0].Capacity);
+            Assert.AreEqual("Hamedan", TestData.allFlights[0].Source);
+            Assert.AreEqual("Mashhad", TestData.allFlights[0].Destination);
+            Assert.AreEqual(new DateTime(year: 2019, month: 3, day: 21), TestData.allFlights[0].FlyDate);
+            CollectionAssert.AreEqual(TestData.allFlights, DB.Flights);
+        }
+        [TestMethod()]
+        public void IsFullTests()
+        {
+            Assert.AreEqual(true, TestData.allFlights[6].IsFull());
+            Assert.AreEqual(false, TestData.allFlights[0].IsFull());
         }
     }
     [TestClass()]
@@ -35,43 +47,81 @@ namespace L1.Tests
         [TestMethod()]
         public void UserTest()
         {
-            Assert.Fail();
+            Assert.AreEqual("Sepehr Hashemi", TestData.Sepehr.FullName);
+            Assert.AreEqual("9643", TestData.Sepehr.NationalID);
+            Assert.AreEqual("+981111111111", TestData.Sepehr.PhoneNumber);
         }
 
         [TestMethod()]
         public void ReserveTest()
         {
-            Assert.Fail();
+            TestData.Sepehr.Reserve(TestData.allTickets[0]);
+            TestData.Sepehr.Reserve(TestData.allTickets[3]);
+            TestData.Reza.Reserve(TestData.allTickets[1]);
+            TestData.Ali.Reserve(TestData.allTickets[2]);
+            TestData.Ahmad.Reserve(TestData.allTickets[4]);
+            TestData.Kazem.Reserve(TestData.allTickets[5]);
+            TestData.Kazem.Reserve(TestData.allTickets[6]);
+            Assert.AreEqual(98, TestData.allFlights[0].Capacity);
+            Assert.AreEqual(TestData.Sepehr , TestData.allTickets[0].Buyer);
+            Assert.AreEqual(-712000.0 , TestData.Kazem.Account);
         }
 
         [TestMethod()]
         public void CancelTest()
         {
-            Assert.Fail();
+            List<Ticket> kazemTickets = TestData.Kazem.Tickets;
+            kazemTickets.Remove(TestData.allTickets[6]);
+            TestData.Kazem.Cancel(TestData.allTickets[6]);
+            TestData.Kazem.Cancel(TestData.allTickets[0]);
+            Assert.AreNotEqual(null, TestData.allTickets[0].Buyer);
+            Assert.AreEqual(null, TestData.allTickets[6].Buyer);
+            Assert.AreEqual(-530000, TestData.Kazem.Account);
+            CollectionAssert.AreEqual(kazemTickets, TestData.Kazem.Tickets);
         }
 
         [TestMethod()]
         public void DateFilteredTicketsTest()
         {
-            Assert.Fail();
+            DateTime start = new DateTime(year: 2019, month: 5, day: 1);
+            DateTime end = new DateTime(year: 2019, month: 10, day: 1);
+           
+            CollectionAssert.AreEqual(TestData.DataFilteredExceptedTickets, TestData.user10.DateFilteredTickets(start, end));
         }
 
         [TestMethod()]
         public void NowruzTicketsTest()
         {
-            Assert.Fail();
+            CollectionAssert.AreEqual(TestData.NowruzExceptedTickets, TestData.user10.NowruzTickets());
         }
 
         [TestMethod()]
         public void AirlineTicketsTest()
         {
-            Assert.Fail();
+            CollectionAssert.AreEqual(TestData.MahanAirTickets, TestData.user10.AirlineTickets(TestData.airline1));
         }
 
         [TestMethod()]
         public void RouteTicketsTest()
         {
-            Assert.Fail();
+            CollectionAssert.AreEqual(TestData.ShirazToTeh, TestData.Sepehr.RouteTickets("Shiraz", "Tehran"));
+        }
+    }
+    [TestClass()]
+    public class TicketTests
+    {
+        [TestMethod()]
+        public void TicketTest()
+        {
+            Assert.AreEqual(TestData.allFlights[0], TestData.allTickets[0].Flight);
+            Assert.AreEqual(250000, TestData.allTickets[0].Price);
+            Assert.AreEqual(TestData.Sepehr, TestData.allTickets[0].Buyer);
+        }
+        [TestMethod()]
+        public void IsSoldTest()
+        {
+            Assert.AreEqual(true, TestData.allTickets[0].IsSold());
+            Assert.AreEqual(false, TestData.allTickets[20].IsSold());
         }
     }
 }
