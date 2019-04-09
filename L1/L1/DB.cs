@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace L1
 {
     public class DB
     {
@@ -62,7 +62,17 @@ namespace ConsoleApp1
         /// <returns></returns>
         public static Ticket MostExpensiveTicket()
         {
-            throw new NotImplementedException();
+            double maxPrice = 0;
+            Ticket maxPriceTicket = null;
+            foreach(var ticket in Tickets)
+            {
+                if(ticket.Price > maxPrice)
+                {
+                    maxPrice = ticket.Price;
+                    maxPriceTicket = ticket;
+                }
+            }
+            return maxPriceTicket;
         }
 
         /// <summary>
@@ -71,7 +81,28 @@ namespace ConsoleApp1
         /// <returns></returns>
         public static Airline FavouriteAirline()
         {
-            throw new NotImplementedException();
+            Dictionary<Airline, int> airlineSales = new Dictionary<Airline, int>();
+            foreach(var ticket in Tickets)
+            {
+                if (ticket.IsSold())
+                {
+                    if (airlineSales.ContainsKey(ticket.Flight.AirLine))
+                    {
+                        airlineSales[ticket.Flight.AirLine]++;
+                    }
+                    else
+                    {
+                        airlineSales.Add(ticket.Flight.AirLine, 1);
+                    }
+                }
+            }
+            int max = airlineSales.Values.ToList().Max();
+            foreach(var item in airlineSales)
+            {
+                if (item.Value == max)
+                    return item.Key;
+            }
+            return null;
         }
 
         /// <summary>
@@ -80,7 +111,15 @@ namespace ConsoleApp1
         /// <returns></returns>
         public static double UsersDebts()
         {
-            throw new NotImplementedException();
+            double allPrice = 0.0;
+            foreach(var item in Users)
+            {
+                if(item.Account < 0)
+                {
+                    allPrice += item.Account;
+                }
+            }
+            return allPrice;
         }
 
         /// <summary>
@@ -89,7 +128,25 @@ namespace ConsoleApp1
         /// <returns></returns>
         public static string FavouriteDestination()
         {
-            throw new NotImplementedException();
+            Dictionary<string, int> destRepeats = new Dictionary<string, int>();
+            foreach(var item in Flights)
+            {
+                if (destRepeats.ContainsKey(item.Destination))
+                {
+                    destRepeats[item.Destination]++;
+                }
+                else
+                {
+                    destRepeats.Add(item.Destination, 1);
+                }
+            }
+            int maxRepeat = destRepeats.Values.ToList().Max();
+            foreach(var dic in destRepeats)
+            {
+                if (maxRepeat == dic.Value)
+                    return dic.Key;
+            }
+            return null;
         }
 
     }

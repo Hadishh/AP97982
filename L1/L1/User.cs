@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace L1
 {
     public class User
     {
@@ -18,7 +18,7 @@ namespace ConsoleApp1
 
         public double Account;
 
-        public User(string fullName, string nationalID, string phoneNumber, double account)
+        public User(string fullName, string nationalID, string phoneNumber, double account = 0)
         {
             FullName = fullName;
             NationalID = nationalID;
@@ -36,7 +36,10 @@ namespace ConsoleApp1
         public void Reserve(Ticket ticket)
         {
             //TODO
-            throw new NotImplementedException();
+            Tickets.Add(ticket);
+            ticket.Flight.Capacity--;
+            Account -= ticket.Price;
+            ticket.Buyer = this;
         }
 
         /// <summary>
@@ -47,8 +50,10 @@ namespace ConsoleApp1
         /// <param name="ticket"></param>
         public void Cancel(Ticket ticket)
         {
-            //TODO
-            throw new NotImplementedException();
+            ticket.Buyer = null;
+            Account += ticket.Price * 40 / 100f;
+            ticket.Flight.Capacity++;
+            Tickets.Remove(ticket);
         }
 
         /// <summary>
@@ -59,7 +64,19 @@ namespace ConsoleApp1
         /// <returns></returns>
         public List<Ticket> DateFilteredTickets(DateTime startDateTime, DateTime endDateTime)
         {
-            throw new NotImplementedException();
+            List<Ticket> dateFilteredTickets = new List<Ticket>();
+            List<Ticket> allTickets = DB.Tickets;
+            foreach(Ticket item in allTickets)
+            {
+                int firstCompare = DateTime.Compare(startDateTime, item.Flight.FlyDate);
+                int secondCmpare = DateTime.Compare(item.Flight.FlyDate, endDateTime);
+                if (firstCompare >= 0 && secondCmpare >= 0)
+                    dateFilteredTickets.Add(item);
+            }
+            if (dateFilteredTickets.Count == 0)
+                return null;
+            else
+                return dateFilteredTickets;
         }
 
         /// <summary>
@@ -68,7 +85,20 @@ namespace ConsoleApp1
         /// <returns></returns>
         public List<Ticket> NowruzTickets()
         {
-            throw new NotImplementedException();
+            List<Ticket> nowruzTickets = new List<Ticket>();
+            List<Ticket> allTickets = DB.Tickets;
+            foreach(Ticket item in allTickets)
+            {
+                if(item.Flight.FlyDate.Month == 3 && item.Flight.FlyDate.Day <= 28 
+                    && item.Flight.FlyDate.Day >= 18)
+                {
+                    nowruzTickets.Add(item);
+                }
+            }
+            if (nowruzTickets.Count == 0)
+                return null;
+            else
+                return nowruzTickets;
         }
 
         /// <summary>
@@ -78,7 +108,17 @@ namespace ConsoleApp1
         /// <returns></returns>
         public List<Ticket> AirlineTickets(Airline airline)
         {
-            throw new NotImplementedException();
+            List<Ticket> airlineTickets = new List<Ticket>();
+            List<Ticket> allTickets = DB.Tickets;
+            foreach(Ticket item in allTickets)
+            {
+                if (item.Flight.AirLine == airline)
+                    airlineTickets.Add(item);
+            }
+            if (airlineTickets.Count == 0)
+                return null;
+            else
+                return airlineTickets;
         }
 
         /// <summary>
@@ -87,9 +127,19 @@ namespace ConsoleApp1
         /// <param name="source"></param>
         /// <param name="dest"></param>
         /// <returns></returns>
-        public List<Ticket> AirlineTickets(string source, string dest)
+        public List<Ticket> RouteTickets(string source, string dest)
         {
-            throw new NotImplementedException();
+            List<Ticket> routeTickets = new List<Ticket>();
+            List<Ticket> allTickets = DB.Tickets;
+            foreach (Ticket item in allTickets)
+            {
+                if (item.Flight.Source == source && item.Flight.Destination == dest)
+                    routeTickets.Add(item);
+            }
+            if (routeTickets.Count == 0)
+                return null;
+            else
+                return routeTickets;
         }
 
     }
