@@ -166,7 +166,8 @@ namespace A6
     {
         TypeOfSize256 bytes256;
         TypeOfSize128 bytes128;
-        TypeOfSize32 bytes64;
+        TypeOfSize32 bytes32_0;
+        TypeOfSize16 bytes16_0;
         TypeOfSize22 bytes22;
         TypeOfSize16 bytes16;
     }
@@ -174,6 +175,7 @@ namespace A6
     {
         TypeOfSize64 bytes64;
         TypeOfSize32 bytes32;
+        TypeOfSize16 bytes16;
         TypeOfSize8 bytes8;
         TypeOfSize5 bytes5;
         byte byte0;
