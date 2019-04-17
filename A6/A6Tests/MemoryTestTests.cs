@@ -50,7 +50,7 @@ namespace A6Tests
             TypeOfSize2048 Kb2;
             TypeOfSize128 bytes128;
             int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth1000());
-            Assert.AreEqual(true, recursionDepth < 1003 && recursionDepth > 997);
+            Assert.AreEqual(true, recursionDepth < 1010 && recursionDepth > 990);
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace A6Tests
             TypeOfSize512 bytes512;
             TypeOfSize8 bytes8;
             int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth3000());
-            Assert.AreEqual(true, recursionDepth <= 3005 && recursionDepth >= 2995);
+            Assert.AreEqual(true, recursionDepth <= 3020 && recursionDepth >= 2980);
         }
         
         [TestMethod]
