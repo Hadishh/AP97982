@@ -10,10 +10,34 @@ using System.Threading.Tasks;
 namespace L1.Tests
 {
     [TestClass()]
+    public class AllTests
+    {
+        //For Oreder Of Tests
+        [TestMethod()]
+        public void Tests()
+        {
+            AirlineTests.AirlineTest();
+            FlightTests.FlightTest();
+            FlightTests.IsFullTests();
+            UserTests.UserTest();
+            UserTests.ReserveTest();
+            UserTests.CancelTest();
+            UserTests.DateFilteredTicketsTest();
+            UserTests.NowruzTicketsTest();
+            UserTests.AirlineTicketsTest();
+            UserTests.RouteTicketsTest();
+            TicketTests.TicketTest();
+            TicketTests.IsSoldTest();
+            DBTests.MostExpensiveTicketsTest();
+            DBTests.FavouriteAirlineTest();
+            DBTests.UserDebtsTest();
+        }
+    }
+    //[TestClass()]
     public class AirlineTests
     {
-        [TestMethod()]
-        public void AirlineTest()
+        
+        public static void AirlineTest()
         {
             Assert.AreEqual("Mahan", TestData.airline1.Name);
             Assert.AreEqual("IranAir", TestData.airline2.Name);
@@ -21,41 +45,40 @@ namespace L1.Tests
             Assert.AreEqual("Asemaan", TestData.airline4.Name);
         }
     }
-    [TestClass()]
+    //[TestClass()]
     public class FlightTests
     {
-        [TestMethod()]
-        public void FlightTest()
+        //[TestMethod()]
+        public static void FlightTest()
         {
             Assert.AreEqual("1144", TestData.allFlights[0].FlightID);
             Assert.AreEqual(TestData.airline1, TestData.allFlights[0].AirLine);
-            //Reserved By user 10
-            Assert.AreEqual(98, TestData.allFlights[0].Capacity);
+            Assert.AreEqual(100, TestData.allFlights[0].Capacity);
             Assert.AreEqual("Hamedan", TestData.allFlights[0].Source);
             Assert.AreEqual("Mashhad", TestData.allFlights[0].Destination);
             Assert.AreEqual(new DateTime(year: 2019, month: 3, day: 21), TestData.allFlights[0].FlyDate);
             CollectionAssert.AreEqual(TestData.allFlights, DB.Flights);
         }
-        [TestMethod()]
-        public void IsFullTests()
+        //[TestMethod()]
+        public static void IsFullTests()
         {
             Assert.AreEqual(true, TestData.allFlights[6].IsFull());
             Assert.AreEqual(false, TestData.allFlights[0].IsFull());
         }
     }
-    [TestClass()]
+    //[TestClass()]
     public class UserTests
     {
-        [TestMethod()]
-        public void UserTest()
+        //[TestMethod()]
+        public static void UserTest()
         {
             Assert.AreEqual("Sepehr Hashemi", TestData.Sepehr.FullName);
             Assert.AreEqual("9643", TestData.Sepehr.NationalID);
             Assert.AreEqual("+981111111111", TestData.Sepehr.PhoneNumber);
         }
 
-        [TestMethod()]
-        public void ReserveTest()
+        //[TestMethod()]
+        public static void ReserveTest()
         {
             TestData.Sepehr.Reserve(TestData.allTickets[0]);
             TestData.Sepehr.Reserve(TestData.allTickets[3]);
@@ -70,8 +93,8 @@ namespace L1.Tests
 
         }
 
-        [TestMethod()]
-        public void CancelTest()
+        //[TestMethod()]
+        public static void CancelTest()
         {
             List<Ticket> kazemTickets = TestData.Kazem.Tickets;
             kazemTickets.Remove(TestData.allTickets[6]);
@@ -83,8 +106,8 @@ namespace L1.Tests
             CollectionAssert.AreEqual(kazemTickets, TestData.Kazem.Tickets);
         }
 
-        [TestMethod()]
-        public void DateFilteredTicketsTest()
+        //[TestMethod()]
+        public static void DateFilteredTicketsTest()
         {
             DateTime start = new DateTime(year: 2019, month: 5, day: 1);
             DateTime end = new DateTime(year: 2019, month: 10, day: 1);
@@ -92,36 +115,36 @@ namespace L1.Tests
             CollectionAssert.AreEqual(TestData.DataFilteredExceptedTickets, TestData.user10.DateFilteredTickets(start, end));
         }
 
-        [TestMethod()]
-        public void NowruzTicketsTest()
+        //[TestMethod()]
+        public static void NowruzTicketsTest()
         {
             CollectionAssert.AreEqual(TestData.NowruzExceptedTickets, TestData.user10.NowruzTickets());
         }
 
-        [TestMethod()]
-        public void AirlineTicketsTest()
+        //[TestMethod()]
+        public static void AirlineTicketsTest()
         {
             CollectionAssert.AreEqual(TestData.MahanAirTickets, TestData.user10.AirlineTickets(TestData.airline1));
         }
 
-        [TestMethod()]
-        public void RouteTicketsTest()
+        //[TestMethod()]
+        public static void RouteTicketsTest()
         {
             CollectionAssert.AreEqual(TestData.ShirazToTeh, TestData.Sepehr.RouteTickets("Shiraz", "Tehran"));
         }
     }
-    [TestClass()]
+    //[TestClass()]
     public class TicketTests
     {
-        [TestMethod()]
-        public void TicketTest()
+        //[TestMethod()]
+        public static void TicketTest()
         {
             Assert.AreEqual(TestData.allFlights[0], TestData.allTickets[0].Flight);
             Assert.AreEqual(250000, TestData.allTickets[0].Price);
             Assert.AreEqual(TestData.Sepehr, TestData.allTickets[0].Buyer);
         }
-        [TestMethod()]
-        public void IsSoldTest()
+        //[TestMethod()]
+        public static void IsSoldTest()
         {
             Assert.AreEqual(true, TestData.allTickets[0].IsSold());
             Assert.AreEqual(false, TestData.allTickets[20].IsSold());
@@ -130,23 +153,21 @@ namespace L1.Tests
     [TestClass()]
     public class DBTests
     {
-        [TestMethod()]
-        public void MostExpensiveTicketsTest()
+        //[TestMethod()]
+        public static void MostExpensiveTicketsTest()
         {
             Assert.AreEqual(TestData.allTickets[16], DB.MostExpensiveTicket());
         }
-        [TestMethod()]
-        public void FavouriteAirlineTest()
+        //[TestMethod()]
+        public static void FavouriteAirlineTest()
+        {
+            Assert.AreEqual(TestData.airline1, DB.FavouriteAirline());
+        }
+        //[TestMethod()]
+        public static void UserDebtsTest()
         {
             TestData.user10.Reserve(TestData.allTickets[16]);
-            Assert.AreEqual(TestData.airline4, DB.FavouriteAirline());
-        }
-        [TestMethod()]
-        public void UserDebtsTest()
-        {
-            List<User> users = DB.Users;
-            double x = TestData.user10.Account;
-            Assert.AreEqual(-4993000, DB.UsersDebts());
+            Assert.AreEqual(-4933000, DB.UsersDebts());
         }
     }
 }
