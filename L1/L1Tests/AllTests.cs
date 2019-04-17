@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace L1.Tests
 {
     [TestClass()]
@@ -28,7 +29,8 @@ namespace L1.Tests
         {
             Assert.AreEqual("1144", TestData.allFlights[0].FlightID);
             Assert.AreEqual(TestData.airline1, TestData.allFlights[0].AirLine);
-            Assert.AreEqual(100, TestData.allFlights[0].Capacity);
+            //Reserved By user 10
+            Assert.AreEqual(98, TestData.allFlights[0].Capacity);
             Assert.AreEqual("Hamedan", TestData.allFlights[0].Source);
             Assert.AreEqual("Mashhad", TestData.allFlights[0].Destination);
             Assert.AreEqual(new DateTime(year: 2019, month: 3, day: 21), TestData.allFlights[0].FlyDate);
@@ -65,6 +67,7 @@ namespace L1.Tests
             Assert.AreEqual(98, TestData.allFlights[0].Capacity);
             Assert.AreEqual(TestData.Sepehr , TestData.allTickets[0].Buyer);
             Assert.AreEqual(-712000.0 , TestData.Kazem.Account);
+
         }
 
         [TestMethod()]
@@ -122,6 +125,28 @@ namespace L1.Tests
         {
             Assert.AreEqual(true, TestData.allTickets[0].IsSold());
             Assert.AreEqual(false, TestData.allTickets[20].IsSold());
+        }
+    }
+    [TestClass()]
+    public class DBTests
+    {
+        [TestMethod()]
+        public void MostExpensiveTicketsTest()
+        {
+            Assert.AreEqual(TestData.allTickets[16], DB.MostExpensiveTicket());
+        }
+        [TestMethod()]
+        public void FavouriteAirlineTest()
+        {
+            TestData.user10.Reserve(TestData.allTickets[16]);
+            Assert.AreEqual(TestData.airline4, DB.FavouriteAirline());
+        }
+        [TestMethod()]
+        public void UserDebtsTest()
+        {
+            List<User> users = DB.Users;
+            double x = TestData.user10.Account;
+            Assert.AreEqual(-4993000, DB.UsersDebts());
         }
     }
 }

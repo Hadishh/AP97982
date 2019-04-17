@@ -59,7 +59,7 @@ namespace L1.Tests
             new Ticket(allFlights[3], 225000, null), //17
             new Ticket(allFlights[4], 655000, null), //18
             new Ticket(allFlights[5], 750000, null), //19
-            new Ticket(allFlights[7], 750000, null)  //20
+            new Ticket(allFlights[7], 750200, null)  //20
     };
         public static List<Ticket> DataFilteredExceptedTickets = new List<Ticket>() {
             allTickets[1],
