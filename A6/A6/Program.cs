@@ -34,10 +34,10 @@ namespace A6
     }
     public struct TypeOfSize22
     {
-        TypeOfSize5 size1;
-        TypeOfSize5 size2;
-        TypeOfSize5 size3;
-        TypeOfSize5 size4;
+        TypeOfSize5 bytes5_0;
+        TypeOfSize5 bytes5_1;
+        TypeOfSize5 bytes5_2;
+        TypeOfSize5 bytes5_3;
         byte byte1;
         byte byte2;
     }
@@ -116,12 +116,12 @@ namespace A6
     }
     public struct TypeOfSize131072 {
         TypeOfSize65536 bytes655536_0;
-        TypeOfSize65536 size2;
+        TypeOfSize65536 bytes655536_1;
     }
     public struct TypeOfSize262144
     {
-        TypeOfSize131072 size1;
-        TypeOfSize131072 size2;
+        TypeOfSize131072 bytes131072_0;
+        TypeOfSize131072 bytes131072_1;
     }
     public struct TypeOfSize512288
     {
@@ -158,8 +158,8 @@ namespace A6
         TypeOfSize4096 kb4;
         TypeOfSize512 bytes512;
         TypeOfSize256 bytes256;
-        TypeOfSize125 size;
-        TypeOfSize22 size1;
+        TypeOfSize125 bytes125;
+        TypeOfSize22 bytes22;
         TypeOfSize16 bytes16;
     }
     public struct TypeForMaxStackOfDepth1000
@@ -169,43 +169,37 @@ namespace A6
         TypeOfSize32 bytes64;
         TypeOfSize22 bytes22;
         TypeOfSize16 bytes16;
-        sbyte b1;
-        sbyte b3;
-
-        //byte byte1;
-        //byte byte2;
-        //byte byte3;
     }
     public struct TypeForMaxStackOfDepth3000
     {
         TypeOfSize64 bytes64;
         TypeOfSize32 bytes32;
         TypeOfSize8 bytes8;
-        TypeOfSize5 b5;
-        byte c;
-        byte c2;
-        byte c1;
+        TypeOfSize5 bytes5;
+        byte byte0;
+        byte byte1;
+        byte byte2;
     }
     #endregion
 
     #region Write On Heap Class
     public class TypeWithMemoryOnHeap{
-        private List<List<int>> memoryList;
+        private List<List<int>> MemoryList;
         public void Allocate()
         {
-            memoryList = new List<List<int>>();
+            MemoryList = new List<List<int>>();
             for(int i = 0; i < 55000; i++)
             {
                 List<int> mustAddedList = new List<int>
                 {
                     1, 2, 3, 4, 5, 6, 7, 8
                 };
-                memoryList.Add(mustAddedList);
+                MemoryList.Add(mustAddedList);
             }
         }
         public void DeAllocate()
         {
-            memoryList = null;
+            MemoryList = null;
         }
     }
     #endregion
