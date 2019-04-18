@@ -1,15 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using APAssignment;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
 using System.Runtime.InteropServices;
 using A6;
-//nameSpace Changed 
-namespace A6Tests
+
+namespace A6.Tests
 {
     [TestClass]
     public class MemoryTestTests
@@ -17,7 +12,6 @@ namespace A6Tests
         [TestMethod]
         public void VariableSizeTest()
         {
-            //Structures Initialized
             TypeOfSize5 tos5 = new TypeOfSize5();
             VerifySize(tos5, 5);
             TypeOfSize22 tos22 = new TypeOfSize22();
@@ -26,43 +20,49 @@ namespace A6Tests
             VerifySize(tos125, 125);
             TypeOfSize1024 tos1024 = new TypeOfSize1024();
             VerifySize(tos1024, 1024);
+            TypeOfSize32768 tos32768 = new TypeOfSize32768();
+            VerifySize(tos32768, 32768);
         }
 
-    
+
         [TestMethod]
         public void StackDepth10Test()
         {
-           
-            int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth10());
-            Assert.AreEqual(10, recursionDepth);
+            TypeForMaxStackOfDepth10 a = new TypeForMaxStackOfDepth10();
+            int recursionDepth = GetMaxRecursion(0, a);
+            VerifyApproximateMatch(recursionDepth, 10);
         }
 
         [TestMethod]
         public void StackDepth100Test()
         {
-            int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth100());
-            Assert.AreEqual(100, recursionDepth);
+            TypeForMaxStackOfDepth100 a = new TypeForMaxStackOfDepth100();
+            int recursionDepth = GetMaxRecursion(0, a);
+            VerifyApproximateMatch(recursionDepth, 100);
         }
 
         [TestMethod]
         public void StackDepth1000Test()
         {
-            TypeOfSize2048 Kb2;
-            TypeOfSize128 bytes128;
-            int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth1000());
-            Assert.AreEqual(true, recursionDepth < 1010 && recursionDepth > 990);
+            TypeForMaxStackOfDepth1000 a = new TypeForMaxStackOfDepth1000();
+            int recursionDepth = GetMaxRecursion(0, a);
+            VerifyApproximateMatch(recursionDepth, 1000);
         }
 
         [TestMethod]
         public void StackDepth3000Test()
         {
-            TypeOfSize8192 Kb8;
-            TypeOfSize2048 Kb2;
-            TypeOfSize8 bytes8;
-            int recursionDepth = GetMaxRecursion(0, new TypeForMaxStackOfDepth3000());
-            Assert.AreEqual(true, recursionDepth <= 3020 && recursionDepth >= 2980);
+            TypeForMaxStackOfDepth3000 a = new TypeForMaxStackOfDepth3000();
+            int recursionDepth = GetMaxRecursion(0, a);
+            VerifyApproximateMatch(recursionDepth, 3000);
         }
-        
+
+        private static void VerifyApproximateMatch(int actual, int expected)
+        {
+
+            Assert.IsTrue(Math.Abs(actual - expected) <= (0.1 * expected), $"Actual:{actual} != Expected:{expected}");
+        }
+
         [TestMethod]
         public void HeapMemoryTest()
         {
@@ -81,7 +81,7 @@ namespace A6Tests
             Assert.IsTrue(memDiff1 < 4_100_000 && memDiff1 > 3_900_000);
             Assert.IsTrue(memDiff2 < 100_000 && memDiff2 > -100_000);
         }
-        
+
         [TestMethod]
         public void RefValueTypeCopyTest1()
         {
@@ -91,7 +91,7 @@ namespace A6Tests
             soc1a.X = 2; ;
             Assert.AreNotEqual(soc1a.X, soc1b.X);
         }
-        
+
         [TestMethod]
         public void RefValueTypeCopyTest2()
         {
@@ -110,12 +110,12 @@ namespace A6Tests
             soc2.X = 5;
             soc1a.X = soc2;
             var soc1b = soc1a;
-            soc1a.X.X = 6; 
+            soc1a.X.X = 6; ;
             Assert.AreEqual(soc1a.X.X, soc1b.X.X);
             Assert.AreEqual(soc2.X, soc1b.X.X);
 
         }
-        
+
         [TestMethod]
         public void BoxingTest()
         {
@@ -126,11 +126,11 @@ namespace A6Tests
             StructOrClass1 soc2 = (StructOrClass1) o;
             Assert.AreEqual(5, soc2.X);
         }
-        
+
         [TestMethod]
         public void TypeTest()
         {
-            string str = null;
+            string str = "ThinkBig";
             int value = Program.GetObjectType(str);
             Assert.AreEqual(0, value);
             value = Program.GetObjectType(new int[] { 2 });
@@ -138,7 +138,7 @@ namespace A6Tests
             value = Program.GetObjectType(24434);
             Assert.AreEqual(2, value);
         }
-        
+
         [TestMethod]
         public void IdealHusbandTest()
         {
@@ -165,7 +165,7 @@ namespace A6Tests
 
 
         }
-        
+
         #region Helper Methods
         private void VerifySize<_Type>(_Type tos, int expectedSize)
         {
