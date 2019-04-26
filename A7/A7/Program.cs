@@ -11,9 +11,5 @@ namespace A7
         static void Main(string[] args)
         {
         }
-        public void Mymethod()
-        {
-
-        }
     }
 }
