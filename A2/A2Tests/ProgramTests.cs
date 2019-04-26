@@ -16,7 +16,8 @@ namespace A2.Tests
         {
             double piTest;
             Program.AssignPi(out piTest);
-            Assert.AreEqual(3.1459, piTest);
+            Assert.AreEqual(Math.PI, piTest);
+            return;
         }
 
         [TestMethod()]
@@ -34,6 +35,7 @@ namespace A2.Tests
             a = 1.2;
             Program.Square(ref a);
             Assert.AreEqual(1.44, a);
+            return;
         }
 
         [TestMethod()]
@@ -48,6 +50,7 @@ namespace A2.Tests
             Program.Swap(ref first, ref second);
             Assert.AreEqual(54, first);
             Assert.AreEqual(-1, second);
+            return;
         }
 
         [TestMethod()]
@@ -60,6 +63,7 @@ namespace A2.Tests
             Assert.AreEqual(1, sum);
             Program.Sum(out sum, 3, 2, 4);
             Assert.AreEqual(9, sum);
+            return;
         }
 
         [TestMethod()]
@@ -75,6 +79,7 @@ namespace A2.Tests
             mustAppend = 269;
             Program.Append(ref array, mustAppend);
             CollectionAssert.AreEqual(expected, array);
+            return;
         }
 
         [TestMethod()]
@@ -88,6 +93,7 @@ namespace A2.Tests
             expected = new int[] { };
             Program.AbsArray(array);
             CollectionAssert.AreEqual(expected, array);
+            return;
         }
 
         [TestMethod()]
@@ -107,6 +113,7 @@ namespace A2.Tests
             Program.ArraySwap(firstArray, secondArray);
             CollectionAssert.AreEqual(expectedFirst, firstArray);
             CollectionAssert.AreEqual(expectedSecond, secondArray);
+            return;
         }
 
         [TestMethod()]
@@ -126,6 +133,7 @@ namespace A2.Tests
             Program.ArraySwap(ref firstArray, ref secondArray);
             CollectionAssert.AreEqual(expectedFirst, firstArray);
             CollectionAssert.AreEqual(expectedSecond, secondArray);
+            return;
         }
     }
 }
