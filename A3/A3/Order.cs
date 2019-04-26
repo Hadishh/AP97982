@@ -8,30 +8,8 @@ namespace A3
 {
     public class Order
     {
-        public List<Product> _Products;
-        public bool _IsDelivered;
-        public List<Product> Products
-        {
-            get
-            {
-                return _Products;
-            }
-            set
-            {
-                _Products = value;
-            }
-        }
-        public bool IsDelivered
-        {
-            get
-            {
-                return _IsDelivered;
-            }
-            set
-            {
-                _IsDelivered = value;
-            }
-        }
+        public List<Product> Products { get; set; }
+        public bool IsDelivered { get; set; }
         public Order(List<Product> products, bool isDelivered)
         {
             Products = products;
@@ -42,9 +20,7 @@ namespace A3
         {
             float allPrice = 0f;
             foreach(var item in Products)
-            {
                 allPrice += item.Price;
-            }
             return allPrice;
         }
     }
