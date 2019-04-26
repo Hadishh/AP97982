@@ -25,7 +25,7 @@ namespace A3
             set
             {
                 if (value < 0f)
-                    throw new Exception("Price less than zero!");
+                    throw new Exception("Price must be greater than zero!");
                 _Price = value;
             }
         }
