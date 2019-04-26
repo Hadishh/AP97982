@@ -72,13 +72,14 @@ namespace A1S3.Tests
             string[] goodWords = new string[] { "خوب", "عالی", "مهربان", "زیبا", "خوش" };
             string[] badWords = new string[] { "بد", "ناخوش", "ناخوشایند", "زشت" };
             Random rndHandler = new Random();
+            const float assertAnswer = 2.5f;
             string tweet1 = goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)] + " " +
                goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)]
                + " " + badWords[rndHandler.Next(0, 4)];
             string[] tweets = new string[] { "متن اولیه توئیت که باید رد بشود مربوط به صاحب اکانت است!",
                 "حال خوب و خوش خود را با حال بد و ناخوشایند یک انسان زشت و مهربان عوض نمیکنم! پس باید زشت و مهربان نباشیم بلکه زیبا باشیم و خوب"
                                         , tweet1};
-            Assert.AreEqual(2.5f, Program.Q5_GetAvgPopChargeOfTweets(tweets, badWords, goodWords));
+            Assert.AreEqual(assertAnswer, Program.Q5_GetAvgPopChargeOfTweets(tweets, badWords, goodWords));
         }
         public string CreateTmpFile()
         {
