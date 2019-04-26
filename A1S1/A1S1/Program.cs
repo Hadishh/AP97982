@@ -42,10 +42,9 @@ namespace A1S1
             List<string> files = Directory.GetFiles(dirPath, "*.txt").ToList();
             //Sorted List Ordered by Name
             files = files.OrderBy(Path.GetFileName).ToList();
-            int[] Numbers = new int[16];
+            int[] numbers = new int[files.Count];
             try
             {
-
                 for (int i = 0; i < files.Count; i++)
                 {
                     //It's "*.Txt" File ! 4 characters to numeric part!
@@ -59,20 +58,20 @@ namespace A1S1
                             digitPart = files[i][j] + digitPart;
                             j--;
                         }
-                        Numbers[i] = int.Parse(digitPart);
+                        numbers[i] = int.Parse(digitPart);
                     }
-                    if (Numbers[i] == i)
+                    if (numbers[i] == i)
                         continue;
                     string temp = files[i];
-                    files[i] = files[Numbers[i]];
-                    files[Numbers[i]] = temp;
+                    files[i] = files[numbers[i]];
+                    files[numbers[i]] = temp;
                     i = 0;
                 }
-
             }
             catch (Exception e)
             {
-                //Give Some Errors
+                string exception = "Process terimnated due an error : " + e.Message;
+                throw new Exception(exception);
             }
             return files.ToArray();
         }
@@ -82,9 +81,7 @@ namespace A1S1
             string[] lines = File.ReadAllLines(filePath);
             int linesCount = 0;
             for (int i = 0; i < lines.Length; i++)
-            {
                 linesCount += lines[i].Length;
-            }
             return linesCount;
         }
     }

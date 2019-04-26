@@ -15,20 +15,31 @@ namespace A1S1.Tests
         [TestMethod()]
         public void CaculateLengthTest()
         {
-            Assert.AreEqual(5, Program.CaculateLength("12345"));
-            Assert.AreEqual(0, Program.CaculateLength(""));
-            Assert.AreEqual(22, Program.CaculateLength("abc,ddla123@#$%^&*sdeq"));
-            Assert.AreEqual(3, Program.CaculateLength("abc"));
+            const int assert1 = 5;
+            const int assert2 = 0;
+            const int assert3 = 22;
+            const int assert4 = 3;
+            Assert.AreEqual(assert1, Program.CaculateLength("12345"));
+            Assert.AreEqual(assert2, Program.CaculateLength(""));
+            Assert.AreEqual(assert3, Program.CaculateLength("abc,ddla123@#$%^&*sdeq"));
+            Assert.AreEqual(assert4, Program.CaculateLength("abc"));
+            return;
         }
 
         [TestMethod()]
         public void LetterCountTest()
         {
-            Assert.AreEqual(5, Program.LetterCount("A b c 1 2 3 d458f"));
-            Assert.AreEqual(0, Program.LetterCount("01234567890"));
-            Assert.AreEqual(11, Program.LetterCount(",134hadiSheikhi4567"));
-            Assert.AreEqual(0, Program.LetterCount(""));
-            Assert.AreEqual(32, Program.LetterCount("Hello World! This is a Test For Checking!"));
+            const int assert1 = 5;
+            const int assert2 = 0;
+            const int assert3 = 11;
+            const int assert4 = 0;
+            const int assert5 =32;
+            Assert.AreEqual(assert1, Program.LetterCount("A b c 1 2 3 d458f"));
+            Assert.AreEqual(assert2, Program.LetterCount("01234567890"));
+            Assert.AreEqual(assert3, Program.LetterCount(",134hadiSheikhi4567"));
+            Assert.AreEqual(assert4, Program.LetterCount(""));
+            Assert.AreEqual(assert5, Program.LetterCount("Hello World! This is a Test For Checking!"));
+            return;
         }
 
         [TestMethod()]
@@ -36,15 +47,23 @@ namespace A1S1.Tests
         {
             string[] Tests = new string[] {"", "\n", "\n\n", "Hello\n", "Hello",
                 "Good\nbye\n" /*This Is Three Lines Ithink !*/, "Good Bye, ", "         "};
-            Assert.AreEqual(0, Program.LineCount(Tests[0]));
-            Assert.AreEqual(2, Program.LineCount(Tests[1]));
-            Assert.AreEqual(3, Program.LineCount(Tests[2]));
-            Assert.AreEqual(2, Program.LineCount(Tests[3]));
-            Assert.AreEqual(1, Program.LineCount(Tests[4]));
-            Assert.AreEqual(3, Program.LineCount(Tests[5]));
-            Assert.AreEqual(1, Program.LineCount(Tests[6]));
-            Assert.AreEqual(1, Program.LineCount(Tests[7]));
-
+            const int assert1 = 0;
+            const int assert2 = 2;
+            const int assert3 = 3;
+            const int assert4 = 2;
+            const int assert5 = 1;
+            const int assert6 = 3;
+            const int assert7 = 1;
+            const int assert8 = 1;
+            Assert.AreEqual(assert1, Program.LineCount(Tests[0]));
+            Assert.AreEqual(assert2, Program.LineCount(Tests[1]));
+            Assert.AreEqual(assert3, Program.LineCount(Tests[2]));
+            Assert.AreEqual(assert4, Program.LineCount(Tests[3]));
+            Assert.AreEqual(assert5, Program.LineCount(Tests[4]));
+            Assert.AreEqual(assert6, Program.LineCount(Tests[5]));
+            Assert.AreEqual(assert7, Program.LineCount(Tests[6]));
+            Assert.AreEqual(assert8, Program.LineCount(Tests[7]));
+            return;
         }
 
         [TestMethod()]
@@ -64,6 +83,7 @@ namespace A1S1.Tests
             Assert.AreEqual(lineCount, Program.FileLineCount(filePath));
             filePath = GetTestFile(out lineCount, out charCount);
             Assert.AreEqual(lineCount, Program.FileLineCount(filePath));
+            return;
         }
 
         [TestMethod()]
@@ -76,9 +96,8 @@ namespace A1S1.Tests
             if (expectedFiles.Length != actualFile.Length)
                 Assert.Fail();
             for (int i = 0; i < expectedFiles.Length; i++)
-            {
                 Assert.AreEqual(expectedFiles[i], actualFile[i]);
-            }
+            return;
         }
         [TestMethod()]
         public void FileSizeTest()
@@ -93,6 +112,7 @@ namespace A1S1.Tests
             Assert.AreEqual(charCount, Program.FileSize(filePath));
             filePath = GetTestFile(out lineCount, out charCount);
             Assert.AreEqual(charCount, Program.FileSize(filePath));
+            return;
         }
         private static string GetTestFile(out int lineCount, out int charCount)
         {

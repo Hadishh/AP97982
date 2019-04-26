@@ -29,6 +29,7 @@ namespace A1S3
                 result = result + charge.ToString("0.000") + '\n';
                 File.AppendAllText(resultPath, result);
             }
+            return;
         }
         public static string[] Q1_GetWords(string path)
         {
@@ -39,10 +40,8 @@ namespace A1S3
         public static bool Q2_IsInWords(string[] words, string word)
         {
             foreach (string item in words)
-            {
                 if (item == word)
                     return true;
-            }
             return false;
         }
         public static string[] Q3_GetWordsOfTweet(string tweet)
@@ -57,21 +56,17 @@ namespace A1S3
             int charge = 0;
             string[] tweetWords = Q3_GetWordsOfTweet(tweet);
             foreach (string str in tweetWords)
-            {
                 if (Q2_IsInWords(posWords, str))
                     charge++;
                 else if (Q2_IsInWords(negWords, str))
                     charge--;
-            }
             return charge;
         }
         public static double Q5_GetAvgPopChargeOfTweets(string[] tweets, string[] negWords, string[] posWords)
         {
             double averageCharge = 0f;
             foreach (string tweet in tweets)
-            {
                 averageCharge += Q4_GetPopChargeOfTweet(tweet, posWords, negWords);
-            }
             averageCharge /= (tweets.Length - 1);
             return averageCharge;
         }

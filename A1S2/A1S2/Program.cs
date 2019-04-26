@@ -40,9 +40,7 @@ namespace A1S2
                 size += info.Length;
             }
             for (int i = 0; i < directories.Length; i++)
-            {
                 size += SizeOfFiles(directories[i]);
-            }
             return size;
         }
     }

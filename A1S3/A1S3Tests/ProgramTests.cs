@@ -26,6 +26,7 @@ namespace A1S3.Tests
             CollectionAssert.AreEqual(fileLines2, Program.Q1_GetWords(path));
             File.WriteAllLines(path, fileLines3);
             CollectionAssert.AreEqual(fileLines3, Program.Q1_GetWords(path));
+            return;
         }
 
         [TestMethod()]
@@ -38,6 +39,7 @@ namespace A1S3.Tests
             Assert.AreEqual(false, Program.Q2_IsInWords(words, "نثار"));
             Assert.AreEqual(false, Program.Q2_IsInWords(words, ""));
             Assert.AreEqual(true, Program.Q2_IsInWords(words, words[rnd.Next(0, 5)]));
+            return;
         }
 
         [TestMethod()]
@@ -50,6 +52,7 @@ namespace A1S3.Tests
             string[] tweet2Words = new string[] { "ما", "هم", "اکنون", "در", "حال", "تست", "تمرین", "درس", "برنامه", "سازی", "پیشرفته",
                                     "هستیم", "اینجا", "دانشگاه", "علم", "و", "صنعت", "ایران", "آیا", "آماده" , "هستید"};
             CollectionAssert.AreEqual(tweet2Words, Program.Q3_GetWordsOfTweet(tweet2));
+            return;
         }
 
         [TestMethod()]
@@ -64,6 +67,7 @@ namespace A1S3.Tests
                 goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)]
                 + " " + badWords[rndHandler.Next(0, 4)];
             Assert.AreEqual(3, Program.Q4_GetPopChargeOfTweet(tweet1, goodWords, badWords));
+            return;
         }
 
         [TestMethod()]
@@ -72,13 +76,15 @@ namespace A1S3.Tests
             string[] goodWords = new string[] { "خوب", "عالی", "مهربان", "زیبا", "خوش" };
             string[] badWords = new string[] { "بد", "ناخوش", "ناخوشایند", "زشت" };
             Random rndHandler = new Random();
+            const float assertAnswer = 2.5f;
             string tweet1 = goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)] + " " +
                goodWords[rndHandler.Next(0, 4)] + " " + goodWords[rndHandler.Next(0, 4)]
                + " " + badWords[rndHandler.Next(0, 4)];
             string[] tweets = new string[] { "متن اولیه توئیت که باید رد بشود مربوط به صاحب اکانت است!",
                 "حال خوب و خوش خود را با حال بد و ناخوشایند یک انسان زشت و مهربان عوض نمیکنم! پس باید زشت و مهربان نباشیم بلکه زیبا باشیم و خوب"
                                         , tweet1};
-            Assert.AreEqual(2.5f, Program.Q5_GetAvgPopChargeOfTweets(tweets, badWords, goodWords));
+            Assert.AreEqual(assertAnswer, Program.Q5_GetAvgPopChargeOfTweets(tweets, badWords, goodWords));
+            return;
         }
         public string CreateTmpFile()
         {
