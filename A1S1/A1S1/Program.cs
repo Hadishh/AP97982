@@ -42,7 +42,7 @@ namespace A1S1
             List<string> files = Directory.GetFiles(dirPath, "*.txt").ToList();
             //Sorted List Ordered by Name
             files = files.OrderBy(Path.GetFileName).ToList();
-            int[] numbers = new int[17];
+            int[] numbers = new int[files.Count];
             try
             {
                 for (int i = 0; i < files.Count; i++)
