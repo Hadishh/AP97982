@@ -5,9 +5,12 @@ namespace A7
 {
     public static class PoliceStation
     {
+        public static List<ICitizen> BlackList { get; set; }
         public static bool BackgroundCheck(ICitizen citizen)
         {
-            throw new NotImplementedException();
+            if (BlackList.Contains(citizen))
+                return true;
+            return false;
         }
     }
 }
