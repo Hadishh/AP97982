@@ -8,15 +8,14 @@ namespace A3
 {
     public class City
     {
-        public string _Name;
+        private string _Name;
         public string Name
         {
-            get
-            {
-                return _Name;
-            }
+            get { return _Name; }
             set
             {
+                if (value == string.Empty)
+                    throw new Exception("City name can't be empty");
                 _Name = value;
             }
         }

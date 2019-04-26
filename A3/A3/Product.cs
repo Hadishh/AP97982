@@ -7,27 +7,25 @@ namespace A3
 {
     public class Product
     {
-        public string _Name;
-        public float _Price;
+        private string _Name;
+        private float _Price;
         public string Name
         {
-            get
-            {
-                return _Name;
-            }
+            get { return _Name; }
             set
             {
+                if (value == string.Empty)
+                    throw new Exception("Product name can't be empty");
                 _Name = value;
             }
         }
         public float Price
         {
-            get
-            {
-                return _Price;
-            }
+            get { return _Price; }
             set
             {
+                if (value < 0f)
+                    throw new Exception("Price less than zero!");
                 _Price = value;
             }
         }

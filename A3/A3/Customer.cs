@@ -8,40 +8,17 @@ namespace A3
 {
     public class Customer
     {
-        public string _Name;
-        public City _City;
-        public List<Order> _Orders;
+        private string _Name;
+        public City City { get; set; }
+        public List<Order> Orders { get; set; }
         public string Name
         {
-            get
-            {
-                return _Name;
-            }
+            get { return _Name; }
             set
             {
+                if (value == string.Empty)
+                    throw new Exception("Customer's name can't be empty");
                 _Name = value;
-            }
-        }
-        public City City
-        {
-            get
-            {
-                return _City;
-            }
-            set
-            {
-                _City = value;
-            }
-        }
-        public List<Order> Orders
-        {
-            get
-            {
-                return _Orders;
-            }
-            set
-            {
-                _Orders = value;
             }
         }
         public Customer(string name, City city, List<Order> orders)
@@ -55,29 +32,19 @@ namespace A3
         {
             Dictionary<Product, int> repeats = new Dictionary<Product, int>();
             foreach(Order order in Orders)
-            {
                 foreach(var product in order.Products)
-                {
                     if (repeats.ContainsKey(product))
-                    {
                         repeats[product]++;
-                    }
                     else
-                    {
                         repeats.Add(product, 0);
-                    }
-                }
-            }
             int max = repeats.Values.ToList().Max();
             Product mostOrderedProduct = null;
             foreach(var item in repeats)
-            {
                 if(item.Value == max)
                 {
                     mostOrderedProduct = item.Key;
                     break;
                 }
-            }
             return mostOrderedProduct;
         }
 
@@ -85,10 +52,8 @@ namespace A3
         {
             List<Order> undeliveredOrders = new List<Order>();
             foreach(var order in Orders)
-            {
                 if (!order.IsDelivered)
                     undeliveredOrders.Add(order);
-            }
             return undeliveredOrders;
         }
     }
