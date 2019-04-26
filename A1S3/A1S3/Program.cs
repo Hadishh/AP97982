@@ -29,6 +29,7 @@ namespace A1S3
                 result = result + charge.ToString("0.000") + '\n';
                 File.AppendAllText(resultPath, result);
             }
+            return;
         }
         public static string[] Q1_GetWords(string path)
         {

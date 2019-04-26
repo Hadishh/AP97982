@@ -23,6 +23,7 @@ namespace A1S1.Tests
             Assert.AreEqual(assert2, Program.CaculateLength(""));
             Assert.AreEqual(assert3, Program.CaculateLength("abc,ddla123@#$%^&*sdeq"));
             Assert.AreEqual(assert4, Program.CaculateLength("abc"));
+            return;
         }
 
         [TestMethod()]
@@ -38,6 +39,7 @@ namespace A1S1.Tests
             Assert.AreEqual(assert3, Program.LetterCount(",134hadiSheikhi4567"));
             Assert.AreEqual(assert4, Program.LetterCount(""));
             Assert.AreEqual(assert5, Program.LetterCount("Hello World! This is a Test For Checking!"));
+            return;
         }
 
         [TestMethod()]
@@ -61,7 +63,7 @@ namespace A1S1.Tests
             Assert.AreEqual(assert6, Program.LineCount(Tests[5]));
             Assert.AreEqual(assert7, Program.LineCount(Tests[6]));
             Assert.AreEqual(assert8, Program.LineCount(Tests[7]));
-
+            return;
         }
 
         [TestMethod()]
@@ -81,6 +83,7 @@ namespace A1S1.Tests
             Assert.AreEqual(lineCount, Program.FileLineCount(filePath));
             filePath = GetTestFile(out lineCount, out charCount);
             Assert.AreEqual(lineCount, Program.FileLineCount(filePath));
+            return;
         }
 
         [TestMethod()]
@@ -94,6 +97,7 @@ namespace A1S1.Tests
                 Assert.Fail();
             for (int i = 0; i < expectedFiles.Length; i++)
                 Assert.AreEqual(expectedFiles[i], actualFile[i]);
+            return;
         }
         [TestMethod()]
         public void FileSizeTest()
@@ -108,6 +112,7 @@ namespace A1S1.Tests
             Assert.AreEqual(charCount, Program.FileSize(filePath));
             filePath = GetTestFile(out lineCount, out charCount);
             Assert.AreEqual(charCount, Program.FileSize(filePath));
+            return;
         }
         private static string GetTestFile(out int lineCount, out int charCount)
         {
