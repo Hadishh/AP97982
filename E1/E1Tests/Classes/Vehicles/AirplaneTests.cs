@@ -13,10 +13,10 @@ namespace E1Tests.Classes.Vehicles
     {
         Airplane airplane = new Airplane(1000, "C130");
 
-        /*[TestMethod()]
+        [TestMethod()]
         public void FlyTest()
         {
-            Assert.Inconclusive();
+            //Assert.Inconclusive();
 
             // Arrange
             string expected = $"{airplane.Model} with {airplane.SpeedRate} speed rate is flying";
@@ -26,6 +26,6 @@ namespace E1Tests.Classes.Vehicles
 
             // Assert
             Assert.AreEqual(expected, actual);
-        }*/
+        }
     }
 }

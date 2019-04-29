@@ -42,6 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Animals\Crow.cs" />
+    <Compile Include="Classes\Animals\Frog.cs" />
+    <Compile Include="Classes\Animals\Partridge.cs" />
+    <Compile Include="Classes\Animals\Snake.cs" />
+    <Compile Include="Classes\GameBoard.cs" />
+    <Compile Include="Classes\Vehicles\Airplane.cs" />
+    <Compile Include="Classes\Vehicles\Submarine.cs" />
+    <Compile Include="Enums\Environment.cs" />
+    <Compile Include="Interfaces\IAnimal.cs" />
+    <Compile Include="Interfaces\ICrawlable.cs" />
+    <Compile Include="Interfaces\IFlyable.cs" />
+    <Compile Include="Interfaces\ISwimable.cs" />
+    <Compile Include="Interfaces\IWalkable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
