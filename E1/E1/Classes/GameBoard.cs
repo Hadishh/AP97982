@@ -17,7 +17,14 @@ namespace E1.Classes
 
         public string[] MoveAnimals()
         {
-			return null;
+            List<string> output = new List<string>();
+            foreach(var animal in Animals)
+            {
+                output.Add(animal.Move(Environment.Air));
+                output.Add(animal.Move(Environment.Land));
+                output.Add(animal.Move(Environment.Watery));
+            }
+			return output.ToArray();
         }
     }
 }
