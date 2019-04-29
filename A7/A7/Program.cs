@@ -10,6 +10,8 @@ namespace A7
     {
         static void Main(string[] args)
         {
+            Khalle nb = new Khalle("sad", "asdas", "adssad", Degree.Bachelor);
+
         }
     }
 }

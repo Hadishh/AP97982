@@ -2,6 +2,7 @@ namespace A7
 {
     public class Khalle : ICitizen, ITeacher
     {
+        public static int bv = 0;
         public string Name { get; }
         public string NationalId { get; }
         public Degree TopDegree { get; set; }
