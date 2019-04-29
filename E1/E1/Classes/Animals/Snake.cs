@@ -7,6 +7,13 @@ namespace E1.Classes.Animals
 {
     public class Snake : IAnimal, ICrawlable
     {
+        public Snake(string name, int age, double health, double speedRate)
+        {
+            Name = name;
+            Age = age;
+            Health = health;
+            SpeedRate = speedRate;
+        }
 
         public string Name { get; }
 
@@ -44,17 +51,11 @@ namespace E1.Classes.Animals
 
         public string Reproduction(IAnimal animal)
         {
-            string output = this.Name + " is a Snake and reproductive with " + animal.Name;
+            string output = this.Name + " is a Snake and reproductive with " +
+                animal.Name;
             return output;
         }
 
         
-        public Snake(string name, int age, double health, double speedRate)
-        {
-            Name = name;
-            Age = age;
-            Health = health;
-            SpeedRate = speedRate;
-        }
     }
 }
