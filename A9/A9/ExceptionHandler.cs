@@ -145,22 +145,51 @@ namespace A9
 
         public void NestedMethods()
         {
-            MethodA();
+            try
+            {
+                MethodA();
+            }
+            catch (NotImplementedException)
+            {
+                throw;
+            }
+           
         }
 
         private void MethodA()
         {
-            MethodB();
+            try
+            {
+                MethodB();
+            }
+            catch (NotImplementedException)
+            {
+                throw;
+            }
         }
 
         private void MethodB()
         {
-            MethodC();
+            try
+            {
+                MethodC();
+            }
+            catch (NotImplementedException)
+            {
+                throw;
+            }
         }
 
         private void MethodC()
         {
-            MethodD();
+            try
+            {
+                MethodD();
+            }
+            catch (NotImplementedException)
+            {
+                throw;
+            }
         }
 
         private void MethodD()
