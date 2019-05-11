@@ -93,8 +93,8 @@ namespace A9
             {
                 if (causeExceptionInConstructor)
                 {
-                    string myNullString = null;
-                    int size = myNullString.Length;
+                    ExceptionHandler nullValue = null;
+                    nullValue.ErrorMsg = "Omg";
                     ErrorMsg = "Hellow Testing";
                 }
             }
