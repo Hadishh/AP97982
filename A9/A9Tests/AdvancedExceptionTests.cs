@@ -96,7 +96,7 @@ namespace A9Tests
             catch (NotImplementedException e)
             {
                 string[] methods = GetMethods(e.StackTrace);
-                CollectionAssert.AreEqual(expectedCallStack, methods,$"{expectedCallStack.Length} And {methods.Length}");
+                CollectionAssert.AreEqual(expectedCallStack, methods,$"{expectedCallStack.Length} And {methods[0]}");
                 throw;
             }
         }

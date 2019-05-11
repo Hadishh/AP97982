@@ -194,7 +194,14 @@ namespace A9
 
         private void MethodD()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void FileNotFoundExceptionMethod()
