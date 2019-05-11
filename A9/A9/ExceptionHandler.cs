@@ -89,6 +89,7 @@ namespace A9
         {
             DoNotThrow = doNotThrow;
             this._Input = input;
+            ErrorMsg = "Wow";
             try
             {
                 if (causeExceptionInConstructor)

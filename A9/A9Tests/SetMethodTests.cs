@@ -33,7 +33,7 @@ namespace ExceptionHandling.Tests
         {
             ExceptionHandler eh = new ExceptionHandler("test", false, true);
             eh.Input = null;
-            Assert.AreEqual("Caught exception in SetMethod", eh.ErrorMsg);
+            Assert.AreEqual(eh.ErrorMsg, "Caught exception in SetMethod");
         }
 
         #endregion
