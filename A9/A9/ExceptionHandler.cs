@@ -42,7 +42,11 @@ namespace A9
             {
                 try
                 {
-                    int size = value.Length;
+                    if(value is null)
+                    {
+                        ExceptionHandler nullValue = null;
+                        nullValue.ErrorMsg = "Omg";
+                    }
                     _Input = value;
                 }
                 catch
