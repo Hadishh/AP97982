@@ -89,13 +89,13 @@ namespace A9
         {
             DoNotThrow = doNotThrow;
             this._Input = input;
-            ErrorMsg = "Wow";
             try
             {
                 if (causeExceptionInConstructor)
                 {
                     string myNullString = null;
                     int size = myNullString.Length;
+                    ErrorMsg = "Hellow Testing";
                 }
             }
             catch(NullReferenceException)
