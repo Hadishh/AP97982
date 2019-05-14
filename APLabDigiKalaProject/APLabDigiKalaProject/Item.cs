@@ -4,7 +4,7 @@ namespace APLabDigiKalaProject
 {
     public class Item
     {
-        public Item(string title, double price, DateTime date, string brand, string seller)
+        public Item(string title, double price, DateTime date, string brand, Seller seller)
         {
             this.Title = title;
             this.Id = 0;
@@ -41,7 +41,7 @@ namespace APLabDigiKalaProject
         }
         public DateTime Date { get; set; }
         public string Brand { get; set; }
-        public string Seller;
+        public Seller Seller;
         //Seller Not Implemented
         //TODO
         public void AddToCart(/*Customer customer*/)
