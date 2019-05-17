@@ -27,7 +27,8 @@ namespace APLabDigiKalaProject
         }
         public Bill MakeBill()
         {
-            return new Bill();
+            Bill lastBill = new Bill(this);
+            return lastBill;
         }
     }
 }

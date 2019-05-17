@@ -15,14 +15,26 @@ namespace APLabDigiKalaProject
         public double TotalAmount { get; set; }
         public Bill Finalize()
         {
+            Bill finalizedBill = new Bill(Owner);
+            finalizedBill.Checkout = TotalAmount;
+            
             //TODO
             return null;
         }
         public double AddItem(Item item)
         {
             Items.Add(item);
+            TotalAmount += item.Price;
             return item.Price;
         }
-        public bool RemoveItem(Item item) => Items.Remove(item);
+        public bool RemoveItem(Item item)
+        {
+            if (!Items.Contains(item))
+                return false;
+            TotalAmount -= item.Price;
+            Items.Remove(item);
+            return true;
+        }
+            
     }
 }
