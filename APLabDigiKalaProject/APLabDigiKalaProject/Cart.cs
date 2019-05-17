@@ -17,9 +17,7 @@ namespace APLabDigiKalaProject
         {
             Bill finalizedBill = new Bill(Owner);
             finalizedBill.Checkout = TotalAmount;
-            
-            //TODO
-            return null;
+            return finalizedBill;
         }
         public double AddItem(Item item)
         {
