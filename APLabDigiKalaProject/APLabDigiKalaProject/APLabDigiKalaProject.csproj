@@ -45,6 +45,7 @@
     <Compile Include="Bill.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="DigiKala.cs" />
     <Compile Include="DigiKalaUser.cs" />
     <Compile Include="IFilter.cs" />
     <Compile Include="Item.cs" />

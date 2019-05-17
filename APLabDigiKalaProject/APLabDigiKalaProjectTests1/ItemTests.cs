@@ -14,7 +14,8 @@ namespace APLabDigikalaTests
 
             var itemsTmp = new List<Item>()
             {
-               /* new Item("Kase", 12.3, new DateTime(2012, 2, 21), "Ehsandar", "EhsanShop"),
+                /*
+                new Item("Kase", 12.3, new DateTime(2012, 2, 21), "Ehsandar",new Seller("EhsanShop", 10000, ),
                 new Item("Boshghab", 23, new DateTime(2000, 1, 25), "Ehsandar", "EhsanShop"),
                 new Item("Ahan", 2, new DateTime(2019, 2, 1), "Gholami", "EhsanShop"),
                 new Item("Alat", 4.5, new DateTime(2003, 7, 23), "Gholami", "EhsanShop"),
@@ -25,7 +26,7 @@ namespace APLabDigikalaTests
                 new Item("Marker", 3.45, new DateTime(2012, 5, 11), "Panter", "EhsanShop"),
                 new Item("Smart Phone", 2300000, new DateTime(2017, 4, 13), "Sony", "EhsanShop"),*/
             };
-
+            
             foreach (Item item in itemsTmp)
             {
                 inventory.AddItem(item);
@@ -33,6 +34,7 @@ namespace APLabDigikalaTests
 
             return inventory;
         }
+        
 
         [TestMethod]
         public void FilterDateTest()

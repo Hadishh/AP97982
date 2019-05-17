@@ -2,13 +2,14 @@
 {
     public class DigiKalaUser
     {
-        public DigiKalaUser(int id, string fullName, double accountCredit) 
+        public DigiKalaUser(string fullName, double accountCredit) 
         {
-            Id = id;
+            Id = IdHandler++;
             FullName = fullName;
             AccountCredit = accountCredit;
         }
         public int Id { get; set; }
+        static int IdHandler = 2000;
         public string FullName { get; }
         public double AccountCredit { get; set; }
         public bool ExpendCredit(double amount)

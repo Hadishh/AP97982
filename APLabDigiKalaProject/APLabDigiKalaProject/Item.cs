@@ -7,13 +7,14 @@ namespace APLabDigiKalaProject
         public Item(string title, double price, DateTime date, string brand, Seller seller)
         {
             this.Title = title;
-            this.Id = 0;
+            this.Id = IdHandler++;
             this.Brand = brand;
             this.Price = price;
             this.Date = date;
             Seller = seller;
         }
         public int Id { get; set; }
+        static int IdHandler = 0;
         public string Title { get; set; }
         private double _Price;
         public double Price
