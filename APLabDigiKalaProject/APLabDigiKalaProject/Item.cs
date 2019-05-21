@@ -12,6 +12,7 @@ namespace APLabDigiKalaProject
             this.Price = price;
             this.Date = date;
             Seller = seller;
+            Seller.ReleaseNewItem(this);
         }
         public int Id { get; set; }
         static int IdHandler = 0;

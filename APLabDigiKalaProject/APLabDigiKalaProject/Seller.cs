@@ -4,10 +4,10 @@ namespace APLabDigiKalaProject
 {
     public class Seller: DigiKalaUser
     {
-        public Seller(string fullName, double accountCredit, List<Item> shopItems, string shopName):
+        public Seller(string fullName, double accountCredit, string shopName):
             base(fullName, accountCredit)
         {
-            ShopItems = shopItems;
+            ShopItems = new List<Item>();
             ShopName = shopName;
         }
         public List<Item> ShopItems { get; set; }
@@ -15,6 +15,7 @@ namespace APLabDigiKalaProject
         public int ReleaseNewItem(Item item)
         {
             ShopItems.Add(item);
+            AccountCredit -= item.Price;
             return ShopItems.Count;
         }
     }
