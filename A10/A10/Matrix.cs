@@ -39,16 +39,15 @@ namespace A10
                 throw new ArgumentException("Number of rows can't be zero.");
             Rows = new Vector<_Type>[rows.ToArray().Length];
             foreach(var item in rows)
-            {
-                this.Add(item);
-            }
-            RowCount = rows.ToArray().Length;
+                this.Add(item);            
+            RowCount = Rows.Length;
             ColumnCount = rows.ToArray()[0].Size;
         }
 
         public void Add(Vector<_Type> row)
         {
             this.Rows[RowAddIndex++] = row;
+            return;
         }
 
         public Vector<_Type> this[int index]
@@ -97,9 +96,7 @@ namespace A10
                 throw new InvalidOperationException();
             Matrix<_Type> result = new Matrix<_Type>(m1.RowCount, m1.ColumnCount);
             for(int i = 0; i < m1.RowCount; i++)
-            {
                 result[i] = m1.Rows[i] + m2.Rows[i];
-            }
             return result;
         }
 
@@ -134,9 +131,7 @@ namespace A10
             {
                 result[i] = new Vector<_Type>(m2.ColumnCount);
                 for(int j = 0; j < m2.ColumnCount; j++)
-                {
                     result[i][j] = m1[i] * m2.GetColumn(j);
-                }
             }
             return result;
         }
@@ -152,9 +147,7 @@ namespace A10
                 throw new IndexOutOfRangeException();
             Vector<_Type> column = new Vector<_Type>(RowCount);
             for(int i = 0; i < RowCount; i++)
-            {
                 column[i] = this[i][col];
-            }
             return column;
         }
 
@@ -167,10 +160,8 @@ namespace A10
             if (other.ColumnCount != this.ColumnCount || other.RowCount != this.RowCount)
                 return false;
             for (int i = 0; i < Rows.Length; i++)
-            {
                 if (!this[i].Equals(other[i]))
                     return false;
-            }
             return true;
         }
 
@@ -186,29 +177,25 @@ namespace A10
             int code = 0;
             foreach(var row in this.Rows)
                 code ^= row.GetHashCode();
-
             return code;
         }
 
         public IEnumerator<Vector<_Type>> GetEnumerator()
-        {
-            return ((IEnumerable<Vector<_Type>>)Rows).GetEnumerator();
-        }
+            => ((IEnumerable<Vector<_Type>>)Rows).GetEnumerator();
+        
 
         IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable<Vector<_Type>>)Rows).GetEnumerator();
-        }
+            => ((IEnumerable<Vector<_Type>>)Rows).GetEnumerator();
+        
         public override string ToString()
         {
             string output = "[\n";
             foreach(var item in Rows)
-            {
                 if (item != Rows.Last())
                     output += item.ToString() + ",\n";
                 else
                     output += item.ToString();
-            }
+            
             output += "\n]";
             return output;
         }

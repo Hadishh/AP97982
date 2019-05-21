@@ -37,6 +37,7 @@ namespace A10
         public void Add(_Type v)
         {
             Data[AddIndex++] = v;
+            return;
         }
 
         /// <summary>
@@ -80,10 +81,14 @@ namespace A10
         {
             get
             {
+                if (index >= Size)
+                    throw new IndexOutOfRangeException();
                 return Data[index];
             }
             set
             {
+                if (index >= Size)
+                    throw new IndexOutOfRangeException();
                 Data[index] = value;
             }
         }
@@ -122,9 +127,7 @@ namespace A10
             Vector<_Type> result = new Vector<_Type>(v1.Size);
             dynamic data = 0;
             for (int i = 0; i < result.Size; i++)
-            {
                 data += (dynamic)v1[i] * v2[i];
-            }
             return data;
         }
 
@@ -192,9 +195,8 @@ namespace A10
         }
 
         IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.Data.GetEnumerator();
-        }
+            => this.Data.GetEnumerator();
+        
         public override string ToString()
         {
             string output = "[";
