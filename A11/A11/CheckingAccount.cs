@@ -6,26 +6,21 @@ using System.Threading.Tasks;
 
 namespace A11
 {
-    public class Account
+    public class CheckingAccount : Account
     {
-        public Account(double balance)
+        public double TransactionFee { get; set; }
+        public CheckingAccount(double balance, double transactionFee)
+            : base(balance)
         {
-            if (balance < 0)
-            {
-                Console.WriteLine("Initial balance is invalid. Setting balance to 0.");
-                Balance = 0;
-            }
-            else
-                Balance = balance;
+            TransactionFee = transactionFee;
         }
-        public double Balance { get; set; }
-        public virtual void Credit(double amount)
+        public override void Credit(double amount)
         {
             if (amount < 0)
                 throw new ArgumentException("Credit amount must be positive");
-            Balance += amount;
+            Balance += amount - TransactionFee;
         }
-        public virtual bool Debit(double amount)
+        public override bool Debit(double amount)
         {
             if (amount < 0)
                 throw new ArgumentException("Debit amount must be positive");
@@ -36,7 +31,7 @@ namespace A11
             }
             else
             {
-                Balance -= amount;
+                Balance -= amount + TransactionFee;
                 return true;
             }
         }
