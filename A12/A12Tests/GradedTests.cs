@@ -15,7 +15,7 @@ namespace A12.Tests
             get
             {
                 if (_instance == null)
-                    _instance = AppAnalysis.AppAnalysisFactory(@"../../googleplaystore.csv");
+                    _instance = AppAnalysis.AppAnalysisFactory(@"../../../A12/googleplaystore.csv");
                 return _instance;
             }
         }
@@ -25,7 +25,7 @@ namespace A12.Tests
         [TestMethod()]
         public void AppAnalysisFactoryTest()
         {
-            var instance = AppAnalysis.AppAnalysisFactory(@"../../googleplaystore.csv");
+            var instance = AppAnalysis.AppAnalysisFactory(@"../../../A12/googleplaystore.csv");
             Assert.IsNotNull(instance);
             Assert.IsNotNull(instance.Apps);
             Assert.AreEqual(10840, instance.Apps.Count);
@@ -42,7 +42,7 @@ namespace A12.Tests
         {
             Assert.AreEqual("CB79F8FA58B91D3AF6C9C991F63962D3",
                 CalcMD5(Instance.AppsAboveXRatingCount(4.6).ToString()));
-
+            
             Assert.AreEqual("B0928F2D4BA7EA33B05024F21D937F48",
                 CalcMD5(Instance.AppsAboveXRatingCount(3.5).ToString()));
         }
