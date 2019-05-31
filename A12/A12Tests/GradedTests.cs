@@ -80,9 +80,9 @@ namespace A12.Tests
         {
             var result = Instance.ExtremeMeanUpdateElapse(new DateTime(2019, 5, 27));
 
-            Assert.AreEqual("37624B884AC780460806C5892EB4C2F3", CalcMD5(result.Item1));
+            Assert.AreEqual("F85D08F4609CB9F5D750707713CDF335", CalcMD5(result.Item1));
   
-			Assert.AreEqual("50B40F9D3C9C932AB60FB564CF9AD470", CalcMD5(result.Item2));
+			Assert.AreEqual("40F71CE559D3F33A58B3305BA9780261", CalcMD5(result.Item2));
         }
         [TestMethod()]
         public void TopQuarterBoundaryTest()

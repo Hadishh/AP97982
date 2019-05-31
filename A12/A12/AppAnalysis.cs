@@ -62,7 +62,7 @@ namespace A12
                 .Select(g => (g.ElementAt(g.Count() * 3 / 4))).First().Rating;
         public Tuple<string , string> ExtremeMeanUpdateElapse(DateTime today)
         {
-            var sortedItems = Apps.GroupBy(d => d.Name)
+            var sortedItems = Apps.GroupBy(d => d.Category)
             .OrderBy(g => g.Average(d => (today - d.LastUpdate).TotalHours));
             return Tuple.Create(sortedItems.First().Key, sortedItems.Last().Key);
         }
