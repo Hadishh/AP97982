@@ -64,7 +64,7 @@ namespace A12
         {
             var sortedItems = Apps.GroupBy(d => d.Name)
             .OrderBy(g => g.Average(d => (today - d.LastUpdate).TotalHours));
-            return new Tuple<string, string>(sortedItems.First().Key, sortedItems.Last().Key);
+            return Tuple.Create(sortedItems.First().Key, sortedItems.Last().Key);
         }
         public List<string> XMostProfitables(int x)
             => Apps.Where(d => !d.IsFree)

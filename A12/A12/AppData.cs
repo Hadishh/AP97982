@@ -33,7 +33,7 @@ namespace A12
                 Reviews = 0;
             if (!double.TryParse(fields[4].Trim('M'), out Size))
                 Size = 0;
-            if (!long.TryParse(fields[5].Trim('+', '"').Replace(",", string.Empty), out Installs))
+            if (!long.TryParse(fields[5].Trim('+', '"'), NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out Installs))
                 Installs = 0;
             IsFree = fields[6].Contains("Free");
             if (!double.TryParse(fields[7].Trim('$'), out Price))
