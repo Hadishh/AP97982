@@ -104,7 +104,11 @@ namespace EventDelegateThread.Tests
             {
                 Action<string> notifyMe = (f) => deletedFiles.Add(f);
                 watcher.Register(notifyMe, ObserverType.Delete);
-                files2Create.ForEach(f => { if (File.Exists(f)) File.Delete(f); });
+                files2Create.ForEach(f => {
+                    if (File.Exists(f))
+                        File.Delete(f);
+                    Thread.Sleep(10);
+                });
 
                 Thread.Sleep(500);
                 CollectionAssert.AreEqual(files2Create, deletedFiles);
@@ -142,7 +146,7 @@ namespace EventDelegateThread.Tests
                 files2Create.Take(3).ToList().ForEach(f => {
                     if (File.Exists(f))
                         File.Delete(f);
-                    Thread.Sleep(500);
+                    Thread.Sleep(10);
                 });
                 watcher.Unregister(notifyMe, ObserverType.Delete);
                 files2Create.Skip(3).ToList().ForEach(f => { if (File.Exists(f)) File.Delete(f); });
