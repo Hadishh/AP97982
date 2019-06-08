@@ -19,7 +19,8 @@ namespace A13
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
-            DoingWork();
+            if(DoingWork != null)
+                DoingWork();
             return;
         }
 
