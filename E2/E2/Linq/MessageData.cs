@@ -19,7 +19,7 @@ namespace E2.Linq
             {
                 ReplyMessageId = int.Parse(row[1]);
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 ReplyMessageId = null;
             }

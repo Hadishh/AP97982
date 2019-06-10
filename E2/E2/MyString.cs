@@ -48,6 +48,10 @@ namespace E2
             return new MyString(v1.Data.ToLower());
         }
         public static explicit operator string(MyString v) => v.ToString();
+        public override int GetHashCode()
+        {
+            return Data.GetHashCode();
+        }
     }
 
 }

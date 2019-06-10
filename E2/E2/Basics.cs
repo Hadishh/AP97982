@@ -21,6 +21,10 @@ namespace E2
             FullName other = obj as FullName;
             return other.FirstName == this.FirstName && other.LastName == this.LastName;
         }
+        public override int GetHashCode()
+        {
+            return FirstName.GetHashCode() ^ LastName.GetHashCode();
+        }
     }
 
     public static class Basics
