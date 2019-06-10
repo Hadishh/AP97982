@@ -12,7 +12,8 @@ namespace E2
             if (Numbers.ContainsKey(n))
             {
                 Numbers[n]++;
-                DuplicateNumberAdded(Numbers[n]);
+                if(DuplicateNumberAdded != null)
+                    DuplicateNumberAdded(Numbers[n]);
             }
             else
                 Numbers.Add(n, 0);
