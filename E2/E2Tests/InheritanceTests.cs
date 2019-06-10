@@ -20,12 +20,12 @@ namespace E2.Tests
     {
         class PersonTestClass : Person
         {
-            /* UnComment
+            
             public PersonTestClass(string Name, bool isFemale) : base(Name, isFemale)
             { }
             public override int LunchRate => 0;
             public override string Name => base.Name;
-            */
+            
         }
 
         /// <summary>
@@ -53,8 +53,7 @@ namespace E2.Tests
         [TestMethod()]
         public void PersonTest()
         {
-            Assert.Inconclusive();
-            /* UnComment
+           
             // Person should be an abstract class
             Assert.IsTrue(typeof(Person).IsAbstract);
 
@@ -67,7 +66,7 @@ namespace E2.Tests
             Person p = new PersonTestClass("فاطمه معتمد آریا", true);
             Assert.AreEqual("خانم فاطمه معتمد آریا", p.Name);
             Assert.AreEqual(true, p.IsFemale);
-            */
+            
         }
 
         /// <summary>
@@ -81,8 +80,7 @@ namespace E2.Tests
         [TestMethod()]
         public void StudentTest()
         {
-            Assert.Inconclusive();
-            /* UnComment
+            
             Person p = new Student("حسن روحانی", false);
             Assert.IsFalse(p.IsFemale);
             Assert.AreEqual("آقای حسن روحانی", p.Name);
@@ -92,7 +90,7 @@ namespace E2.Tests
             Assert.AreNotEqual(
                 typeof(Student).GetMethod("get_Name").DeclaringType,
                 typeof(Student));
-                */
+                
 
         }
 
@@ -112,9 +110,6 @@ namespace E2.Tests
         [TestMethod()]
         public void EmployeeTest()
         {
-            Assert.Inconclusive();
-            /* UnComment
-
             Person p = new Employee("محمد ابراهیم همت", false);
             Assert.IsFalse(p.IsFemale);
             Assert.AreEqual("آقای محمد ابراهیم همت", p.Name);
@@ -130,7 +125,6 @@ namespace E2.Tests
             Assert.AreEqual(e.LunchRate, 5000);
 
             Assert.AreEqual(50_000, e.CalculateSalary(10));
-            */
         }
 
         /// <summary>
@@ -149,8 +143,7 @@ namespace E2.Tests
         [TestMethod()]
         public void TeacherTest()
         {
-            Assert.Inconclusive();
-            /* UnComment
+           
             Person p = new Teacher("محمد رضا شجریان", false);
             Assert.IsFalse(p.IsFemale);
             Assert.AreEqual("استاد محمد رضا شجریان", p.Name);
@@ -163,7 +156,6 @@ namespace E2.Tests
             Teacher t = p as Teacher;
             Assert.AreEqual(200_000, e.CalculateSalary(10));
             Assert.AreEqual(t.LunchRate, 10000);
-            */
         }
     }
 }
