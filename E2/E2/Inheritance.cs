@@ -5,7 +5,6 @@ namespace E2
     {
         public bool IsFemale { get; set; }
         protected string _Name;
-        protected int _LunchRate;
         public abstract int LunchRate { get; }
         public virtual string Name {
             get => (IsFemale ? "خانم " : "آقای ") + _Name;

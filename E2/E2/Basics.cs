@@ -101,10 +101,8 @@ namespace E2
         {
             List<T> newList = new List<T>();
             foreach (var item in list)
-            {
                 if (!Contains(newList, item))
                     newList.Add(item);
-            }
             list = newList.ToArray();
         }
 
