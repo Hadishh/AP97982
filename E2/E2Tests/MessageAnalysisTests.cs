@@ -25,7 +25,7 @@ namespace E2.Tests
     [TestClass()]
     public class MessageAnalysisTests
     {
-        private const string CSV_FILE_PATH = @"chats.csv";
+        private const string CSV_FILE_PATH = @"../../../E2/chats.csv";
         private MessageAnalysis _instance;
 
         public MessageAnalysis Instance =>

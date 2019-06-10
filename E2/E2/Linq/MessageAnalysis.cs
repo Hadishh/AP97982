@@ -43,22 +43,33 @@ namespace E2.Linq
 
         public MessageData MostRepliedMessage()
         {
-            throw new NotImplementedException();
+            var messageKey = Messages.Where(d => d.ReplyMessageId.HasValue)
+                .GroupBy(g => g.ReplyMessageId)
+                .OrderByDescending(g => g.Count())
+                .First().Key;
+            return Messages.Where(d => d.Id == messageKey.Value).First();
         }
 
         public Tuple<string, int>[] MostPostedMessagePersons()
-        {
-            throw new NotImplementedException();
-        }
+            => Messages.Where(d => d.Author != "Sauleh Eetemadi" && d.Author != "Ali Heydari")
+                .GroupBy(d => d.Author)
+                .OrderByDescending(g => g.Count())
+                .Take(5)
+                .Select(g => Tuple.Create<string, int>(g.Key, g.Count())).ToArray();
+        
 
         public Tuple<string, int>[] MostActivesAtMidNight()
-        {
-            throw new NotImplementedException();
-        }
+            => Messages.Where(d => d.DateTime.Hour <= 4 && d.DateTime.Hour >= 0)
+                .GroupBy(d => d.Author)
+                .OrderByDescending(g => g.Count())
+                .Take(5)
+                .Select(g => Tuple.Create<string, int>(g.Key, g.Count())).ToArray();
 
         public string StudentWithMostUnansweredQuestions()
-        {
-            throw new NotImplementedException();
-        }
+                =>  Messages.Where(d => d.Content.Contains("?") || d.Content.Contains("¿"))
+                .Where(d => !d.ReplyMessageId.HasValue)
+                .GroupBy(d => d.Author)
+                .OrderByDescending(g => g.Count())
+                .First().Key;
     }
 }

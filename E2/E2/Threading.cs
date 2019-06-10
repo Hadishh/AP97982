@@ -9,7 +9,15 @@ namespace E2
     {
         public static void MakeItFaster(params Action[] actions)
         {
-            throw new NotImplementedException();
+            List<Task> allTasks = new List<Task>();
+            foreach(var action in actions)
+            {
+                Task task = new Task(action);
+                task.Start();
+                allTasks.Add(task);
+            }
+            Task.WaitAll(allTasks.ToArray());
+
         }
     }
 }

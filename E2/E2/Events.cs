@@ -6,9 +6,17 @@ namespace E2
 {
     public class DuplicateNumberDetector
     {
+        Dictionary<int, int> Numbers = new Dictionary<int, int>();
         public void AddNumber(int n)
         {
-            throw new NotImplementedException();
+            if (Numbers.ContainsKey(n))
+            {
+                Numbers[n]++;
+                DuplicateNumberAdded(Numbers[n]);
+            }
+            else
+                Numbers.Add(n, 0);
+            return;
         }
 
         public event Action<int> DuplicateNumberAdded;
