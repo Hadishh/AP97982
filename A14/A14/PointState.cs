@@ -12,6 +12,6 @@
     {
         public PointState(Calculator calc) : base(calc) { }
 
-        //#1 لطفا!
+        public override IState EnterPoint() => this;
     }
 }

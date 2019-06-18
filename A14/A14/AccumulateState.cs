@@ -6,21 +6,21 @@ namespace A14
     {
         public AccumulateState(Calculator calc) : base(calc) { }
 
-        // #7 لطفا
-        public override IState EnterEqual() => new ComputeState(this.Calc);
+        public override IState EnterEqual() => ProcessOperator(new ComputeState(this.Calc));
+
         public override IState EnterZeroDigit() => EnterNonZeroDigit('0');
+
         public override IState EnterNonZeroDigit(char c)
         {
             Calc.Display += c.ToString();
             return this;
         }
 
-        // #9 لطفا!
-        public override IState EnterOperator(char c) => this;
+        public override IState EnterOperator(char c) => ProcessOperator(new ComputeState(this.Calc));
  
         public override IState EnterPoint()
         {
-            Calc.Display += "0.";
+            Calc.Display += ".";
             return new PointState(Calc);
         }
     }

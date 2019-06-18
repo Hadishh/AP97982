@@ -16,21 +16,22 @@
 
         public override IState EnterNonZeroDigit(char c)
         {
-            // #3 لطفا!
-            return null;
+            this.Calc.Display = c.ToString();
+            return new AccumulateState(this.Calc);
         }
 
         public override IState EnterZeroDigit()
         {
-            // #4 لطفا
-            return null;
+            Calc.Display = "0";
+            return new StartState(this.Calc);
         }
 
         // #5 لطفا
-        public override IState EnterOperator(char c) => null;
+        public override IState EnterOperator(char c) => this;
 
         public override IState EnterPoint()
         {
+            Calc.Evalute();
             Calc.Display = "0.";
             return new PointState(this.Calc);
         }

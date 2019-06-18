@@ -21,7 +21,8 @@ namespace A14
                 ['+'] = (x, y) => x + y,
                 ['-'] = (x, y) => x - y,
                 ['/'] = (x, y) => x / y,
-                ['*'] = (x, y) => x * y
+                ['*'] = (x, y) => x * y,
+                ['^'] = Math.Pow
             };
 
         public void PrintDisplay()
