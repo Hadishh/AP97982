@@ -51,6 +51,7 @@
     <Compile Include="Logger\Formatters\CsvFormatter.cs" />
     <Compile Include="Logger\Formatters\ILogFormatter.cs" />
     <Compile Include="Logger\Formatters\XmlLogFormatter.cs" />
+    <Compile Include="Logger\Formatters\XsvFormatter.cs" />
     <Compile Include="Logger\LogEntry.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\Loggers\ConsoleLogger.cs" />
