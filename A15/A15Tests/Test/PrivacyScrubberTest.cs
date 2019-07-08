@@ -37,10 +37,12 @@ namespace LoggerTest
         {
             string testString = "Ali's SSN is  432-12-3232";
             string expectedString = "Ali's SSN is  XXX-XX-XXXX";
-
+            string test1 = "Hadi's SSN is 127317734-7";
+            string excepted1 = "Hadi's SSN is XXXXXXXXX-X";
             string scrubbedString = IDScrubber.Instance.Scrub(testString);
             Assert.AreEqual(scrubbedString, expectedString);
-
+            scrubbedString = IDScrubber.Instance.Scrub(test1);
+            Assert.AreEqual(excepted1, scrubbedString);
         }
 
         [TestMethod]
@@ -53,7 +55,31 @@ namespace LoggerTest
             Assert.AreEqual(expectedString, maskedString);
         }
 
+        [TestMethod]
+        public void EmailTest()
+        {
+            string testString = "Maria's Email is Maria@gmail.com";
+            string expectedString = "Maria's Email is Xxxxx.xxxxx.xxx";
+            string scrubbedString = EmailScrubber.Instance.Scrub(testString);
+            Assert.AreEqual(expectedString, scrubbedString);
+            testString = "Maria's Second Email is MArria@mit.edu";
+            expectedString = "Maria's Second Email is XXxxxx.xxx.xxx";
+            scrubbedString = EmailScrubber.Instance.Scrub(testString);
+            Assert.AreEqual(expectedString, scrubbedString);
+        }
 
+        [TestMethod]
+        public void CCTest()
+        {
+            string testString = "Hadi's Card Nubmer is 6037-9975-4326-5665 Send Him Money :)";
+            string expectedString = "Hadi's Card Nubmer is XXXX-XXXX-XXXX-XXXX Send Him Money :)";
+            string scrubbedString = CCScrubber.Instance.Scrub(testString);
+            Assert.AreEqual(expectedString, scrubbedString);
+            testString = "Maria's Master Card Number is 5500-0000-0000-0004";
+            expectedString = "Maria's Master Card Number is XXXX-XXXX-XXXX-XXXX";
+            scrubbedString = CCScrubber.Instance.Scrub(testString);
+            Assert.AreEqual(expectedString, scrubbedString);
+        }
     }
 
 }

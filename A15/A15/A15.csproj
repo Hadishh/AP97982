@@ -60,8 +60,11 @@
     <Compile Include="Logger\LogWriters\ConcurrentLogWriter.cs" />
     <Compile Include="Logger\LogWriters\GuardedLogWriter.cs" />
     <Compile Include="Logger\LogWriters\LockedLogWriter.cs" />
+    <Compile Include="Logger\LogWriters\LockedQueueLogWriter.cs" />
     <Compile Include="Logger\LogWriters\NoLockLogWriter.cs" />
     <Compile Include="Logger\Scrubbers\AbstractScrubber.cs" />
+    <Compile Include="Logger\Scrubbers\CCScrubber.cs" />
+    <Compile Include="Logger\Scrubbers\EmailScrubber.cs" />
     <Compile Include="Logger\Scrubbers\FullNameScrubber.cs" />
     <Compile Include="Logger\Scrubbers\IDScrubber.cs" />
     <Compile Include="Logger\Scrubbers\IPrivacyScrubber.cs" />

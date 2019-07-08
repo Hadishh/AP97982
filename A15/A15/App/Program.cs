@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Logger
 {
@@ -12,7 +13,6 @@ namespace Logger
         static void Main(string[] args)
         {
             ConsoleLogger clogger = new ConsoleLogger();
-
             FileLogger<LockedLogWriter> errorLogger = new FileLogger<LockedLogWriter>(
                 CsvLogFormatter.Instance,
                 new PrivacyScrubber(PhoneNumberScrubber.Instance, IDScrubber.Instance, FullNameScrubber.Instance),
@@ -37,18 +37,27 @@ namespace Logger
                 LogSources.Create(LogSource.UI),
                 true);
 
-            FileLogger<LockedLogWriter> allLoggger1 = new FileLogger<LockedLogWriter>(
+            FileLogger<LockedLogWriter> allLogger1 = new FileLogger<LockedLogWriter>(
                 CsvLogFormatter.Instance,
-                new PrivacyScrubber(PhoneNumberScrubber.Instance, IDScrubber.Instance, FullNameScrubber.Instance),
+                new PrivacyScrubber(IDScrubber.Instance ,FullNameScrubber.Instance),
                 new IncrementalLogFileName(@"c:\log", "a13_all", CsvLogFormatter.Instance.FileExtention),
                 LogLevels.All,
                 LogSources.All,
                 true);
+            FileLogger<LockedLogWriter> allLogger2 = new FileLogger<LockedLogWriter>(
+                CsvLogFormatter.Instance,
+                new PrivacyScrubber(PhoneNumberScrubber.Instance, IDScrubber.Instance, FullNameScrubber.Instance),
+                new IncrementalLogFileName(@"c:\log", "a13_all", CsvLogFormatter.Instance.FileExtention),
+                LogLevels.All,
+                LogSources.Create(LogSource.Client),
+                true
+               );
             Logger.Loggers.Add(errorLogger);
             Logger.Loggers.Add(allLogger);
             Logger.Loggers.Add(clogger);
             Logger.Loggers.Add(uiLogger);
-
+            Logger.Loggers.Add(allLogger1);
+            Logger.Loggers.Add(allLogger2);
             // Logger is set up and ready to use
 
             // درسته که همه این دستورات را پشت سر هم زدم

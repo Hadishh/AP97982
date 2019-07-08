@@ -14,23 +14,44 @@ namespace Logger.Tests
     [TestClass()]
     public class LogWriterPerfTests
     {
+
+        /* Threads Number:                  1         2       5      10      20      50       100
+         * Locked Log Writer Time:        0.482     0.610   0.392   2.354   8.628   60.87   193.924
+         * Concurrent Log Writee Time:    0.572     0.197   0.365   0.987   2.110   30.288  17.005 
+         * Locked Queue Log Writer Time:  0.593     0.625   0.459   2.492   8.434   39.393  168.014
+         * Concurrent log writer is faster because in locked log writer we use many threads to 
+         * write on file and when a thread writing another threads can't access file till 
+         * current thread finished but in concurrent writer class we have a cocurrent queue that all 
+         * threads can add strings to it (like InterLock.Increment) and just one thread write strings in queue to file
+         * so we need lock on queue and concurrent queue do this for us!
+         */
         [TestMethod()]
         public void LockedLogWriterPerfTest()
         {
             var time = PerfTest<LockedLogWriter>(threadCount:25, linePerThread:1000);
         }
-
+        
         [TestMethod()]
         public void ConcurrentLogWriterPerfTest()
         {
             var time = PerfTest<ConcurrentLogWriter>(threadCount: 25, linePerThread: 1000);
+            
         }
-
         [TestMethod()]
-        public void NoLockPerfTest()
+        public void LockedQueueLogWriterPerfTest()
         {
-            var time = PerfTest<NoLockLogWriter>(threadCount: 25, linePerThread: 1000);
+            var time = PerfTest<LockedLogWriter>(threadCount: 25, linePerThread: 1000);
         }
+        /// <summary>
+        /// Becaue we have no lock on our threads and too many threads wants to access file and write on it. This means many text writes wants to access the file
+        /// and if one writer (a) takes access to the file no other text writes can access to it till text writer a do it's work completely and Dispose.
+        /// so when many text writers trying to access and they can't, it causes this exception !!
+        /// </summary>
+        //[TestMethod()]
+        //public void NoLockPerfTest()
+        //{
+        //    var time = PerfTest<NoLockLogWriter>(threadCount: 25, linePerThread: 1000);
+        //}
 
         private string PerfTest<_LogWriter>(int threadCount, int linePerThread)
             where _LogWriter: GuardedLogWriter, new()
