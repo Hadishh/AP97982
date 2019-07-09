@@ -22,7 +22,11 @@ namespace Logger
         public string Footer => string.Empty;
 
         public virtual string FileExtention => null;
-
+        /// <summary>
+        /// Format line for writing on streamer
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         public string Format(LogEntry entry)
             =>  string.Join(Separator.ToString(), 
                 $"{entry.Level.ToString()}", 
