@@ -10,6 +10,7 @@ namespace Logger
     {
         private CsvLogFormatter() : base(',') { }
 
+        public override string FileExtention => "log";
         private static CsvLogFormatter _Instance;
 
         public static CsvLogFormatter Instance => _Instance ?? (_Instance = new CsvLogFormatter());

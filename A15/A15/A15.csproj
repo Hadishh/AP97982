@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Program.cs" />
+    <Compile Include="Logger\FileLoggerFactory.cs" />
     <Compile Include="Logger\FileNamePolicy\FileNamePolicy.cs" />
     <Compile Include="Logger\FileNamePolicy\ILogFileNamePolicy.cs" />
     <Compile Include="Logger\FileNamePolicy\IncrementalLogFileName.cs" />
     <Compile Include="Logger\FileNamePolicy\TimeBasedLogFileName.cs" />
+    <Compile Include="Logger\FileNamePolicy\WeekdayLogFileName.cs" />
     <Compile Include="Logger\Formatters\ConsoleLogFormatter.cs" />
     <Compile Include="Logger\Formatters\CsvFormatter.cs" />
     <Compile Include="Logger\Formatters\ILogFormatter.cs" />

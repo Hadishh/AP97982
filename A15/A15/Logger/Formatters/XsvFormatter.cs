@@ -14,11 +14,14 @@ namespace Logger
         {
             Separator = separator;
         }
+        /// <summary>
+        /// joins each header with separated character
+        /// </summary>
         public string Header => string.Join(Separator.ToString(), "level", " date", " source", " threadId", " ProcessId", " message", " name: value pairs");
 
         public string Footer => string.Empty;
 
-        public string FileExtention => "log";
+        public virtual string FileExtention => null;
 
         public string Format(LogEntry entry)
             =>  string.Join(Separator.ToString(), 

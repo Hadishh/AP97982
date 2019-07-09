@@ -8,9 +8,10 @@ namespace Logger
 {
     class Logger : ILogger
     {
+
         public delegate void OnLogEventDelegate(LogEntry entry);
 
-        public event OnLogEventDelegate OnLog;
+        public static event OnLogEventDelegate OnLog;
 
         public static List<ILogger> Loggers { get; } = new List<ILogger>();
 

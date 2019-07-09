@@ -10,6 +10,10 @@ namespace Logger
 {
     class Program
     {
+        static int WarnCount = 0;
+        static int InfoCount = 0;
+        static int ErrorCount = 0;
+        static int DebugCount = 0;
         static void Main(string[] args)
         {
             ConsoleLogger clogger = new ConsoleLogger();
@@ -39,7 +43,7 @@ namespace Logger
 
             FileLogger<LockedLogWriter> allLogger1 = new FileLogger<LockedLogWriter>(
                 CsvLogFormatter.Instance,
-                new PrivacyScrubber(IDScrubber.Instance ,FullNameScrubber.Instance),
+                new PrivacyScrubber(IDScrubber.Instance, FullNameScrubber.Instance),
                 new IncrementalLogFileName(@"c:\log", "a13_all", CsvLogFormatter.Instance.FileExtention),
                 LogLevels.All,
                 LogSources.All,
@@ -59,10 +63,18 @@ namespace Logger
             Logger.Loggers.Add(allLogger1);
             Logger.Loggers.Add(allLogger2);
             // Logger is set up and ready to use
-
+            //FileLogger<LockedLogWriter> allLogger3 = new FileLogger<LockedLogWriter>(
+            //    CsvLogFormatter.Instance,
+            //    new PrivacyScrubber(PhoneNumberScrubber.Instance, IDScrubber.Instance, FullNameScrubber.Instance),
+            //    new WeekdayLogFileName(@"c:\log", "a13_all", CsvLogFormatter.Instance.FileExtention),
+            //    LogLevels.All,
+            //    LogSources.All,
+            //    true);
+            ///Logger.Loggers.Add(allLogger3);
             // درسته که همه این دستورات را پشت سر هم زدم
             // ولی شما فرض کنید که اینها در جاهای مختلف برنامه 
             // زده شده...
+            Logger.OnLog += CountLogs;
             Logger.Instance.Debug(LogSource.UI, "Login button clicked");
             Logger.Instance.Debug(LogSource.Client, "User logged in", ("Name", "Mr. Ali Hassan"));
             Logger.Instance.Debug(LogSource.UI, "Add phone number cliecked");
@@ -71,6 +83,14 @@ namespace Logger
             Logger.Instance.Warn(LogSource.Client, "User national ID added", ("ID", "232-12-1212"));
             Logger.Instance.Debug(LogSource.UI, "Display error to user");
             Logger.Instance.Error(LogSource.Client, "Unable to add user", ("ID", "232-12-1212"));
+            Console.WriteLine($"{DebugCount} Debugs, {WarnCount} Warnings, {InfoCount} Info, {ErrorCount} Errors");
+        }
+        public static void CountLogs(LogEntry logEntry)
+        {
+            DebugCount += logEntry.Level == LogLevel.Debug ? 1 : 0;
+            WarnCount += logEntry.Level == LogLevel.Warn ? 1 : 0;
+            InfoCount += logEntry.Level == LogLevel.Info ? 1 : 0;
+            ErrorCount += logEntry.Level == LogLevel.Error ? 1 : 0;
         }
     }
 }
