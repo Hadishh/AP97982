@@ -98,5 +98,8 @@
   <ItemGroup>
     <Resource Include="Images\CloseMenu.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CrossIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
