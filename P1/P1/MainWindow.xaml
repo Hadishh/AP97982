@@ -15,7 +15,7 @@
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-220,0,0,0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
-    <Grid Margin="10">
+    <Grid Margin="0" Background="DarkGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
@@ -23,7 +23,7 @@
         <!-- Tabs -->
         <TabControl Grid.Column="0">
             <TabItem Header="Draw Diagram">
-                <Border Padding="1">
+                <Border Padding="0">
                     <Grid Background="#eee">
                         <Grid.RowDefinitions>
                             <!-- RowDefinition Height="*"-->
@@ -47,10 +47,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <!--Show and Hide Button-->
+                                <Grid Grid.Column="0" Grid.Row="0" Background="DarkGray"/>
                                 <Button Grid.Column="1" Name="MenuButton" Width="20" Margin="0,0,0,0" 
                                     Click="MenuButton_Click" Content="&lt;&lt;" FontFamily="Arial Black"/>
                                 <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel Name="EquationStack">
+                                    <StackPanel Name="EquationStack" Background="DarkGray">
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
@@ -71,7 +72,7 @@
                             <Button Grid.Column="1" Content="Clear" Margin="8 2"/>
                         </Grid>-->
                         <!--Min-Max Entries-->
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="1" Background="DarkGray">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -111,6 +112,7 @@
                                 <TextBox Name="MaxX" Padding="1" Grid.Column="1" Background="Black" Foreground="Yellow"/>
                             </Grid>
                         </Grid>
+                        <Grid Grid.Row="2" Background="DarkGray"/>
                     </Grid>
                 </Border>
             </TabItem>
