@@ -47,6 +47,7 @@ namespace P1
         public double CalculateAll(string equation)
         {
             Dictionary<string, Func<double, double>> answers = new Dictionary<string, Func<double, double>>();
+            foreach(var c in equation)
         }
         //private 
     }
