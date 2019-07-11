@@ -10,7 +10,7 @@ using System.Windows;
 namespace P1.Tests
 {
     [TestClass()]
-    public class EquationUITests
+    public class EquationTests
     {
         [TestMethod()]
         public void GetSeparatedEquationsTest()
@@ -23,7 +23,8 @@ namespace P1.Tests
                 "x*sin(x)",
                 "2"
             };
-            CollectionAssert.AreEqual(expectedOutput, EquationUI.GetSeparatedEquations(input));
+            Equation myEquation = Equation.GetSeparatedEquations(input);
+           CollectionAssert.AreEqual(expectedOutput, myEquation.EquationParts);
         }
     }
 }

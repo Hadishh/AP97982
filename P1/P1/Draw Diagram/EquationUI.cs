@@ -48,18 +48,6 @@ namespace P1
             classGrid.Children.Add(DeleteButton);
             return classGrid;
         }
-        /// <summary>
-        /// Gives the list of separated functions for converting to delegate
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public static List<string> GetSeparatedEquations(string text)
-        {
-            List<string> results = new List<string>();
-            foreach (var item in text.Split(new char[] { '+', '-' }))
-                results.Add(item.Replace(" ", string.Empty));
-            return results;
-        }
         private void OnTextChanged_DrawEquation(object sender, TextChangedEventArgs e)
         {
             //Draw

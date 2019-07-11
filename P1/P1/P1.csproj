@@ -62,9 +62,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Draw Diagram\Calculator.cs" />
     <Compile Include="Draw Diagram\Equation.cs" />
     <Compile Include="Draw Diagram\EquationUI.cs" />
     <Compile Include="Draw Diagram\EquationHandler.cs" />
+    <Compile Include="Draw Diagram\IDrawable.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
