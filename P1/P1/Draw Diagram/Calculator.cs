@@ -8,17 +8,25 @@ namespace P1
 {
     class Calculator
     {
-       static  Dictionary<string, Func<double, double>> Functions = new Dictionary<string, Func<double, double>>()
+       static  Dictionary<string, Func<double, double>> SingleFunctions = new Dictionary<string, Func<double, double>>()
         {
             { "sin(x)", Math.Sin },
             { "sinx", Math.Sin },
-            {"cos(x)", Math.Cos },
+            { "cos(x)", Math.Cos },
             { "cosx", Math.Cos},
-            {"logx", Math.Log },
-            {"log(x)", Math.Log },
-            {"|x|", Math.Abs },
-           { }
+            { "logx", Math.Log },
+            { "log(x)", Math.Log },
+            { "|x|", Math.Abs },
+            { "x", (x) => x }
         };
+        private Dictionary<char, Func<double, double, double>> DoubleFunctions = new Dictionary<char, Func<double, double, double>>()
+        {
+            {'+', (x, y) => x + y  },
+            {'*', (x, y) => x * y  },
+            {'/', (x, y) => x / y  },
+            {'^', Math.Pow  }
+        };
+
         static Calculator _Instance;
         public static Calculator Instance => _Instance ?? (_Instance = new Calculator());
 
@@ -27,9 +35,13 @@ namespace P1
         /// </summary>
         /// <param name="function"></param>
         /// <returns></returns>
-        public double Calculate(string function)
+        public double CalculateSingleFunctions(string function)
         {
 
+            return 0;
+        }
+        public double CalculateDoubleFunctions(string firstPart, char operatorItem, string secondPart)
+        {
             return 0;
         }
         //private 

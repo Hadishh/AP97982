@@ -65,7 +65,7 @@ namespace P1
                         myGrid = grid as Grid;
             }
             if (MainStack.Children.Count < 2  || allElements.IndexOf(myGrid) == allElements.Count - 1)
-                MessageBox.Show("Cannot Delete This Field!");
+                MessageBox.Show("Cannot Delete This Field!", "Error");
             else
             {
                 MainStack.Children.Remove(myGrid);

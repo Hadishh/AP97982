@@ -9,11 +9,11 @@ namespace P1
     public class Equation : IDrawable
     {
         public List<string> EquationParts { get; }
-        
-        public Equation(params string[] parts)
+        public List<char> InverntoryOperators { get; }
+        public Equation(List<char> inventoryOperators, List<string> parts)
         {
-            EquationParts = parts.ToList();
-
+            EquationParts = parts;
+            InverntoryOperators = inventoryOperators;
         }
         /// <summary>
         /// Gives the list of separated functions and return a equation with separated functions
@@ -23,9 +23,21 @@ namespace P1
         public static Equation GetSeparatedEquations(string text)
         {
             List<string> results = new List<string>();
-            foreach (var item in text.Split(new char[] { '+', '-' }))
-                results.Add(item.Replace(" ", string.Empty));
-            return new Equation(results.ToArray());
+            List<char> invetroies = new List<char>();
+            string temp = string.Empty;
+            foreach(var c in text)
+            {
+                
+                if(new List<char> { '+', '-' }.Contains(c))
+                {
+                    results.Add(temp);
+                    temp = string.Empty;
+                    invetroies.Add(c);
+                }
+                else
+                    temp += c;
+            }
+            return new Equation(invetroies, results);
         }
         public bool Draw()
         {
