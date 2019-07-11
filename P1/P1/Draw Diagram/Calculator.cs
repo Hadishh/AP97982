@@ -35,14 +35,18 @@ namespace P1
         /// </summary>
         /// <param name="function"></param>
         /// <returns></returns>
-        public double CalculateSingleFunctions(string function)
+        private double CalculateSingleFunctions(string function)
         {
 
             return 0;
         }
-        public double CalculateDoubleFunctions(string firstPart, char operatorItem, string secondPart)
+        private double CalculateDoubleFunctions(string firstPart, char operatorItem, string secondPart)
         {
             return 0;
+        }
+        public double CalculateAll(string equation)
+        {
+            Dictionary<string, Func<double, double>> answers = new Dictionary<string, Func<double, double>>();
         }
         //private 
     }
