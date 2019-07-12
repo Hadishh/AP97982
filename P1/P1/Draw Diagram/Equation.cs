@@ -9,14 +9,11 @@ namespace P1
     public class Equation : IDrawable
     {
         string EquationData { get; set; }
-        Func<double, double> Function { get; set; }
+        public Func<double, double> Function { get; private set; }
         public Equation(string data)
         {
             EquationData = data;
-        }
-        public void SetEquationFunction()
-        {
-            Function = EquationParser.GetDelegate(EquationData);
+            Function = EquationParser.GetDelegate(EquationData); ;
         }
         public bool Draw()
         {
