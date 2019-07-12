@@ -36,8 +36,14 @@ namespace P1
             { "asinx", Math.Asin },
             { "atan(x)", Math.Atan },
             { "atanx", Math.Atan },
+            {"sinhx", Math.Sinh },
+            {"sinh(x)", Math.Sinh },
+            {"coshx", Math.Cosh },
+            {"cosh(x)", Math.Cosh },
+            {"tanhx", (x) => Math.Sinh(x) / Math.Cosh(x) },
+            {"tanh(x)", (x) => Math.Sinh(x) / Math.Cosh(x) },
             { "acot(x)", (x) => Math.PI / 2 - Math.Atan(x) },
-            { "acotx", (x) => Math.PI / 2 - Math.Atan(x) },
+            { "acotx", (x) => Math.PI / 2 - Math.Atan(x)},
             { "logx", Math.Log },
             { "log(x)", Math.Log }
         };
@@ -79,6 +85,7 @@ namespace P1
                     //Here We delete some characters and add two chacters so we need to resume from past position by modifying index
                     //e.g x^2+3 = A0+3
                     i -= (firstPart.Length + 1 + secondPart.Length) - 2;
+                    i = i < 0 ? 0 : i;
                 }
             }
         }
@@ -99,7 +106,7 @@ namespace P1
         }
 
         //Extention Methods 
-        private static string AddMissedCrosses(this string input)
+        public static string AddMissedCrosses(this string input)
         {
             string output = string.Empty;
             for (int i = 0; i < input.Length; i++)
