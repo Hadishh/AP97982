@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Draw Diagram\Calculator.cs" />
     <Compile Include="Draw Diagram\Equation.cs" />
+    <Compile Include="Draw Diagram\EquationParser.cs" />
     <Compile Include="Draw Diagram\EquationUI.cs" />
     <Compile Include="Draw Diagram\EquationHandler.cs" />
     <Compile Include="Draw Diagram\IDrawable.cs" />
