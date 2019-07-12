@@ -8,36 +8,15 @@ namespace P1
 {
     public class Equation : IDrawable
     {
-        public List<string> EquationParts { get; }
-        public List<char> InverntoryOperators { get; }
-        public Equation(List<char> inventoryOperators, List<string> parts)
+        string EquationData { get; set; }
+        Func<double, double> Function { get; set; }
+        public Equation(string data)
         {
-            EquationParts = parts;
-            InverntoryOperators = inventoryOperators;
+            EquationData = data;
         }
-        /// <summary>
-        /// Gives the list of separated functions and return a equation with separated functions
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public static Equation GetSeparatedEquations(string text)
+        public void SetEquationFunction()
         {
-            List<string> results = new List<string>();
-            List<char> invetroies = new List<char>();
-            string temp = string.Empty;
-            foreach(var c in text)
-            {
-                
-                if(new List<char> { '+', '-' }.Contains(c))
-                {
-                    results.Add(temp);
-                    temp = string.Empty;
-                    invetroies.Add(c);
-                }
-                else
-                    temp += c;
-            }
-            return new Equation(invetroies, results);
+            Function = EquationParser.GetDelegate(EquationData);
         }
         public bool Draw()
         {

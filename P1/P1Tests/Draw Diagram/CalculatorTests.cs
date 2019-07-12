@@ -14,9 +14,7 @@ namespace P1.Tests
         [TestMethod()]
         public void CalculateAllTest()
         {
-            Calculator.Instance.CalculateAll("2x+x^2+sin(x)^3");
-            Calculator.Instance.CalculateAll("2x+x^2+2sin(x)^3 + x^3 + 3*cos(x)");
-            Calculator.Instance.CalculateAll("2x+x^2+3sin(x)^3");
+            
         }
     }
 }
