@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace P1
 {
@@ -23,10 +25,49 @@ namespace P1
     {
         bool LeftMenuIsHidden = false;
         EquationHandler EquationHandler;
+        Clock MainClock;
         public MainWindow()
         {
             InitializeComponent();
             EquationHandler = new EquationHandler(EquationStack);
+            ClockCanvas.Loaded += ClockCanvas_Loaded;
+            this.Closed += MainWindow_Closed;
+            EquationCanvas.Loaded += EquationCanvas_Loaded;
+        }
+
+        private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
+        {
+            X_Axis x = new X_Axis(EquationCanvas, -50, 50);
+            Y_Axis y = new Y_Axis(EquationCanvas, -50, 50);
+            x.DrawGrids();
+            y.DrawGrids();
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// On Clock Canvas Loaded ock must start Working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClockCanvas_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainClock = new Clock(ClockCanvas, 50);
+            Thread t = new Thread(() =>
+            {
+                while (true)
+                {
+                    DispatcherOperation op = Dispatcher.BeginInvoke(
+                        (Action)(() =>{
+                            MainClock.RenderTime(DateTime.Now);
+                    }));
+                    Thread.Sleep(1000);
+                }
+            });
+            t.Start();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -49,9 +90,5 @@ namespace P1
             }
         }
 
-        private void ShowButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

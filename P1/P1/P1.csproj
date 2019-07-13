@@ -62,11 +62,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Clock\AroundPoint.cs" />
+    <Compile Include="Clock\Clock.cs" />
+    <Compile Include="Clock\Hand.cs" />
+    <Compile Include="Draw Diagram\Axis.cs" />
     <Compile Include="Draw Diagram\Equation.cs" />
     <Compile Include="Draw Diagram\EquationParser.cs" />
     <Compile Include="Draw Diagram\EquationUI.cs" />
     <Compile Include="Draw Diagram\EquationHandler.cs" />
     <Compile Include="Draw Diagram\IDrawable.cs" />
+    <Compile Include="Draw Diagram\X-Axis.cs" />
+    <Compile Include="Draw Diagram\Y-Axis.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

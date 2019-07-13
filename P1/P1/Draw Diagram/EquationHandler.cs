@@ -39,8 +39,7 @@ namespace P1
             newEquation.DataTextBox.TextChanged += OnTextChanged_AddEquation;
             newEquation.DataTextBox.Background = AvailableColors[CurrentColorIndex];
             //Event Properties
-            newEquation.DeleteEvent += NewEquation_DeleteEvent;
-
+            newEquation.DeleteEvent += Equation_DeleteEvent;
             MainStack.Children.Add(newEquation.GetGrid());
             Equations.Add(newEquation);
             CurrentColorIndex = ++CurrentColorIndex >= AvailableColors.Count ? 0 : CurrentColorIndex;
@@ -52,7 +51,7 @@ namespace P1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="ChoosedClass"></param>
-        private void NewEquation_DeleteEvent(object sender, EquationUI ChoosedClass)
+        private void Equation_DeleteEvent(object sender, EquationUI ChoosedClass)
         {
             if (!(sender is Button))
                 throw new ArgumentException();

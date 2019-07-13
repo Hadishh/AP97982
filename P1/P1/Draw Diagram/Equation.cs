@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,30 @@ namespace P1
 {
     public class Equation : IDrawable
     {
+        (double Min, double Max)  XBounds = (0, 0);
+        (double Min, double Max) YBounds = (0, 0);
         string EquationData { get; set; }
         public Func<double, double> Function { get; private set; }
-        public Equation(string data)
+        public Equation(string data, ValueTuple<double, double> xBounds, ValueTuple<double, double> yBounds)
         {
-            EquationData = data;
-            Function = EquationParser.GetDelegate(EquationData); ;
+            XBounds = xBounds;
+            YBounds = yBounds;
+            try
+            {
+                Function = EquationParser.GetDelegate(EquationData);
+            }
+            catch (ArgumentException)
+            {
+                Function = null;
+            }
+            catch
+            {
+                throw;
+            }
         }
-        public bool Draw()
+        public void Draw()
         {
-            return true;
+            
         }
     }
 }
