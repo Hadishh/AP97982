@@ -23,9 +23,12 @@ namespace P1
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool LeftMenuIsHidden = false;
+        public bool LeftMenuIsHidden = false;
         EquationHandler EquationHandler;
         Clock MainClock;
+        PlottingSpace PlottingSpace;
+        (double Min, double Max) XBounds = (0,0);
+        (double Min, double Max) YBounds = (0, 0);
         public MainWindow()
         {
             InitializeComponent();
@@ -33,14 +36,32 @@ namespace P1
             ClockCanvas.Loaded += ClockCanvas_Loaded;
             this.Closed += MainWindow_Closed;
             EquationCanvas.Loaded += EquationCanvas_Loaded;
+            MinX.TextChanged += UpdateBounds;
+            MaxX.TextChanged += UpdateBounds;
+            MinY.TextChanged += UpdateBounds;
+            MaxY.TextChanged += UpdateBounds;
+        }
+
+        private void UpdateBounds(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                XBounds.Max = double.Parse(MaxX.Text);
+                XBounds.Min = double.Parse(MinX.Text);
+                YBounds.Max = double.Parse(MaxY.Text);
+                XBounds.Min = double.Parse(MinY.Text);
+            }
+            catch(FormatException)
+            {
+                YBounds = (0, 0);
+                XBounds = (0, 0);
+            }
         }
 
         private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            X_Axis x = new X_Axis(EquationCanvas, -50, 50);
-            Y_Axis y = new Y_Axis(EquationCanvas, -50, 50);
-            x.DrawGrids();
-            y.DrawGrids();
+            PlottingSpace = new PlottingSpace(YBounds, XBounds, EquationCanvas, 10, 1, 0);
+            PlottingSpace.DrawGrid();
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -62,16 +83,19 @@ namespace P1
                 {
                     DispatcherOperation op = Dispatcher.BeginInvoke(
                         (Action)(() =>{
+                            
                             MainClock.RenderTime(DateTime.Now);
                     }));
                     Thread.Sleep(1000);
                 }
             });
+            t.IsBackground = true;
             t.Start();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            
             if (!LeftMenuIsHidden)
             {
                 Storyboard sb = Resources["CloseMenu"] as Storyboard;
@@ -79,6 +103,8 @@ namespace P1
                 LeftMenuIsHidden = true;
                 MenuButton.Content = ">>";
                 sb.Begin(DrawingPart);
+                PlottingSpace = new PlottingSpace(new Point(0, 0), EquationCanvas, 10, 1, 220);
+                PlottingSpace.DrawGrid();
             }
             else
             {
@@ -87,8 +113,9 @@ namespace P1
                 sb.Begin(DrawingPart);
                 MenuButton.Content = "<<";
                 LeftMenuIsHidden = false;
+                PlottingSpace = new PlottingSpace(new Point(0, 0), EquationCanvas, 10, 2, 0);
+                PlottingSpace.DrawGrid();
             }
         }
-
     }
 }

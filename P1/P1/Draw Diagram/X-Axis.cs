@@ -11,44 +11,69 @@ namespace P1
 {
     public class X_Axis : Axis
     {
-        public X_Axis(Canvas parentCanvas, int min, int max) :
-            base(parentCanvas, min, max)
+        public X_Axis(Canvas parentCanvas, int delta, double lengthofEachPart, int scale, double margin = 0) :
+            base(parentCanvas, delta, lengthofEachPart, scale, margin)
         {
-            this.Line = new Line();
+            base.MainLine = new Line();
             this.Label = new Label() { Content = "X" };
         }
-        public override void DrawGrids()
+        public override void DrawGrid()
         {
-            double X1 = 0;
-            double X2 = ParentCanvas.Width;
-            double Y = ParentCanvas.Height / 2;
-            Line.X1 = X1;
-            Line.X2 = X2;
-            Line.Y1 = Line.Y2 = Y;
-            Line.Stroke = Brushes.Black;
-            Line.StrokeThickness = 2;
-            Canvas.SetTop(Label, Y * 99 / 100);
-            Canvas.SetLeft(Label, 540);
-            ParentCanvas.Children.Add(Line);
-            double lengthofEachPart = 10;
-            if (Numbers.Count > 100)
-                Numbers = SetNewNumbers(Numbers, 100);
-            double dynamicX = 0;
-            for (int i = 0; i < 100; i++, dynamicX += lengthofEachPart)
+            DrawMainLine();
+            DrawTemplateLines();
+        }
+        private Line DrawMainLine()
+        {
+            double X1 = -Margin;
+            double X2 = ParentCanvas.ActualWidth + Margin;
+            double Y = (ParentCanvas.ActualHeight) / 2 - Delta;
+            base.MainLine.Y1 = base.MainLine.Y2 = Y;
+            base.MainLine.X2 = X2;
+            base.MainLine.X1 = X1;
+            base.MainLine.Stroke = Brushes.Black;
+            base.MainLine.StrokeThickness = 2;
+            ParentCanvas.Children.Add(MainLine);
+            return base.MainLine;
+        }
+        private List<Line> DrawTemplateLines()
+        {
+            List<Line> lines = new List<Line>();
+            double X1 = -Margin;
+            double X2 = ParentCanvas.ActualWidth + Margin;
+            double Y = (ParentCanvas.ActualHeight) / 2  - Delta;
+            double dynamicY = Y - LengthOfEachPart;
+            for (int i = 1; dynamicY >= 0; i += Scale, dynamicY -= LengthOfEachPart)
             {
-                Label label = new Label() { Content =  Numbers[i], FontSize = 7};
+                Label label = new Label() { Content = i, FontSize = 7 };
+                Canvas.SetTop(label, dynamicY - LengthOfEachPart);
+                Canvas.SetLeft(label, X2 / 2);
                 Line tmpLine = new Line();
-                tmpLine.X1 = tmpLine.X2 = dynamicX;
-                tmpLine.Y1 = 0;
-                tmpLine.Y2 = ParentCanvas.Height;
-                tmpLine.Stroke = Brushes.Gray;
+                tmpLine.Y1 = tmpLine.Y2 = dynamicY;
+                tmpLine.X1 = X1;
+                tmpLine.X2 = X2;
                 tmpLine.StrokeThickness = 1;
-                NumberLabel.Add(Label);
-                Canvas.SetTop(label, Y);
-                Canvas.SetLeft(label, dynamicX);
+                tmpLine.Stroke = Brushes.Gray;
+                lines.Add(tmpLine);
                 ParentCanvas.Children.Add(tmpLine);
                 ParentCanvas.Children.Add(label);
             }
+            dynamicY = Y + LengthOfEachPart;
+            for (int i = -1; dynamicY <= ParentCanvas.ActualHeight; i -= Scale, dynamicY += LengthOfEachPart)
+            {
+                Label label = new Label() { Content = i, FontSize = 7 };
+                Canvas.SetTop(label, dynamicY - LengthOfEachPart);
+                Canvas.SetLeft(label, X2 / 2 - 5);
+                Line tmpLine = new Line();
+                tmpLine.Y1 = tmpLine.Y2 = dynamicY + 2;
+                tmpLine.X1 = X1;
+                tmpLine.X2 = X2;
+                tmpLine.StrokeThickness = 1;
+                tmpLine.Stroke = Brushes.Gray;
+                lines.Add(tmpLine);
+                ParentCanvas.Children.Add(tmpLine);
+                ParentCanvas.Children.Add(label);
+            }
+            return lines;
         }
     }
 }

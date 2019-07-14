@@ -22,6 +22,11 @@
         </Grid.ColumnDefinitions>
         <!-- Tabs -->
         <TabControl Grid.Column="0">
+            <TabControl.Resources>
+                <Style TargetType="TabControl">
+                    
+                </Style>
+            </TabControl.Resources>
             <TabItem Header="Draw Diagram">
                 <Border Padding="0">
                     <Grid Background="#eee">
@@ -63,7 +68,7 @@
                                     <ColumnDefinition Width="109*"/>
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
-                                <Canvas  Width="1000" Height="1000" Grid.Column="0" Grid.Row="0" Name="EquationCanvas" Margin="-222,-225,-222.8,-277.4" Grid.ColumnSpan="2">
+                                <Canvas Grid.Column="0" Grid.Row="0" Name="EquationCanvas">
 
                                 </Canvas>
                             </Grid>

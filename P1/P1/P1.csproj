@@ -68,9 +68,10 @@
     <Compile Include="Draw Diagram\Axis.cs" />
     <Compile Include="Draw Diagram\Equation.cs" />
     <Compile Include="Draw Diagram\EquationParser.cs" />
-    <Compile Include="Draw Diagram\EquationUI.cs" />
     <Compile Include="Draw Diagram\EquationHandler.cs" />
     <Compile Include="Draw Diagram\IDrawable.cs" />
+    <Compile Include="Draw Diagram\IGrid.cs" />
+    <Compile Include="Draw Diagram\PlottingSpace.cs" />
     <Compile Include="Draw Diagram\X-Axis.cs" />
     <Compile Include="Draw Diagram\Y-Axis.cs" />
     <Compile Include="MainWindow.xaml.cs">
