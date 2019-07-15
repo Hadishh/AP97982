@@ -47,12 +47,11 @@ namespace P1
             ParentCanvas.Children.Clear();
             XAxis.DrawGrid();
             YAxis.DrawGrid();
-            DrawAddedEquations(Charts.Keys.ToList());
         }
 
-        private void DrawAddedEquations(List<Equation> keys)
+        public void DrawAddedEquations()
         {
-            foreach (var equation in keys)
+            foreach (var equation in Charts.Keys.ToList())
                 DrawEquation(equation);
         }
 
@@ -85,10 +84,10 @@ namespace P1
                 for(double x = XBounds.Min; x <= XBounds.Max; x += Accuracy)
                 {
                     //by adding y the canvas coordinates goes down so multiple by -1
-                    y = -1 * equation.Function(x);
-                    if(-1 * y > YBounds.Min && -1 * y < YBounds.Max)
+                    y = equation.Function(x);
+                    if(y > YBounds.Min &&  y < YBounds.Max)
                     {
-                        Point project = ProjectOnPlot(new Point(x, y));
+                        Point project = ProjectOnPlot(new Point(x, -y));
                         chart.Points.Add(project);
                     }
                 }

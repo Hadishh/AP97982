@@ -50,9 +50,9 @@ namespace P1
         {
             try
             {
-                PlottingSpace.XBounds = (double.Parse(MaxX.Text), double.Parse(MinX.Text));
-                PlottingSpace.YBounds = (double.Parse(MaxY.Text), double.Parse(MinY.Text));
-                //PlottingSpace.DrawGrid();
+                PlottingSpace.XBounds = (double.Parse(MinX.Text), double.Parse(MaxX.Text));
+                PlottingSpace.YBounds = (double.Parse(MinY.Text), double.Parse(MaxY.Text));
+                PlottingSpace.DrawAddedEquations();
             }
             catch(FormatException)
             {
