@@ -103,7 +103,11 @@ namespace P1
             CalculatePartsByOperator('+', (x, y) => x + y);
             CalculatePartsByOperator('-', (x, y) => x - y);
             if (Functions.Values.Count == SingleFunctions.Values.Count)
+            {
+                if (SingleFunctions.ContainsKey(inputEquation))
+                    return SingleFunctions[inputEquation];
                 throw new ArgumentException();
+            }
             return Functions.Values.Last();
         }
 

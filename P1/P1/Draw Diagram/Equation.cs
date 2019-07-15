@@ -18,17 +18,17 @@ namespace P1
         /// Color on drawing plot.
         ///  Default color is background of DataTetBox.
         /// </summary>
-        public Brush Color { get; }
+        public Brush Color { get; private set; }
         public Func<double, double> Function { get;  set; }
 
         //UI Elements 
         public TextBox DataTextBox { get; set; }
         public Button DeleteButton { get; set; }
 
-        public event EventHandler<Equation> DeleteEvent;
-
+        public event EventHandler<Equation> Delete;
+        public event EventHandler<Equation> Draw;
         public Equation()
-        { 
+        {
             #region UI
             DeleteButton = new Button();
             DeleteButton.Margin = new Thickness(3);
@@ -40,10 +40,21 @@ namespace P1
             DataTextBox = new TextBox();
             DataTextBox.Foreground = Brushes.Yellow;
             DataTextBox.Margin = new Thickness(3);
+            DataTextBox.TextChanged += DataTextBox_Draw;
             Color = DataTextBox.Background;
-            DataTextBox.TextChanged += OnTextChanged_FindFunction;
             DataTextBox.TabIndex = 0;
             #endregion
+        }
+        /// <summary>
+        /// when Text changed draw equation again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataTextBox_Draw(object sender, TextChangedEventArgs e)
+        {
+            UpdateFunction();
+            this.Color = DataTextBox.Background;
+            Draw(sender, this);
         }
 
         #region UIMethods
@@ -54,7 +65,7 @@ namespace P1
         /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            DeleteEvent(sender, this);
+            Delete(sender, this);
         }
 
         public Grid GetGrid()
@@ -68,29 +79,26 @@ namespace P1
             grid.Children.Add(DeleteButton);
             return grid;
         }
+        #endregion
         /// <summary>
-        /// Find new Function for Equation 
+        /// Finds new function for equation 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTextChanged_FindFunction(object sender, TextChangedEventArgs e)
+        public  void UpdateFunction()
         {
-            if (sender is TextBox)
+            try
             {
-                try
-                {
-                    Function = EquationParser.GetDelegate(DataTextBox.Text);
-                }
-                catch (ArgumentException)
-                {
-                    Function = null;
-                }
-                catch
-                {
-                    throw;
-                }
+                Function = EquationParser.GetDelegate(DataTextBox.Text);
+            }
+            catch (ArgumentException)
+            {
+                Function = null;
+            }
+            catch
+            {
+                throw;
             }
         }
-        #endregion
     }
 }

@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace P1
 {
@@ -16,7 +20,7 @@ namespace P1
         Canvas ParentCanvas { get; set; }
         double LengthOfEachPart { get; set; }
         int Scale { get; set; }
-        double Margin { get; set; }
+        public double Margin { get; set; }
         int DeltaX { get; set; }
         int DeltaY { get; set; }
         public double Accuracy { get; set; }
@@ -33,6 +37,7 @@ namespace P1
             Scale = scale;
             DeltaX = 0;
             DeltaY = 0;
+            Charts = new Dictionary<Equation, Polyline>();
         }
         public void DrawGrid()
         {
@@ -42,42 +47,61 @@ namespace P1
             ParentCanvas.Children.Clear();
             XAxis.DrawGrid();
             YAxis.DrawGrid();
+            DrawAddedEquations(Charts.Keys.ToList());
         }
+
+        private void DrawAddedEquations(List<Equation> keys)
+        {
+            foreach (var equation in keys)
+                DrawEquation(equation);
+        }
+
         public void ZoomIn(int size)
         {
             LengthOfEachPart += size;
             DrawGrid();
         }
         /// <summary>
-        /// Multi Thread Drawing Equations
+        /// Draws Equation add it to canvas. Add equation with polyline in Charts property.
         /// </summary>
         public void DrawEquation(Equation equation)
         {
-            Polyline chart = new Polyline();
-            chart.StrokeThickness = 2;
-            chart.Points = new PointCollection();
-            if(equation.Function == null)
+            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
             {
-                if(Charts.ContainsKey(equation))
+                Polyline chart = new Polyline();
+                chart.StrokeThickness = 2;
+                chart.Points = new PointCollection();
+                if(equation.Function == null)
+                {
+                    if(Charts.ContainsKey(equation))
+                    {
+                        ParentCanvas.Children.Remove(Charts[equation]);
+                        Charts.Remove(equation);
+                    }
+                    return;
+                }
+                chart.Stroke = equation.Color;
+                double y = 0;
+                for(double x = XBounds.Min; x <= XBounds.Max; x += Accuracy)
+                {
+                    //by adding y the canvas coordinates goes down so multiple by -1
+                    y = -1 * equation.Function(x);
+                    if(-1 * y > YBounds.Min && -1 * y < YBounds.Max)
+                    {
+                        Point project = ProjectOnPlot(new Point(x, y));
+                        chart.Points.Add(project);
+                    }
+                }
+                if (Charts.ContainsKey(equation))
                 {
                     ParentCanvas.Children.Remove(Charts[equation]);
-                    Charts.Remove(equation);
+                    Charts[equation] = chart;
                 }
-                throw new System.NullReferenceException();
-            }
-            chart.Stroke = equation.Color;
-            double y = 0;
-            for(double x = XBounds.Min; x <= XBounds.Max; x += Accuracy)
-            {
-                //by adding y the canvas coordinates goes down so multiple by -1
-                y = -1 * equation.Function(x);
-                if(y > YBounds.Min && y < YBounds.Max)
-                {
-                    Point project = ProjectOnPlot(new Point(x, y));
-                    chart.Points.Add(project);
-                }
-            }
-            ParentCanvas.Children.Add(chart);
+                else
+                    Charts.Add(equation, chart);
+                ParentCanvas.Children.Add(chart);
+            }));
+            
         }
 
         private Point ProjectOnPlot(Point p) 

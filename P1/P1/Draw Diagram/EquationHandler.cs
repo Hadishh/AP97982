@@ -12,7 +12,9 @@ namespace P1
     public class EquationHandler
     {
         private StackPanel MainStack { get; }
+
         public List<Equation> Equations { get; }
+
         private List<Brush> AvailableColors = new List<Brush> {
             new SolidColorBrush(Colors.Black) {Opacity = 0.5 },
             new SolidColorBrush(Colors.Blue) { Opacity = 0.5 },
@@ -20,7 +22,11 @@ namespace P1
             new SolidColorBrush(Colors.Green) {Opacity = 0.5 },
             new SolidColorBrush(Colors.Magenta) {Opacity = 0.5 }
         };
+
         private int CurrentColorIndex;
+
+        public event EventHandler<Equation> DrawEquation;
+
         public EquationHandler(StackPanel mainStack)
         {
             MainStack = mainStack;
@@ -39,12 +45,18 @@ namespace P1
             newEquation.DataTextBox.TextChanged += OnTextChanged_AddEquation;
             newEquation.DataTextBox.Background = AvailableColors[CurrentColorIndex];
             //Event Properties
-            newEquation.DeleteEvent += Equation_DeleteEvent;
+            newEquation.Delete += Equation_DeleteEvent;
+            newEquation.Draw += NewEquation_Draw;
             MainStack.Children.Add(newEquation.GetGrid());
             Equations.Add(newEquation);
             CurrentColorIndex = ++CurrentColorIndex >= AvailableColors.Count ? 0 : CurrentColorIndex;
         }
-        
+
+        private void NewEquation_Draw(object sender, Equation e)
+        {
+            DrawEquation(sender, e);
+        }
+
         /// <summary>
         /// this event show us which class send event and if conditions satisfies then delete it 
         /// in this case we don't need to implement Equal for EquationUI Because we need refrence

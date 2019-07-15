@@ -27,12 +27,11 @@ namespace P1
         EquationHandler EquationHandler;
         Clock MainClock;
         PlottingSpace PlottingSpace;
-        (double Min, double Max) XBounds = (0,0);
-        (double Min, double Max) YBounds = (0, 0);
         public MainWindow()
         {
             InitializeComponent();
             EquationHandler = new EquationHandler(EquationStack);
+            EquationHandler.DrawEquation += EquationHandler_Draw;
             ClockCanvas.Loaded += ClockCanvas_Loaded;
             this.Closed += MainWindow_Closed;
             EquationCanvas.Loaded += EquationCanvas_Loaded;
@@ -42,28 +41,31 @@ namespace P1
             MaxY.TextChanged += UpdateBounds;
         }
 
+        private void EquationHandler_Draw(object sender, Equation e)
+        {
+            PlottingSpace.DrawEquation(e);
+        }
+
         private void UpdateBounds(object sender, TextChangedEventArgs e)
         {
             try
             {
-                XBounds.Max = double.Parse(MaxX.Text);
-                XBounds.Min = double.Parse(MinX.Text);
-                YBounds.Max = double.Parse(MaxY.Text);
-                XBounds.Min = double.Parse(MinY.Text);
+                PlottingSpace.XBounds = (double.Parse(MaxX.Text), double.Parse(MinX.Text));
+                PlottingSpace.YBounds = (double.Parse(MaxY.Text), double.Parse(MinY.Text));
+                //PlottingSpace.DrawGrid();
             }
             catch(FormatException)
             {
-                YBounds = (0, 0);
-                XBounds = (0, 0);
+                PlottingSpace.YBounds = (0, 0);
+                PlottingSpace.XBounds = (0, 0);
             }
         }
 
         private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            PlottingSpace = new PlottingSpace((-10,10), (-10, 10), EquationCanvas, 10, 1, 0);
+            PlottingSpace = new PlottingSpace((10,20), (-10, 30), EquationCanvas, 10, 1, 0);
             PlottingSpace.Accuracy = 0.1;
             PlottingSpace.DrawGrid();
-            PlottingSpace.DrawEquation(new Equation() { Function = (X) => Math.Pow(X, 3});
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -83,7 +85,7 @@ namespace P1
             {
                 while (true)
                 {
-                    DispatcherOperation op = Dispatcher.BeginInvoke(
+                    Dispatcher.Invoke(
                         (Action)(() =>{
                             
                             MainClock.RenderTime(DateTime.Now);
@@ -105,8 +107,7 @@ namespace P1
                 LeftMenuIsHidden = true;
                 MenuButton.Content = ">>";
                 sb.Begin(DrawingPart);
-                PlottingSpace = new PlottingSpace(XBounds, YBounds, EquationCanvas, 10, 1, 220);
-                PlottingSpace.Accuracy = 0.1;
+                PlottingSpace.Margin = 220;
                 PlottingSpace.DrawGrid();
             }
             else
@@ -116,8 +117,7 @@ namespace P1
                 sb.Begin(DrawingPart);
                 MenuButton.Content = "<<";
                 LeftMenuIsHidden = false;
-                PlottingSpace = new PlottingSpace(XBounds, YBounds, EquationCanvas, 10, 2, 0);
-                PlottingSpace.Accuracy = 0.1;
+                PlottingSpace.Margin = 0;
                 PlottingSpace.DrawGrid();
             }
         }
