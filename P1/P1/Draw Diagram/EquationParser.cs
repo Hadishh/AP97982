@@ -121,6 +121,8 @@ namespace P1
                 if (i < input.Length - 1 && char.IsDigit(input[i]) && char.IsLetter(input[i + 1]))
                     output += '*';
             }
+            if (output.Length >= 1 && new List<char> (){'+', '-' }.Contains(output[0]))
+                output = "0" + output;
             return output;
         }
     }

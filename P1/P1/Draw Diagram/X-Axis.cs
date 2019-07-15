@@ -59,7 +59,7 @@ namespace P1
             double X2 = ParentCanvas.ActualWidth + Margin;
             double Y = (ParentCanvas.ActualHeight) / 2  - Delta;
             double dynamicY = Y - LengthOfEachPart;
-            for (int i = 1; dynamicY >= 0; i += Scale, dynamicY -= LengthOfEachPart)
+            for (int i = Scale; dynamicY >= 0; i += Scale, dynamicY -= LengthOfEachPart)
             {
                 Label label = new Label() { Content = i, FontSize = 7 };
                 Canvas.SetTop(label, dynamicY - LengthOfEachPart);
@@ -75,7 +75,7 @@ namespace P1
                 ParentCanvas.Children.Add(label);
             }
             dynamicY = Y + LengthOfEachPart;
-            for (int i = -1; dynamicY <= ParentCanvas.ActualHeight; i -= Scale, dynamicY += LengthOfEachPart)
+            for (int i = -Scale; dynamicY <= ParentCanvas.ActualHeight; i -= Scale, dynamicY += LengthOfEachPart)
             {
                 Label label = new Label() { Content = i, FontSize = 7 };
                 Canvas.SetTop(label, dynamicY - LengthOfEachPart);

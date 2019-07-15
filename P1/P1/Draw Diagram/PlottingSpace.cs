@@ -48,17 +48,38 @@ namespace P1
             XAxis.DrawGrid();
             YAxis.DrawGrid();
         }
-
+        /// <summary>
+        /// Draw equations in Charts
+        /// </summary>
         public void DrawAddedEquations()
         {
             foreach (var equation in Charts.Keys.ToList())
                 DrawEquation(equation);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
         public void ZoomIn(int size)
         {
-            LengthOfEachPart += size;
-            DrawGrid();
+            if (Scale > 1)
+                Scale -= 1;
+            else
+            {
+                LengthOfEachPart += size;
+                DrawGrid();
+            }
+        }
+        public void ZoomOut(int size)
+        {
+            if(LengthOfEachPart  - size <= 10)
+            {
+                Scale += 1;
+            }
+            else
+            {
+                LengthOfEachPart -= size;
+            }
         }
         /// <summary>
         /// Draws Equation add it to canvas. Add equation with polyline in Charts property.
@@ -83,10 +104,10 @@ namespace P1
                 double y = 0;
                 for(double x = XBounds.Min; x <= XBounds.Max; x += Accuracy)
                 {
-                    //by adding y the canvas coordinates goes down so multiple by -1
                     y = equation.Function(x);
                     if(y > YBounds.Min &&  y < YBounds.Max)
                     {
+                        //by growing y the canvas coordinates goes down so multiple by -1
                         Point project = ProjectOnPlot(new Point(x, -y));
                         chart.Points.Add(project);
                     }
@@ -102,7 +123,11 @@ namespace P1
             }));
             
         }
-
+        /// <summary>
+        /// Projection of any point on canvas coordinates
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private Point ProjectOnPlot(Point p) 
             => new Point(Center.X + p.X * LengthOfEachPart / Scale, Center.Y + p.Y * LengthOfEachPart / Scale);
     }

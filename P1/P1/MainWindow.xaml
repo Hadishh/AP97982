@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- Tabs -->
-        <TabControl Grid.Column="0">
+        <TabControl Name="MainTabControl" Grid.Column="0">
             <TabControl.Resources>
                 <Style TargetType="TabControl">
                     

@@ -74,6 +74,7 @@
     <Compile Include="Draw Diagram\PlottingSpace.cs" />
     <Compile Include="Draw Diagram\X-Axis.cs" />
     <Compile Include="Draw Diagram\Y-Axis.cs" />
+    <Compile Include="Draw_Diagram.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
