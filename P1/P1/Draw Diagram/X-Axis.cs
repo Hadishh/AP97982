@@ -11,17 +11,29 @@ namespace P1
 {
     public class X_Axis : Axis
     {
+        /// <summary>
+        /// retruns Center of The plot for drawing chart
+        /// </summary>
+        public double CenterY => (ParentCanvas.ActualHeight) / 2 - Delta;
+        
         public X_Axis(Canvas parentCanvas, int delta, double lengthofEachPart, int scale, double margin = 0) :
             base(parentCanvas, delta, lengthofEachPart, scale, margin)
         {
             base.MainLine = new Line();
             this.Label = new Label() { Content = "X" };
         }
+        /// <summary>
+        /// Draws Main Line And the emplate Lines that are parallel to main line 
+        /// </summary>
         public override void DrawGrid()
         {
             DrawMainLine();
             DrawTemplateLines();
         }
+        /// <summary>
+        /// Drawins main line by finding center of canvas 
+        /// </summary>
+        /// <returns></returns>
         private Line DrawMainLine()
         {
             double X1 = -Margin;
@@ -35,6 +47,11 @@ namespace P1
             ParentCanvas.Children.Add(MainLine);
             return base.MainLine;
         }
+        /// <summary>
+        /// Draws template lines with distance LengthofEachPart 
+        /// Draws Lables of each scale with difference Scale
+        /// </summary>
+        /// <returns></returns>
         private List<Line> DrawTemplateLines()
         {
             List<Line> lines = new List<Line>();

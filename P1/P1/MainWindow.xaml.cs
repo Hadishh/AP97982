@@ -60,8 +60,10 @@ namespace P1
 
         private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            PlottingSpace = new PlottingSpace(YBounds, XBounds, EquationCanvas, 10, 1, 0);
+            PlottingSpace = new PlottingSpace((-10,10), (-10, 10), EquationCanvas, 10, 1, 0);
+            PlottingSpace.Accuracy = 0.1;
             PlottingSpace.DrawGrid();
+            PlottingSpace.DrawEquation(new Equation() { Function = (X) => Math.Pow(X, 3});
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
@@ -103,7 +105,8 @@ namespace P1
                 LeftMenuIsHidden = true;
                 MenuButton.Content = ">>";
                 sb.Begin(DrawingPart);
-                PlottingSpace = new PlottingSpace(new Point(0, 0), EquationCanvas, 10, 1, 220);
+                PlottingSpace = new PlottingSpace(XBounds, YBounds, EquationCanvas, 10, 1, 220);
+                PlottingSpace.Accuracy = 0.1;
                 PlottingSpace.DrawGrid();
             }
             else
@@ -113,7 +116,8 @@ namespace P1
                 sb.Begin(DrawingPart);
                 MenuButton.Content = "<<";
                 LeftMenuIsHidden = false;
-                PlottingSpace = new PlottingSpace(new Point(0, 0), EquationCanvas, 10, 2, 0);
+                PlottingSpace = new PlottingSpace(XBounds, YBounds, EquationCanvas, 10, 2, 0);
+                PlottingSpace.Accuracy = 0.1;
                 PlottingSpace.DrawGrid();
             }
         }

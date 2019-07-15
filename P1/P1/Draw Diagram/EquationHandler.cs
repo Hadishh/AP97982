@@ -29,8 +29,8 @@ namespace P1
             CurrentColorIndex = 1;
         }
         /// <summary>
-        /// Creats an equation and add it to equation list
-        /// add Grid of Equation to stack panel
+        /// Creats an equation and add it to equation list.
+        /// adds grid of Equation to stack panel.
         /// </summary>
         public void AddEquation()
         {

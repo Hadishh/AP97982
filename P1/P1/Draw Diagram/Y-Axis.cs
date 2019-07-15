@@ -11,6 +11,7 @@ namespace P1
 {
     public class Y_Axis : Axis
     {
+        public double CenterX => (ParentCanvas.ActualWidth + Margin) / 2 - Delta;
         public Y_Axis(Canvas parentCanvas, int delta, double lengthofEachPart, int scale, double margin = 0) :
             base(parentCanvas, delta, lengthofEachPart, scale, margin)
         {

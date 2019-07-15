@@ -14,8 +14,12 @@ namespace P1
 {
     public class Equation
     {
+        /// <summary>
+        /// Color on drawing plot.
+        ///  Default color is background of DataTetBox.
+        /// </summary>
         public Brush Color { get; }
-        public Func<double, double> Function { get; private set; }
+        public Func<double, double> Function { get;  set; }
 
         //UI Elements 
         public TextBox DataTextBox { get; set; }
@@ -37,12 +41,17 @@ namespace P1
             DataTextBox.Foreground = Brushes.Yellow;
             DataTextBox.Margin = new Thickness(3);
             Color = DataTextBox.Background;
-            DataTextBox.TextChanged += OnTextChanged_DrawEquation;
+            DataTextBox.TextChanged += OnTextChanged_FindFunction;
             DataTextBox.TabIndex = 0;
             #endregion
         }
 
         #region UIMethods
+        /// <summary>
+        /// Calls DeleteEvent of this object.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteEvent(sender, this);
@@ -59,7 +68,12 @@ namespace P1
             grid.Children.Add(DeleteButton);
             return grid;
         }
-        private void OnTextChanged_DrawEquation(object sender, TextChangedEventArgs e)
+        /// <summary>
+        /// Find new Function for Equation 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTextChanged_FindFunction(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox)
             {
