@@ -14,6 +14,20 @@ namespace P1
             
         }
         public int Size { get => this.RowCount; }
+        
+        public SquareMatrix<_Type> ReplaceColumn(Vector<_Type> columnVector, int index)
+        {
+            SquareMatrix<_Type> matrix = new SquareMatrix<_Type>(this.Size);
+            
+            if (index > Size - 1 || index < 0)
+                throw new ArgumentException();
+            for (int i = 0; i < Size; i++)
+            {
+                matrix.Add(this[i]);
+                matrix[i][index] = columnVector[i];
+            }
+            return matrix;
+        }
         public static _Type Determinant(SquareMatrix<_Type> matrix)
         {
             if (matrix.Size == 2)

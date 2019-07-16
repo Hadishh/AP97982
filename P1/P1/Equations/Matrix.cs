@@ -25,7 +25,7 @@ namespace P1
         {
             RowCount = rowCount;
             ColumnCount = columnCount;
-            Rows = new Vector<_Type>[rowCount];                
+            Rows = new Vector<_Type>[rowCount];  
         }
 
         /// <summary>
@@ -46,7 +46,12 @@ namespace P1
 
         public void Add(Vector<_Type> row)
         {
-            this.Rows[RowAddIndex++] = row;
+            this.Rows[RowAddIndex] = new Vector<_Type>(row.Size);
+            for(int i = 0; i < row.Size; i++)
+            {
+                Rows[RowAddIndex][i] = row[i];
+            }
+            RowAddIndex++;
             return;
         }
 

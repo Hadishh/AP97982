@@ -76,6 +76,8 @@
     <Compile Include="Draw Diagram\Y-Axis.cs" />
     <Compile Include="Draw_Diagram.cs" />
     <Compile Include="Equations\EquationParser.cs" />
+    <Compile Include="EquationSolver.cs" />
+    <Compile Include="Equations\LinearEquation.cs" />
     <Compile Include="Equations\Matrix.cs" />
     <Compile Include="Equations\SquareMatrix.cs" />
     <Compile Include="Equations\Vector.cs" />

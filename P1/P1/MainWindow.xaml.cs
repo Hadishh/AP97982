@@ -14,13 +14,13 @@ namespace P1
     {
         Clock MainClock;
         Draw_Diagram Drawer;
+        EquationSolver EquationSolver;
         public MainWindow()
         {
             InitializeComponent();
             ClockCanvas.Loaded += ClockCanvas_Loaded;
             this.Closed += MainWindow_Closed;
             MainTabControl.SelectionChanged += MainTabControl_SelectionChanged;
-            EquationParser.GetVetcor("2x-3y+2z", new System.Collections.Generic.List<char>() { 'z', 'y' });
         }
 
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
