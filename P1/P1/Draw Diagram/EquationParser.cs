@@ -112,7 +112,7 @@ namespace P1
         }
 
         //Extention Methods 
-        private static string AddMissedCrosses(this string input)
+        public static string AddMissedCrosses(this string input)
         {
             string output = string.Empty;
             for (int i = 0; i < input.Length; i++)

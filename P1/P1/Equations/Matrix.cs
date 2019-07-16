@@ -84,6 +84,7 @@ namespace P1
             }
         }
 
+
         /// <summary>
         /// overloading + operator for the class Matrix customly
         /// </summary>
@@ -171,7 +172,10 @@ namespace P1
                 return false;
             return this.Equals(obj as Matrix<_Type>);
         }
-
+        /// <summary>
+        /// Get Determinant of Matrix
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             int code = 0;
