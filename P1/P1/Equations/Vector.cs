@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A10
+namespace P1
 {
     /// <summary>
     /// A vector of numbers. Implement vector addition and multiplication.

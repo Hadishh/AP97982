@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P1
 {
-    public static class EquationParser
+    public static partial class EquationParser
     {
         private static string Data;
         private static int Indexer;
@@ -112,7 +112,7 @@ namespace P1
         }
 
         //Extention Methods 
-        public static string AddMissedCrosses(this string input)
+        private static string AddMissedCrosses(this string input)
         {
             string output = string.Empty;
             for (int i = 0; i < input.Length; i++)

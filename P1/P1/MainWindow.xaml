@@ -125,12 +125,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBox AcceptsReturn="True" Name="EquatinsText"/>
+                    <TextBox Grid.Row="1" AcceptsReturn="True" Name="Answers"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Taylor Series">
 
             </TabItem>
         </TabControl>
+        <!--Clock-->
         <Grid  Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -140,6 +142,5 @@
             <Canvas Name="ClockCanvas" Grid.Row="1">
             </Canvas>
         </Grid>
-        <!--Clock Here-->
     </Grid>
 </Window>

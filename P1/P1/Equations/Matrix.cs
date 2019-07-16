@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace A10
+namespace P1
 {
     public class Matrix<_Type> : 
             IEnumerable<Vector<_Type>>,

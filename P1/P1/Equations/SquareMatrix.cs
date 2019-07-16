@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace A10
+namespace P1
 {
 
     public class SquareMatrix<_Type> : Matrix<_Type>
@@ -11,6 +11,7 @@ namespace A10
         public SquareMatrix(int rows)
         : base(rows, rows)
         {
+            
         }
     }
 }
