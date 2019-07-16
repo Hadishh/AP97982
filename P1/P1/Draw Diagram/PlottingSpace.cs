@@ -21,8 +21,8 @@ namespace P1
         double LengthOfEachPart { get; set; }
         int Scale { get; set; }
         public double Margin { get; set; }
-        int DeltaX { get; set; }
-        int DeltaY { get; set; }
+        double DeltaX { get; set; }
+        double DeltaY { get; set; }
         public double Accuracy { get; set; }
 
          Dictionary<Equation, Polyline> Charts { get; set; }
@@ -39,10 +39,13 @@ namespace P1
             DeltaY = 0;
             Charts = new Dictionary<Equation, Polyline>();
         }
+        /// <summary>
+        /// Draws grid lines.
+        /// </summary>
         public void DrawGrid()
         {
-            XAxis = new X_Axis(ParentCanvas, DeltaX, LengthOfEachPart, Scale, Margin);
-            YAxis = new Y_Axis(ParentCanvas, DeltaY, LengthOfEachPart, Scale, Margin);
+            XAxis = new X_Axis(ParentCanvas, (DeltaX, DeltaY), LengthOfEachPart, Scale, Margin);
+            YAxis = new Y_Axis(ParentCanvas, (DeltaX, DeltaY), LengthOfEachPart, Scale, Margin);
             Center = new Point(YAxis.CenterX, XAxis.CenterY);
             ParentCanvas.Children.Clear();
             XAxis.DrawGrid();
@@ -57,7 +60,7 @@ namespace P1
                 DrawEquation(equation);
         }
         /// <summary>
-        /// 
+        /// Zoming in by increasing length of each part or decreasing scale
         /// </summary>
         /// <param name="size"></param>
         public void ZoomIn(int size)
@@ -70,6 +73,10 @@ namespace P1
                 DrawGrid();
             }
         }
+        /// <summary>
+        /// Zoom out by decreasing length of each part or incresing scale
+        /// </summary>
+        /// <param name="size"></param>
         public void ZoomOut(int size)
         {
             if(LengthOfEachPart  - size <= 10)
@@ -80,6 +87,22 @@ namespace P1
             {
                 LengthOfEachPart -= size;
             }
+        }
+        /// <summary>
+        /// Increasing causes Moving to left and decreasing causes moving to right
+        /// </summary>
+        /// <param name="size"></param>
+        public void MoveX(double size)
+        {
+            DeltaX += size;
+        }
+        /// <summary>
+        /// Decreasing causes moving to up and decreasing causes moving down
+        /// </summary>
+        /// <param name="size"></param>
+        public void MoveY(double size)
+        {
+            DeltaY -= size;
         }
         /// <summary>
         /// Draws Equation add it to canvas. Add equation with polyline in Charts property.
@@ -123,6 +146,14 @@ namespace P1
             }));
             
         }
+
+
+        public void DeleteEquation(Equation equation)
+        {
+            ParentCanvas.Children.Remove(Charts[equation]);
+            Charts.Remove(equation);
+        }
+
         /// <summary>
         /// Projection of any point on canvas coordinates
         /// </summary>

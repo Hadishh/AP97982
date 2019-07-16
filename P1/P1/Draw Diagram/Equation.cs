@@ -27,6 +27,7 @@ namespace P1
 
         public event EventHandler<Equation> Delete;
         public event EventHandler<Equation> Draw;
+
         public Equation()
         {
             #region UI
@@ -46,7 +47,7 @@ namespace P1
             #endregion
         }
         /// <summary>
-        /// when Text changed draw equation again
+        /// when Text changed draw equation again by sendig event to equation handler
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

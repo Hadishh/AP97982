@@ -13,33 +13,81 @@ namespace P1
     {
         public bool LeftMenuIsHidden = false;
         EquationHandler EquationHandler;
-        
         PlottingSpace PlottingSpace;
         private MainWindow MainWindow { get; set; }
         public Draw_Diagram(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
             EquationHandler = new EquationHandler(MainWindow.EquationStack);
-            EquationHandler.DrawEquation += EquationHandler_Draw;
+            EquationHandler.DrawChart += EquationHandler_Draw;
+            EquationHandler.DeleteChart += EquationHandler_DeleteChart;
             MainWindow.EquationCanvas.Loaded += EquationCanvas_Loaded;
+            MainWindow.MenuButton.Click += MenuButton_Click;
             MainWindow.MinX.TextChanged += UpdateBounds;
             MainWindow.MaxX.TextChanged += UpdateBounds;
             MainWindow.MinY.TextChanged += UpdateBounds;
             MainWindow.MaxY.TextChanged += UpdateBounds;
             MainWindow.PreviewMouseWheel += EquationCanvas_MouseWheel;
+            MainWindow.MouseMove += EquationCanvas_MouseMove;
         }
+        /// <summary>
+        /// Delete Charts from plotting space.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EquationHandler_DeleteChart(object sender, Equation e)
+        {
+            PlottingSpace.DeleteEquation(e);
+        }
+
+        /// <summary>
+        /// Last Position of Mouse 
+        /// </summary>
+        Point LastPosition;
+        /// <summary>
+        /// Moving event and moving plot and equations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EquationCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                if (LastPosition.X == 0 & LastPosition.Y == 0)
+                    LastPosition = e.GetPosition(null);
+                else
+                {
+                    Point currentPosition = e.GetPosition(null);
+                    PlottingSpace.MoveY((currentPosition.Y - LastPosition.Y) / 15);
+                    PlottingSpace.MoveX((currentPosition.X - LastPosition.X) / 15);
+                    PlottingSpace.DrawGrid();
+                    PlottingSpace.DrawAddedEquations();
+                }
+            }
+            else
+                LastPosition = new Point(0, 0);
+        }
+        /// <summary>
+        /// Zoom in and out event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EquationCanvas_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
             if (e.Delta < 0)
             {
                 PlottingSpace.ZoomOut(5);
                 PlottingSpace.DrawGrid();
+                if (PlottingSpace.Accuracy < 0.1)
+                    PlottingSpace.Accuracy *= 2;
                 PlottingSpace.DrawAddedEquations();
             }
             if (e.Delta > 0)
             {
                 PlottingSpace.ZoomIn(5);
                 PlottingSpace.DrawGrid();
+                if (PlottingSpace.Accuracy > 0.01)
+                    PlottingSpace.Accuracy /= 2;
                 PlottingSpace.DrawAddedEquations();
             }
         }
@@ -74,13 +122,12 @@ namespace P1
         /// <param name="e"></param>
         private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            PlottingSpace = new PlottingSpace((10, 20), (-10, 30), MainWindow.EquationCanvas, 10, 1, 0);
+            PlottingSpace = new PlottingSpace((0, 0), (0, 0), MainWindow.EquationCanvas, 10, 1, 0);
             PlottingSpace.Accuracy = 0.1;
             PlottingSpace.DrawGrid();
-
         }
         /// <summary>
-        /// Closing and opening equations menu and reforming grids of plotting space
+        /// Closing and opening equations menu and reforming grid line of plotting space
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -90,7 +137,7 @@ namespace P1
             if (!LeftMenuIsHidden)
             {
                 Storyboard sb = MainWindow.Resources["CloseMenu"] as Storyboard;
-                MainWindow.MenuButton.Margin = new Thickness(8, 0, 0, 0);
+                MainWindow.MenuButton.Margin = new Thickness(195, 0, 0, 0);
                 LeftMenuIsHidden = true;
                 MainWindow.MenuButton.Content = ">>";
                 sb.Begin(MainWindow.DrawingPart);
@@ -101,7 +148,7 @@ namespace P1
             else
             {
                 Storyboard sb = MainWindow.Resources["OpenMenu"] as Storyboard;
-                MainWindow.MenuButton.Margin = new Thickness(0, 0, 0, 0);
+                MainWindow.MenuButton.Margin = new Thickness(145, 0, 0, 0);
                 sb.Begin(MainWindow.DrawingPart);
                 MainWindow.MenuButton.Content = "<<";
                 LeftMenuIsHidden = false;

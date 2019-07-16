@@ -12,8 +12,8 @@ namespace P1
 {
     public class Y_Axis : Axis
     {
-        public double CenterX => (ParentCanvas.ActualWidth + Margin) / 2 - Delta;
-        public Y_Axis(Canvas parentCanvas, int delta, double lengthofEachPart, int scale, double margin = 0) :
+        public double CenterX => (ParentCanvas.ActualWidth + Margin) / 2 + Delta.X;
+        public Y_Axis(Canvas parentCanvas, (double X, double Y) delta, double lengthofEachPart, int scale, double margin = 0) :
             base(parentCanvas, delta, lengthofEachPart, scale, margin)
         {
             base.MainLine = new Line();
@@ -28,7 +28,7 @@ namespace P1
         {
             double Y1 = 0;
             double Y2 = ParentCanvas.ActualHeight;
-            double X = (ParentCanvas.ActualWidth + Margin) / 2  - Delta;
+            double X = (ParentCanvas.ActualWidth + Margin) / 2  + Delta.X;
             base.MainLine.X1 = base.MainLine.X2 = X;
             base.MainLine.Y2 = Y2;
             base.MainLine.Y1 = Y1;
@@ -45,12 +45,12 @@ namespace P1
                     List<Line> lines = new List<Line>();
                     double Y1 = 0;
                     double Y2 = ParentCanvas.ActualHeight;
-                    double X = (ParentCanvas.ActualWidth + Margin ) / 2  - Delta;
+                    double X = (ParentCanvas.ActualWidth + Margin ) / 2  + Delta.X;
                     double dynamicX = X + LengthOfEachPart;
                     for(int i = Scale; dynamicX <= ParentCanvas.ActualWidth + Margin; i += Scale, dynamicX += LengthOfEachPart)
                     {
                         Label label = new Label() { Content = i, FontSize = 7 };
-                        Canvas.SetTop(label, Y2 / 2);
+                        Canvas.SetTop(label, Y2 / 2 - Delta.Y);
                         Canvas.SetLeft(label, dynamicX);
                         Line tmpLine = new Line();
                         tmpLine.X1 = tmpLine.X2 = dynamicX;
@@ -66,7 +66,7 @@ namespace P1
                     for (int i = -Scale; dynamicX >= -Margin; i -= Scale, dynamicX -= LengthOfEachPart)
                     {
                         Label label = new Label() { Content = i, FontSize = 7 };
-                        Canvas.SetTop(label, Y2 / 2);
+                        Canvas.SetTop(label, Y2 / 2 - Delta.Y);
                         Canvas.SetLeft(label, dynamicX);
                         Line tmpLine = new Line();
                         tmpLine.X1 = tmpLine.X2 = dynamicX;

@@ -16,10 +16,10 @@ namespace P1
         protected Line MainLine { get; set; } 
         protected Point Center { get; set; }
         protected double LengthOfEachPart { get; set; }
-        protected double Delta { get; set; }
+        protected (double X, double Y) Delta { get; set; }
         protected int Scale { get; set; }
         protected double Margin { get; set; }
-        public Axis(Canvas parentCanvas, double delta, double lengthOfEachPart, int scale, double margin = 0)
+        public Axis(Canvas parentCanvas, (double X, double Y) delta, double lengthOfEachPart, int scale, double margin = 0)
         {
             ParentCanvas = parentCanvas;
             Margin = margin;

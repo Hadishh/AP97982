@@ -23,10 +23,10 @@ namespace P1
             new SolidColorBrush(Colors.Magenta) {Opacity = 0.5 }
         };
 
+        public event EventHandler<Equation> DrawChart;
+        public event EventHandler<Equation> DeleteChart;
         private int CurrentColorIndex;
-
-        public event EventHandler<Equation> DrawEquation;
-
+        
         public EquationHandler(StackPanel mainStack)
         {
             MainStack = mainStack;
@@ -36,7 +36,7 @@ namespace P1
         }
         /// <summary>
         /// Creats an equation and add it to equation list.
-        /// adds grid of Equation to stack panel.
+        /// Adds grid of Equation to stack panel.
         /// </summary>
         public void AddEquation()
         {
@@ -54,7 +54,7 @@ namespace P1
 
         private void NewEquation_Draw(object sender, Equation e)
         {
-            DrawEquation(sender, e);
+            DrawChart(sender, e);
         }
 
         /// <summary>
@@ -81,6 +81,7 @@ namespace P1
             {
                 MainStack.Children.Remove(myGrid);
                 Equations.Remove(ChoosedClass);
+                DeleteChart(this, ChoosedClass);
             }
         }
 
