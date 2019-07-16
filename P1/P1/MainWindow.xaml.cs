@@ -32,7 +32,6 @@ namespace P1
             {
                 Drawer.Destroy();
                 Drawer = null;
-
             }
         }
 

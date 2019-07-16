@@ -58,8 +58,9 @@ namespace P1
                 else
                 {
                     Point currentPosition = e.GetPosition(null);
-                    PlottingSpace.MoveY((currentPosition.Y - LastPosition.Y) / 15);
-                    PlottingSpace.MoveX((currentPosition.X - LastPosition.X) / 15);
+                    PlottingSpace.MoveY((currentPosition.Y - LastPosition.Y));
+                    PlottingSpace.MoveX((currentPosition.X - LastPosition.X));
+                    LastPosition = currentPosition;
                     PlottingSpace.DrawGrid();
                     PlottingSpace.DrawAddedEquations();
                 }

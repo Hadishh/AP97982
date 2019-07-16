@@ -118,7 +118,14 @@
                 </Border>
             </TabItem>
             <TabItem Name="EquatioSolver" Header="Equations">
-        
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox AcceptsReturn="True" Name="EquatinsText"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Taylor Series">
 
