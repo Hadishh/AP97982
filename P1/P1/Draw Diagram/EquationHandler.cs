@@ -11,9 +11,9 @@ namespace P1
 {
     public class EquationHandler
     {
-        private StackPanel MainStack { get; }
+        private StackPanel EquationListStack { get; set; }
 
-        public List<Equation> Equations { get; }
+        public List<Equation> Equations { get; private set; }
 
         private List<Brush> AvailableColors = new List<Brush> {
             new SolidColorBrush(Colors.Black) {Opacity = 0.5 },
@@ -27,9 +27,10 @@ namespace P1
         public event EventHandler<Equation> DeleteChart;
         private int CurrentColorIndex;
         
-        public EquationHandler(StackPanel mainStack)
+        public EquationHandler(StackPanel eqationListStack)
         {
-            MainStack = mainStack;
+            EquationListStack = eqationListStack;
+            EquationListStack.Children.Clear();
             Equations = new List<Equation>();
             AddEquation();
             CurrentColorIndex = 1;
@@ -47,7 +48,7 @@ namespace P1
             //Event Properties
             newEquation.Delete += Equation_DeleteEvent;
             newEquation.Draw += NewEquation_Draw;
-            MainStack.Children.Add(newEquation.GetGrid());
+            EquationListStack.Children.Add(newEquation.GetGrid());
             Equations.Add(newEquation);
             CurrentColorIndex = ++CurrentColorIndex >= AvailableColors.Count ? 0 : CurrentColorIndex;
         }
@@ -68,18 +69,18 @@ namespace P1
             if (!(sender is Button))
                 throw new ArgumentException();
             Grid myGrid = new Grid();
-            UIElementCollection allElements = MainStack.Children;
+            UIElementCollection allElements = EquationListStack.Children;
             foreach(var grid in allElements)
             {
                 if (grid is Grid)
                     if ((grid as Grid).Children.Contains(sender as Button))
                         myGrid = grid as Grid;
             }
-            if (MainStack.Children.Count < 2  || allElements.IndexOf(myGrid) == allElements.Count - 1)
+            if (EquationListStack.Children.Count < 2  || allElements.IndexOf(myGrid) == allElements.Count - 1)
                 MessageBox.Show("Cannot Delete This Field!", "Error");
             else
             {
-                MainStack.Children.Remove(myGrid);
+                EquationListStack.Children.Remove(myGrid);
                 Equations.Remove(ChoosedClass);
                 DeleteChart(this, ChoosedClass);
             }
@@ -96,5 +97,12 @@ namespace P1
                 AddEquation();
         }
 
+        public void Destroy()
+        {
+            EquationListStack.Children.Clear();
+            Equations.Clear();
+            Equations = null;
+            EquationListStack = null;
+        }
     }
 }

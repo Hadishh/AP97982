@@ -147,7 +147,10 @@ namespace P1
             
         }
 
-
+        /// <summary>
+        /// Deletes specific equation.
+        /// </summary>
+        /// <param name="equation"></param>
         public void DeleteEquation(Equation equation)
         {
             ParentCanvas.Children.Remove(Charts[equation]);
@@ -161,5 +164,17 @@ namespace P1
         /// <returns></returns>
         private Point ProjectOnPlot(Point p) 
             => new Point(Center.X + p.X * LengthOfEachPart / Scale, Center.Y + p.Y * LengthOfEachPart / Scale);
+
+        public void Destroy()
+        {
+            Charts.Clear();
+            XAxis.Destroy();
+            YAxis.Destroy();
+            ParentCanvas.Children.Clear();
+            XAxis = null;
+            YAxis = null;
+            ParentCanvas = null;
+            Charts = null;
+        }
     }
 }

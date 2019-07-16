@@ -157,5 +157,31 @@ namespace P1
                 PlottingSpace.DrawAddedEquations();
             }
         }
+        /// <summary>
+        /// Destroyer of the class
+        /// </summary>
+        public void Destroy()
+        {
+            EquationHandler.DrawChart -= EquationHandler_Draw;
+            EquationHandler.DeleteChart -= EquationHandler_DeleteChart;
+            MainWindow.EquationCanvas.Loaded -= EquationCanvas_Loaded;
+            MainWindow.MenuButton.Click -= MenuButton_Click;
+            MainWindow.MinX.TextChanged -= UpdateBounds;
+            MainWindow.MaxX.TextChanged -= UpdateBounds;
+            MainWindow.MinY.TextChanged -= UpdateBounds;
+            MainWindow.MaxY.TextChanged -= UpdateBounds;
+            MainWindow.PreviewMouseWheel -= EquationCanvas_MouseWheel;
+            MainWindow.MouseMove -= EquationCanvas_MouseMove;
+            EquationHandler.Destroy();
+            PlottingSpace.Destroy();
+            if (LeftMenuIsHidden)
+            {
+                Storyboard sb = MainWindow.Resources["OpenMenu"] as Storyboard;
+                MainWindow.MenuButton.Margin = new Thickness(145, 0, 0, 0);
+                sb.Begin(MainWindow.DrawingPart);
+                MainWindow.MenuButton.Content = "<<";
+                LeftMenuIsHidden = false;
+            }
+        }
     }
 }

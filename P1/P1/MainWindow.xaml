@@ -117,8 +117,8 @@
                     </Grid>
                 </Border>
             </TabItem>
-            <TabItem Header="Equations">
-
+            <TabItem Name="EquatioSolver" Header="Equations">
+        
             </TabItem>
             <TabItem Header="Taylor Series">
 

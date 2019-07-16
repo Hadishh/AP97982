@@ -28,6 +28,12 @@ namespace P1
             {
                 Drawer = new Draw_Diagram(this);
             }
+            else if (EquatioSolver.IsSelected)
+            {
+                Drawer.Destroy();
+                Drawer = null;
+
+            }
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)

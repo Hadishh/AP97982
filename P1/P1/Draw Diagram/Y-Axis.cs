@@ -12,6 +12,7 @@ namespace P1
 {
     public class Y_Axis : Axis
     {
+        
         public double CenterX => (ParentCanvas.ActualWidth + Margin) / 2 + Delta.X;
         public Y_Axis(Canvas parentCanvas, (double X, double Y) delta, double lengthofEachPart, int scale, double margin = 0) :
             base(parentCanvas, delta, lengthofEachPart, scale, margin)
@@ -42,6 +43,8 @@ namespace P1
             Application.Current.Dispatcher.BeginInvoke(
                 (Action)(() =>
                 {
+                    if (IsDestroyed)
+                        return;
                     List<Line> lines = new List<Line>();
                     double Y1 = 0;
                     double Y2 = ParentCanvas.ActualHeight;
