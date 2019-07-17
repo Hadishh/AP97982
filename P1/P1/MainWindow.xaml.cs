@@ -24,7 +24,7 @@ namespace P1
             CalculateLinearEquation.Click += CalculateLinearEquation_Click;
             ClearLinearEquation.Click += ClearLinearEquation_Click;
         }
-
+        #region EquationSolverEvents
         private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
         {
             Answers.Text = string.Empty;
@@ -36,14 +36,14 @@ namespace P1
             try
             {
                 EquationSolver = new EquationSolver(EquationsText.Text);
-                Answers.Text = EquationSolver.ToString();
+                Answers.Text = EquationSolver.Answer();
             }
             catch (ArgumentException)
             {
                 MessageBox.Show("Can't Solve This Equations!", "Error");
             }
         }
-
+        #endregion
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DrawDiagram.IsSelected)
@@ -66,7 +66,7 @@ namespace P1
         }
 
         /// <summary>
-        /// On Clock Canvas Loaded clock must start Working
+        /// On clock canvas loaded clock must start Working
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
