@@ -53,5 +53,7 @@ namespace P1
             }
             return result.ToString().Trim(',');
         }
+        public override string ToString()
+            => Answer();
     }
 }

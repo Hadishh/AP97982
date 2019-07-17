@@ -126,6 +126,14 @@
                     </Grid.RowDefinitions>
                     <TextBox AcceptsReturn="True" Name="EquatinsText"/>
                     <TextBox Grid.Row="1" AcceptsReturn="True" Name="Answers"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="CalculateLinearEquation" Margin="5" Content="Calculate"/>
+                        <Button Name="ClearLinearEquation" Grid.Column="1" Content="Clear" Margin="5"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Taylor Series">

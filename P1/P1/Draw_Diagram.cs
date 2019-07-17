@@ -27,8 +27,6 @@ namespace P1
             MainWindow.MaxX.TextChanged += UpdateBounds;
             MainWindow.MinY.TextChanged += UpdateBounds;
             MainWindow.MaxY.TextChanged += UpdateBounds;
-            MainWindow.PreviewMouseWheel += EquationCanvas_MouseWheel;
-            MainWindow.MouseMove += EquationCanvas_MouseMove;
         }
         /// <summary>
         /// Delete Charts from plotting space.
@@ -38,59 +36,6 @@ namespace P1
         private void EquationHandler_DeleteChart(object sender, Equation e)
         {
             PlottingSpace.DeleteEquation(e);
-        }
-
-        /// <summary>
-        /// Last Position of Mouse 
-        /// </summary>
-        Point LastPosition;
-        /// <summary>
-        /// Moving event and moving plot and equations
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EquationCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            {
-                if (LastPosition.X == 0 & LastPosition.Y == 0)
-                    LastPosition = e.GetPosition(null);
-                else
-                {
-                    Point currentPosition = e.GetPosition(null);
-                    PlottingSpace.MoveY((currentPosition.Y - LastPosition.Y));
-                    PlottingSpace.MoveX((currentPosition.X - LastPosition.X));
-                    LastPosition = currentPosition;
-                    PlottingSpace.DrawGrid();
-                    PlottingSpace.DrawAddedEquations();
-                }
-            }
-            else
-                LastPosition = new Point(0, 0);
-        }
-        /// <summary>
-        /// Zoom in and out event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EquationCanvas_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            if (e.Delta < 0)
-            {
-                PlottingSpace.ZoomOut(5);
-                PlottingSpace.DrawGrid();
-                if (PlottingSpace.Accuracy < 0.1)
-                    PlottingSpace.Accuracy *= 2;
-                PlottingSpace.DrawAddedEquations();
-            }
-            if (e.Delta > 0)
-            {
-                PlottingSpace.ZoomIn(5);
-                PlottingSpace.DrawGrid();
-                if (PlottingSpace.Accuracy > 0.01)
-                    PlottingSpace.Accuracy /= 2;
-                PlottingSpace.DrawAddedEquations();
-            }
         }
 
         private void EquationHandler_Draw(object sender, Equation e)
@@ -171,8 +116,8 @@ namespace P1
             MainWindow.MaxX.TextChanged -= UpdateBounds;
             MainWindow.MinY.TextChanged -= UpdateBounds;
             MainWindow.MaxY.TextChanged -= UpdateBounds;
-            MainWindow.PreviewMouseWheel -= EquationCanvas_MouseWheel;
-            MainWindow.MouseMove -= EquationCanvas_MouseMove;
+
+
             EquationHandler.Destroy();
             PlottingSpace.Destroy();
             if (LeftMenuIsHidden)

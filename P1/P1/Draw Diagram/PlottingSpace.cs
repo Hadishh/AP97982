@@ -34,11 +34,69 @@ namespace P1
             YBounds = yBounds;
             ParentCanvas = parentCanvas;
             LengthOfEachPart = lengthOfEachPart;
+            Application.Current.MainWindow.PreviewMouseMove += EquationCanvas_MouseMove;
+            Application.Current.MainWindow.PreviewMouseWheel += EquationCanvas_MouseWheel;
             Scale = scale;
             DeltaX = 0;
             DeltaY = 0;
             Charts = new Dictionary<Equation, Polyline>();
         }
+
+        /// <summary>
+        /// Last Position of Mouse 
+        /// </summary>
+        Point LastPosition;
+        /// <summary>
+        /// Moving event and moving plot and equations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EquationCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                if (LastPosition.X == 0 & LastPosition.Y == 0)
+                    LastPosition = e.GetPosition(null);
+                else
+                {
+                    Point currentPosition = e.GetPosition(null);
+                    MoveY((currentPosition.Y - LastPosition.Y));
+                    MoveX((currentPosition.X - LastPosition.X));
+                    LastPosition = currentPosition;
+                    DrawGrid();
+                    DrawAddedEquations();
+                }
+            }
+            else
+                LastPosition = new Point(0, 0);
+        }
+
+
+        /// <summary>
+        /// Zoom in and out event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EquationCanvas_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                ZoomOut(5);
+                DrawGrid();
+                if (Accuracy < 0.1)
+                    Accuracy *= 2;
+                DrawAddedEquations();
+            }
+            if (e.Delta > 0)
+            {
+                ZoomIn(5);
+                DrawGrid();
+                if (Accuracy > 0.01)
+                    Accuracy /= 2;
+                DrawAddedEquations();
+            }
+        }
+
         /// <summary>
         /// Draws grid lines.
         /// </summary>
@@ -170,6 +228,8 @@ namespace P1
             Charts.Clear();
             XAxis.Destroy();
             YAxis.Destroy();
+            Application.Current.MainWindow.PreviewMouseMove -= EquationCanvas_MouseMove;
+            Application.Current.MainWindow.PreviewMouseWheel -= EquationCanvas_MouseWheel;
             ParentCanvas.Children.Clear();
             XAxis = null;
             YAxis = null;

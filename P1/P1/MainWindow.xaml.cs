@@ -31,8 +31,11 @@ namespace P1
             }
             else if (EquatioSolver.IsSelected)
             {
-                Drawer.Destroy();
-                Drawer = null;
+                if (Drawer != null)
+                {
+                    Drawer.Destroy();
+                    Drawer = null;
+                }
             }
         }
 
