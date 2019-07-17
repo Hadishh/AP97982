@@ -48,6 +48,11 @@ namespace P1
             { "log(x)", Math.Log }
         };
         private static List<char> Operators = new List<char> { '+', '-', '*', '/', '^' };
+        /// <summary>
+        /// Calculates each side of the input operator and replace Zn to that for making equation shorter.
+        /// </summary>
+        /// <param name="operatorChr"></param>
+        /// <param name="operatorFunction"></param>
         private static void CalculatePartsByOperator(char operatorChr,Func<double, double, double> operatorFunction)
         {
             for (int i = 0; i < Data.Length; i++)
@@ -90,7 +95,7 @@ namespace P1
             }
         }
         /// <summary>
-        /// this function runs Calculator on true order to find a delegate that calculate equation and return it
+        /// Runs calculator on true order to finds a delegate that calculates equation and returns it
         /// </summary>
         /// <param name="inputEquation"></param>
         /// <returns></returns>
@@ -111,7 +116,12 @@ namespace P1
             return Functions.Values.Last();
         }
 
-        //Extention Methods 
+        //Extention Methods
+        /// <summary>
+        /// Adding missed * charaters
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string AddMissedCrosses(this string input)
         {
             string output = string.Empty;

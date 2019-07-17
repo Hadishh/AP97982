@@ -124,7 +124,7 @@
                         <RowDefinition Height="8*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBox AcceptsReturn="True" Name="EquatinsText"/>
+                    <TextBox AcceptsReturn="True" Name="EquationsText"/>
                     <TextBox Grid.Row="1" AcceptsReturn="True" Name="Answers"/>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>

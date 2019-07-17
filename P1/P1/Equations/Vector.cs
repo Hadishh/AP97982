@@ -115,6 +115,27 @@ namespace P1
         }
 
         /// <summary>
+        /// Subtract two vectors
+        /// </summary>
+        /// <param name="v1">vector 1</param>
+        /// <param name="v2">vector 2</param>
+        /// <returns>sum of vector 1 and 2</returns>
+        public static Vector<_Type> operator -(Vector<_Type> v1, Vector<_Type> v2)
+        {
+            if (v1.Size != v2.Size)
+                throw new ArithmeticException("Vectors don't have same size!");
+            Vector<_Type> result = new Vector<_Type>(v1.Size);
+            for (int i = 0; i < result.Size; i++)
+            {
+                dynamic v1Item = v1[i];
+                dynamic v2Item = v2[i];
+                dynamic data = v1Item - v2Item;
+                result[i] = data;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Inner product of two vectors
         /// </summary>
         /// <param name="v1">Vector 1</param>
@@ -131,7 +152,20 @@ namespace P1
             return data;
         }
 
-        
+        /// <summary>
+        /// Product of contanst to a vector
+        /// </summary>
+        /// <param name="v1">Vector 1</param>
+        /// <param name="v2">Vector 2</param>
+        /// <returns>Inner product of vector one and two</returns>
+        public static Vector<_Type> operator *(Vector<_Type> v2, _Type v1)
+        {
+            Vector<_Type> result = new Vector<_Type>(v2.Size);
+            dynamic data = 0;
+            for (int i = 0; i < result.Size; i++)
+                result[i] += (dynamic)v1 * v2[i];
+            return result;
+        }
 
         /// <summary>
         /// Equality operator

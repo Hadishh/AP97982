@@ -57,6 +57,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Draw Diagram\EquationParserTests.cs" />
+    <Compile Include="EquationSolverTests.cs" />
+    <Compile Include="Equations\LinearEquationTests.cs" />
     <Compile Include="Equations\SquareMatrixTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

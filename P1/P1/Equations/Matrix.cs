@@ -13,7 +13,7 @@ namespace P1
         public readonly int RowCount;
         public readonly int ColumnCount;
 
-        protected readonly Vector<_Type>[] Rows;
+        protected Vector<_Type>[] Rows;
         protected int RowAddIndex = 0;
 
         /// <summary>
@@ -25,7 +25,8 @@ namespace P1
         {
             RowCount = rowCount;
             ColumnCount = columnCount;
-            Rows = new Vector<_Type>[rowCount];  
+            Rows = new Vector<_Type>[rowCount];
+            
         }
 
         /// <summary>
@@ -46,12 +47,7 @@ namespace P1
 
         public void Add(Vector<_Type> row)
         {
-            this.Rows[RowAddIndex] = new Vector<_Type>(row.Size);
-            for(int i = 0; i < row.Size; i++)
-            {
-                Rows[RowAddIndex][i] = row[i];
-            }
-            RowAddIndex++;
+            Rows[RowAddIndex++] = row;
             return;
         }
 
@@ -69,7 +65,7 @@ namespace P1
                     throw new IndexOutOfRangeException();
                 if (value.Size != ColumnCount)
                     throw new ArithmeticException();
-                this.Add(value);
+                Rows[index] = value; 
             }
         }
 

@@ -21,6 +21,27 @@ namespace P1
             ClockCanvas.Loaded += ClockCanvas_Loaded;
             this.Closed += MainWindow_Closed;
             MainTabControl.SelectionChanged += MainTabControl_SelectionChanged;
+            CalculateLinearEquation.Click += CalculateLinearEquation_Click;
+            ClearLinearEquation.Click += ClearLinearEquation_Click;
+        }
+
+        private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
+        {
+            Answers.Text = string.Empty;
+            EquationsText.Text = string.Empty;
+        }
+
+        private void CalculateLinearEquation_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                EquationSolver = new EquationSolver(EquationsText.Text);
+                Answers.Text = EquationSolver.ToString();
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Can't Solve This Equations!", "Error");
+            }
         }
 
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

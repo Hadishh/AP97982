@@ -8,6 +8,12 @@ namespace P1
 {
     public static partial class EquationParser
     {
+        /// <summary>
+        /// Gets vector of multiples from string of equation.
+        /// </summary>
+        /// <param name="equation"></param>
+        /// <param name="orderedVariables"></param>
+        /// <returns></returns>
         public static Vector<double> GetVetcor(string equation, List<char> orderedVariables)
         {
             
@@ -22,7 +28,7 @@ namespace P1
                     for (int j = i - 1; j >= 0 && !Operators.Contains(equation[j + 1]); j--)
                         builder.Append(equation[j]);
                     string value = new string(builder.ToString().Reverse().ToArray());
-                    if (value == "+" || value == "-")
+                    if (value == "+" || value == "-" || value == "")
                         value += 1;
                     double d = 0;
                     if (!double.TryParse(value, out d))

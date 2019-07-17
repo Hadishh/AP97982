@@ -21,7 +21,7 @@ namespace P1.Tests
                 new Vector<double>(3){4, 5, 6},
                 new Vector<double>(3){7, 8, 9}
             };
-            const double det2 = 0;
+            const double det2 = 54;
             SquareMatrix<int> matrix2 = new SquareMatrix<int>(4)
             {
                 new Vector<int>(4){5, 6, 7, 9},

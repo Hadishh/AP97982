@@ -23,7 +23,9 @@ namespace P1
                 throw new ArgumentException();
             for (int i = 0; i < Size; i++)
             {
-                matrix.Add(this[i]);
+                matrix[i] = new Vector<_Type>(Size);
+                for (int j = 0; j < Size; j++)
+                    matrix[i][j] = this[i][j];
                 matrix[i][index] = columnVector[i];
             }
             return matrix;
@@ -45,7 +47,7 @@ namespace P1
                             vector.Add(matrix[j][k]);
                     minorMatrix.Add(vector);
                 }
-                determinant += (dynamic)(int)Math.Pow(-1, i % 2) * Determinant(minorMatrix);
+                determinant += (dynamic)(int)Math.Pow(-1, i % 2) * matrix[0][i] * Determinant(minorMatrix);
             }
             return determinant;
         }

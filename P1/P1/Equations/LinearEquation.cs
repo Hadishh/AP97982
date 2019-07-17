@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P1
 {
-    class LinearEquation
+    public class LinearEquation
     {
         public List<char> Variables { get; private set; }
         public string LeftSide { get; private set; }
@@ -22,6 +22,9 @@ namespace P1
             RightSide = rightSide;
             FindVariables();
         }
+        /// <summary>
+        /// Find all variables used in the equation string
+        /// </summary>
         private void FindVariables()
         {
             foreach (var c in LeftSide)
