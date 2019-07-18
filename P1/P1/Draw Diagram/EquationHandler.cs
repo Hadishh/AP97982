@@ -13,7 +13,7 @@ namespace P1
     {
         private StackPanel EquationListStack { get; set; }
 
-        public List<Equation> Equations { get; private set; }
+        public List<EquationUI> Equations { get; private set; }
 
         private List<Brush> AvailableColors = new List<Brush> {
             new SolidColorBrush(Colors.Black) {Opacity = 0.5 },
@@ -31,7 +31,7 @@ namespace P1
         {
             EquationListStack = eqationListStack;
             EquationListStack.Children.Clear();
-            Equations = new List<Equation>();
+            Equations = new List<EquationUI>();
             AddEquation();
             CurrentColorIndex = 1;
         }
@@ -41,7 +41,7 @@ namespace P1
         /// </summary>
         public void AddEquation()
         {
-            Equation newEquation = new Equation();
+            EquationUI newEquation = new EquationUI();
             //TextBox Properties
             newEquation.DataTextBox.TextChanged += OnTextChanged_AddEquation;
             newEquation.DataTextBox.Background = AvailableColors[CurrentColorIndex];
@@ -64,7 +64,7 @@ namespace P1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="ChoosedClass"></param>
-        private void Equation_DeleteEvent(object sender, Equation ChoosedClass)
+        private void Equation_DeleteEvent(object sender, EquationUI ChoosedClass)
         {
             if (!(sender is Button))
                 throw new ArgumentException();
