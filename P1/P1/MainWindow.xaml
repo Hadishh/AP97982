@@ -136,8 +136,15 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Taylor Series">
+            <TabItem Name="Taylor" Header="Taylor Series">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="9*"/>
 
+                    </Grid.RowDefinitions>
+                </Grid>
             </TabItem>
         </TabControl>
         <!--Clock-->

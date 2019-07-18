@@ -61,6 +61,7 @@
     <Compile Include="Equations\LinearEquationTests.cs" />
     <Compile Include="Equations\SquareMatrixTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Taylor\TaylorSeriesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
