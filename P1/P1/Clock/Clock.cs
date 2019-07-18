@@ -31,6 +31,7 @@ namespace P1
             ParentCanvas.Children.Clear();
             SecondHand = new Hand(Center,PositionOnClock(time.Second, Radius));
             SecondHand.HandLine.Stroke = Brushes.Red;
+            SecondHand.HandLine.StrokeThickness = 1;
             MinutesHand = new Hand(Center, PositionOnClock(time.Minute, Radius));
             HoursHand = new Hand(Center, PositionOnClock(time.Hour * 5  + time.Minute / 12.0, 3 * Radius / 4));
             Draw();

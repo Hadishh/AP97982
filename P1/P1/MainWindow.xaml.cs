@@ -93,7 +93,7 @@ namespace P1
         /// <param name="e"></param>
         private void ClockCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            MainClock = ClockFactory.SquareWithSixtyDotsWithoutLabel(this);
+            MainClock = ClockFactory.CircleWithTwelveLinesWithoutLabel(this);
             Thread t = new Thread(() =>
             {
                 while (true)

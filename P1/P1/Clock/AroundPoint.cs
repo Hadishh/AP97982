@@ -16,10 +16,11 @@ namespace P1
         public Point Position { get; set; }
         public Brush Color = Brushes.Black;
         public string Label { get; set; }
-        public AroundPoint(Point position, double thikness)
+        public AroundPoint(Point position, double thikness, string label)
         {
             Position = position;
             Thikness = thikness;
+            Label = label;
         }
 
         public abstract UIElement GetUI();

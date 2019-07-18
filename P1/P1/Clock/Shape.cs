@@ -10,10 +10,12 @@ namespace P1
     {
         public double Ratio { get; private set; }
         public List<AroundPoint> AroundPoints { get; set; }
-        public Shape(double radius, List<AroundPoint> aroundPoints)
+        protected bool EnableLabel { get; set; }
+        public Shape(double radius, List<AroundPoint> aroundPoints,bool enableLabel)
         {
             AroundPoints = aroundPoints;
             Ratio = radius;
+            EnableLabel = enableLabel;
         }
         public abstract void Draw();
     }

@@ -14,11 +14,10 @@ namespace P1
         public double Length { get; set; }
         public double Teta { get; set; }
         public Lines(Point position, double thickness, double teta, double length, string label = "")
-            :base(position, thickness)
+            :base(position, thickness, label)
         {
             Teta = teta;
             Length = length;
-            Label = label;
         }
         public override UIElement GetUI()
         {
@@ -34,13 +33,9 @@ namespace P1
 
         public override UIElement GetLabel()
         {
-            Label label = new Label() { Content = "1", FontSize = 10,
-                VerticalContentAlignment = VerticalAlignment.Center,
-                HorizontalContentAlignment = HorizontalAlignment.Center
-                
-            };
-            Canvas.SetTop(label, Position.Y -5);
-            Canvas.SetLeft(label, Position.X - 5);
+            Label label = new Label() { Content =Label, FontSize = 10 };
+            Canvas.SetTop(label, Position.Y + 15 * Math.Cos(Teta) - 15 );
+            Canvas.SetLeft(label, Position.X - 15* Math.Sin(Teta) - 8);
             return label;
         }
     }

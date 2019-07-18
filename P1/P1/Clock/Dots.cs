@@ -12,8 +12,8 @@ namespace P1
     public class Dots : AroundPoint
     {
         public double Teta { get; set; }
-        public Dots(Point position, double thickness, double teta)
-            : base(position, thickness)
+        public Dots(Point position, double thickness, double teta, string label = "")
+            : base(position, thickness, label)
         {
             Teta = teta;
         }
@@ -30,7 +30,10 @@ namespace P1
 
         public override UIElement GetLabel()
         {
-            throw new NotImplementedException();
+            Label label = new Label() { Content = Label, FontSize = 10 };
+            Canvas.SetTop(label, Position.Y + 15 * Math.Cos(Teta) - 15);
+            Canvas.SetLeft(label, Position.X - 15 * Math.Sin(Teta) - 8);
+            return label;
         }
     }
 }

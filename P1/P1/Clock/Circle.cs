@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -10,12 +7,11 @@ using System.Windows.Shapes;
 
 namespace P1
 {
-    class Square : Shape
+    public class Circle : Shape
     {
-
         Canvas ParentCanvas { get; set; }
         Point Center { get; set; }
-        public Square(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) : base (ratio, aroundPoints, enableLabel)
+        public Circle(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) : base(ratio, aroundPoints, enableLabel)
         {
             ParentCanvas = parentCanvas;
             Center = new Point(ParentCanvas.ActualWidth / 2, ParentCanvas.ActualHeight / 2);
@@ -25,10 +21,10 @@ namespace P1
             foreach (var item in AroundPoints)
             {
                 ParentCanvas.Children.Add(item.GetUI());
-                if(EnableLabel)
+                if (EnableLabel)
                     ParentCanvas.Children.Add(item.GetLabel());
             }
-            Rectangle r = new Rectangle { Width = 2*Ratio + 10, Height = 2*Ratio + 10 };
+            Ellipse r = new Ellipse { Width = 2 * Ratio + 10, Height = 2 * Ratio + 10 };
             r.Stroke = Brushes.Black;
             r.StrokeThickness = 2;
             Canvas.SetTop(r, Center.Y - Ratio - 5);
