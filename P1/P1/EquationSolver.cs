@@ -66,12 +66,10 @@ namespace P1
                         Matrix[j] -= Matrix[i] * (Matrix[j][i] / Matrix[i][i]);
                     }
                     if (AllZeroInRow(out index))
-                    {
                         if (RighSide[index] == 0)
                             return "No Unique Solution";
-                        return "No Solution";
-
-                    }
+                        else
+                            return "No Solution";
                 }
             }
             for (int i = 0; i < AllVariables.Count; i++)

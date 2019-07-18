@@ -68,7 +68,7 @@ namespace P1
         /// <param name="e"></param>
         private void EquationCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            PlottingSpace = new PlottingSpace((0, 0), (0, 0), MainWindow.EquationCanvas, 10, 1, 0);
+            PlottingSpace = new PlottingSpace((0, 0), (0, 0), MainWindow.EquationCanvas, 1, 0);
             PlottingSpace.Accuracy = 0.1;
             PlottingSpace.DrawGrid();
         }

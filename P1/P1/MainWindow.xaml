@@ -141,9 +141,45 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="9*"/>
 
                     </Grid.RowDefinitions>
+                    <Grid Panel.ZIndex="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Draw" Margin="10"/>
+                        <Button Grid.Column="1" Content="Clear" Margin="10"/>
+                    </Grid>
+                    <Label Content="f(x) = sinx"
+                           Grid.Row="1" 
+                           VerticalAlignment="Center"
+                           FontSize="15"/>
+                    <Grid Panel.ZIndex="5" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="n = " FontSize="15"
+                               VerticalAlignment="Center"/>
+                        <TextBox 
+                            Margin="10"
+                            Grid.Column="1" 
+                            Name="NText" />
+                        <Label Grid.Column="2" Content="x0 = " FontSize="15"
+                               VerticalAlignment="Center"/>
+                        <TextBox 
+                            Margin="10"
+                            Grid.Column="3" 
+                            Name="X0Text" />
+                    </Grid>
+                    <Canvas Panel.ZIndex="0" Grid.Row="3" Name="TaylorDrawingCanvas">
+                        
+                    </Canvas>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -26,19 +26,20 @@ namespace P1
         public double Accuracy { get; set; }
 
          Dictionary<Equation, Polyline> Charts { get; set; }
-         public PlottingSpace((double Min, double Max) xBounds, (double Min, double Max) yBounds, Canvas parentCanvas, double lengthOfEachPart, int scale, double margin = 0)
+         public PlottingSpace((double Min, double Max) xBounds, (double Min, double Max) yBounds, Canvas parentCanvas, int scale, double margin = 0)
          {
             Margin = margin;
             Center = new Point(0, 0);
             XBounds = xBounds;
             YBounds = yBounds;
             ParentCanvas = parentCanvas;
-            LengthOfEachPart = lengthOfEachPart;
+            LengthOfEachPart = 10;
             Application.Current.MainWindow.PreviewMouseMove += EquationCanvas_MouseMove;
             Application.Current.MainWindow.PreviewMouseWheel += EquationCanvas_MouseWheel;
             Scale = scale;
             DeltaX = 0;
             DeltaY = 0;
+            Accuracy = 0.1;
             Charts = new Dictionary<Equation, Polyline>();
         }
 

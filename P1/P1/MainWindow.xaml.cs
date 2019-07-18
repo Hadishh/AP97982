@@ -15,6 +15,7 @@ namespace P1
         Clock MainClock;
         Draw_Diagram Drawer;
         EquationSolver EquationSolver;
+        Taylor TaylorDrawer;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,6 +50,11 @@ namespace P1
             if (DrawDiagram.IsSelected)
             {
                 Drawer = new Draw_Diagram(this);
+                if (TaylorDrawer != null)
+                {
+                    TaylorDrawer.Destroy();
+                    TaylorDrawer = null;
+                }
             }
             else if (EquatioSolver.IsSelected)
             {
@@ -57,6 +63,21 @@ namespace P1
                     Drawer.Destroy();
                     Drawer = null;
                 }
+                if (TaylorDrawer != null)
+                {
+                    TaylorDrawer.Destroy();
+                    TaylorDrawer = null;
+                }
+            }
+            else if (Taylor.IsSelected)
+            {
+                if (Drawer != null)
+                {
+                    Drawer.Destroy();
+                    Drawer = null;
+                }
+                TaylorDrawer = new Taylor(10, 1, this);
+
             }
         }
 

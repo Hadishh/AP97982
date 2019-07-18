@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Taylor.cs" />
     <Compile Include="Taylor\TaylorEquation.cs" />
     <Compile Include="Taylor\TaylorSeries.cs" />
     <Page Include="MainWindow.xaml">
