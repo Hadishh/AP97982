@@ -191,7 +191,8 @@ namespace P1
                     {
                         //by growing y the canvas coordinates goes down so multiple by -1
                         Point project = ProjectOnPlot(new Point(x, -y));
-                        chart.Points.Add(project);
+                        if(project.Y > 0 && project.Y < ParentCanvas.ActualHeight)
+                            chart.Points.Add(project);
                     }
                 }
                 if (Charts.ContainsKey(equation))

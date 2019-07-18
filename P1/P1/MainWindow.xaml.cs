@@ -76,8 +76,6 @@ namespace P1
                     Drawer.Destroy();
                     Drawer = null;
                 }
-                TaylorDrawer = new Taylor(10, 1, this);
-
             }
         }
 
@@ -108,6 +106,28 @@ namespace P1
             });
             t.IsBackground = true;
             t.Start();
+        }
+
+        private void DrawTaylor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int n = int.Parse(NText.Text);
+                double x0 = double.Parse(X0Text.Text);
+                if (TaylorDrawer != null)
+                    TaylorDrawer.Destroy();
+                TaylorDrawer = new Taylor(n, x0, this);
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("Please enter Correct Entries!", "Error!");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TaylorDrawer.Destroy();
+            TaylorDrawer = null;
         }
     }
 }

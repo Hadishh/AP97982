@@ -41,6 +41,8 @@ namespace P1
             double X1 = -Margin;
             double X2 = ParentCanvas.ActualWidth + Margin;
             double Y = (ParentCanvas.ActualHeight) / 2 - Delta.Y;
+            if (Y > ParentCanvas.ActualWidth || Y < 0)
+                return MainLine;
             base.MainLine.Y1 = base.MainLine.Y2 = Y;
             base.MainLine.X2 = X2;
             base.MainLine.X1 = X1;
@@ -68,6 +70,12 @@ namespace P1
                     double dynamicY = Y - LengthOfEachPart;
                     for (int i = Scale; dynamicY >= 0; i += Scale, dynamicY -= LengthOfEachPart)
                     {
+                        if (dynamicY > ParentCanvas.ActualHeight)
+                        {
+                           int deltaScale = (int)((dynamicY - ParentCanvas.ActualHeight) / LengthOfEachPart);
+                           i += deltaScale * Scale;
+                           dynamicY -= deltaScale * LengthOfEachPart;
+                        }
                         Label label = new Label() { Content = i, FontSize = 7 };
                         Canvas.SetTop(label, dynamicY);
                         Canvas.SetLeft(label, X2 / 2 + Delta.X);
@@ -84,6 +92,12 @@ namespace P1
                     dynamicY = Y + LengthOfEachPart;
                     for (int i = -Scale; dynamicY <= ParentCanvas.ActualHeight; i -= Scale, dynamicY += LengthOfEachPart)
                     {
+                        if (dynamicY < 0)
+                        {
+                            int deltaScale = (int)(-dynamicY / LengthOfEachPart);
+                            i -= deltaScale * Scale;
+                            dynamicY += deltaScale * LengthOfEachPart;
+                        }
                         Label label = new Label() { Content = i, FontSize = 7 };
                         Canvas.SetTop(label, dynamicY);
                         Canvas.SetLeft(label, X2 / 2 - 5 + Delta.X);

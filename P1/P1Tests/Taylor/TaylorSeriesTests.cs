@@ -23,6 +23,8 @@ namespace P1.Tests
             Assert.AreEqual(0.9610378, answer);
             answer = Math.Round(series.Calculate(6, 3, 5), 8);
             Assert.AreEqual(-0.971033, answer);
+            answer = Math.Round(series.Calculate(3, -1, 2), 8);
+            Assert.AreEqual(4.56605536, answer);
         }
     }
 }

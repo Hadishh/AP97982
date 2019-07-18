@@ -150,8 +150,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="Draw" Margin="10"/>
-                        <Button Grid.Column="1" Content="Clear" Margin="10"/>
+                        <Button Name="DrawTaylor" Content="Draw" Margin="10" Click="DrawTaylor_Click"/>
+                        <Button Grid.Column="1" Content="Clear" Margin="10" Click="Button_Click"/>
                     </Grid>
                     <Label Content="f(x) = sinx"
                            Grid.Row="1" 
@@ -177,7 +177,7 @@
                             Grid.Column="3" 
                             Name="X0Text" />
                     </Grid>
-                    <Canvas Panel.ZIndex="0" Grid.Row="3" Name="TaylorDrawingCanvas">
+                    <Canvas Panel.ZIndex="6" Grid.Row="3" Name="TaylorDrawingCanvas">
                         
                     </Canvas>
                 </Grid>
