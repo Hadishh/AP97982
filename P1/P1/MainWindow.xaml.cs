@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace P1
@@ -16,6 +17,7 @@ namespace P1
         Draw_Diagram Drawer;
         EquationSolver EquationSolver;
         Taylor TaylorDrawer;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -91,16 +93,16 @@ namespace P1
         /// <param name="e"></param>
         private void ClockCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            MainClock = new Clock(ClockCanvas, 50);
+            MainClock = ClockFactory.SquareWithSixtyDotsWithoutLabel(this);
             Thread t = new Thread(() =>
             {
                 while (true)
                 {
                     Dispatcher.Invoke(
-                        (Action)(() =>{
-                            
+                        (Action)(() =>
+                        {
                             MainClock.RenderTime(DateTime.Now);
-                    }));
+                        }));
                     Thread.Sleep(1000);
                 }
             });
@@ -108,7 +110,7 @@ namespace P1
             t.Start();
         }
 
-        private void DrawTaylor_Click(object sender, RoutedEventArgs e)
+    private void DrawTaylor_Click(object sender, RoutedEventArgs e)
         {
             try
             {

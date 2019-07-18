@@ -54,6 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clock\ClockFactory.cs" />
+    <Compile Include="Clock\Dots.cs" />
+    <Compile Include="Clock\Lines.cs" />
+    <Compile Include="Clock\LinesFactory.cs" />
+    <Compile Include="Clock\Shape.cs" />
+    <Compile Include="Clock\Square.cs" />
     <Compile Include="Taylor.cs" />
     <Compile Include="Taylor\TaylorEquation.cs" />
     <Compile Include="Taylor\TaylorSeries.cs" />

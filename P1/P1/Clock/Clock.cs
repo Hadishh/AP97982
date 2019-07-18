@@ -16,18 +16,14 @@ namespace P1
         public Hand MinutesHand { get; set; }
         public Hand HoursHand { get; set; }
         public Point Center { get; set; }
-        public List<AroundPoint> Dots { get; set; }
+        public Shape Around { get; set; }
         private Canvas ParentCanvas { get; set; } 
-        public Clock(Canvas parent, double radius)
+        public Clock(Canvas parent, double radius, Shape shape)
         {
+            Around = shape;
             ParentCanvas = parent;
             Radius = radius;
             Center = new Point(parent.ActualWidth / 2, parent.ActualHeight / 2);
-            Dots = new List<AroundPoint>();
-            for(int i = 0; i < 60; i += 5)
-            {
-                Dots.Add(new AroundPoint(PositionOnClock(i, Radius), 5));
-            }
         }
 
         public void RenderTime(DateTime time)
@@ -45,10 +41,7 @@ namespace P1
             ParentCanvas.Children.Add(SecondHand.GetUI());
             ParentCanvas.Children.Add(MinutesHand.GetUI());
             ParentCanvas.Children.Add(HoursHand.GetUI());
-            foreach(IUserInterface item in Dots)
-            {
-                ParentCanvas.Children.Add(item.GetUI());
-            }
+            Around.Draw();
         }
         private Point PositionOnClock(double seconds, double length)
         {

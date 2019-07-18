@@ -10,23 +10,19 @@ using System.Windows.Shapes;
 
 namespace P1
 {
-    public class AroundPoint : IUserInterface
+    public abstract class AroundPoint : IUserInterface
     {
         public double Thikness { get; set; }
-        public Point Point { get; set; }
+        public Point Position { get; set; }
         public Brush Color = Brushes.Black;
-        public AroundPoint(Point place, double thikness)
+        public string Label { get; set; }
+        public AroundPoint(Point position, double thikness)
         {
-            Point = place;
+            Position = position;
             Thikness = thikness;
         }
 
-        public UIElement GetUI()
-        {
-            var dot =  new Ellipse() { Width = Thikness, Height = Thikness, Fill = Color };
-            Canvas.SetLeft(dot, Point.X - Thikness / 2);
-            Canvas.SetBottom(dot, Point.Y - Thikness / 2);
-            return dot;
-        }
+        public abstract UIElement GetUI();
+        public abstract UIElement GetLabel();
     }
 }
