@@ -25,7 +25,7 @@ namespace P1
         double DeltaY { get; set; }
         public double Accuracy { get; set; }
 
-         Dictionary<Equation, Polyline> Charts { get; set; }
+         Dictionary<Equation, Chart> Charts { get; set; }
          public PlottingSpace((double Min, double Max) xBounds, (double Min, double Max) yBounds, Canvas parentCanvas, int scale, double margin = 0)
          {
             Margin = margin;
@@ -40,7 +40,7 @@ namespace P1
             DeltaX = 0;
             DeltaY = 0;
             Accuracy = 0.1;
-            Charts = new Dictionary<Equation, Polyline>();
+            Charts = new Dictionary<Equation, Chart>();
         }
 
         /// <summary>
@@ -170,19 +170,16 @@ namespace P1
         {
             Application.Current.Dispatcher.BeginInvoke((Action)(() =>
             {
-                Polyline chart = new Polyline();
-                chart.StrokeThickness = 2;
-                chart.Points = new PointCollection();
                 if(equation.Function == null)
                 {
                     if(Charts.ContainsKey(equation))
                     {
-                        ParentCanvas.Children.Remove(Charts[equation]);
+                        Charts[equation].Delete(ParentCanvas);
                         Charts.Remove(equation);
                     }
                     return;
                 }
-                chart.Stroke = equation.Color;
+                Chart chart = new Chart(2, equation.Color);
                 double y = 0;
                 for(double x = XBounds.Min; x <= XBounds.Max; x += Accuracy)
                 {
@@ -191,18 +188,27 @@ namespace P1
                     {
                         //by growing y the canvas coordinates goes down so multiple by -1
                         Point project = ProjectOnPlot(new Point(x, -y));
-                        if(project.Y > 0 && project.Y < ParentCanvas.ActualHeight)
-                            chart.Points.Add(project);
+                        if (project.Y > 0 && project.Y < ParentCanvas.ActualHeight)
+                        {
+                            if ( (x < Accuracy / 2 && x > -Accuracy / 2) || (y < Accuracy / 2 && y > -Accuracy / 2))
+                            {
+                                Ellipse meetingEllipse = new Ellipse() { Width = 6, Height = 6, Fill = Brushes.Gray, StrokeThickness = 5,Stroke = Brushes.Gray };
+                                Canvas.SetTop(meetingEllipse, project.Y - meetingEllipse.Height / 2);
+                                Canvas.SetLeft(meetingEllipse, project.X - meetingEllipse.Width / 2);
+                                chart.Ellipses.Add(meetingEllipse);
+                            }
+                            chart.Polyline.Points.Add(project);
+                        }
                     }
                 }
                 if (Charts.ContainsKey(equation))
                 {
-                    ParentCanvas.Children.Remove(Charts[equation]);
+                    Charts[equation].Delete(ParentCanvas);
                     Charts[equation] = chart;
                 }
                 else
                     Charts.Add(equation, chart);
-                ParentCanvas.Children.Add(chart);
+                chart.Draw(ParentCanvas);
             }));
             
         }
@@ -213,7 +219,7 @@ namespace P1
         /// <param name="equation"></param>
         public void DeleteEquation(Equation equation)
         {
-            ParentCanvas.Children.Remove(Charts[equation]);
+            Charts[equation].Delete(ParentCanvas);
             Charts.Remove(equation);
         }
 

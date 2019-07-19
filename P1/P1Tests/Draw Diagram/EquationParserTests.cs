@@ -23,6 +23,8 @@ namespace P1.Tests
             Assert.AreEqual(1f, func(1));
             func = EquationParser.GetDelegate("sinhx + coshx");
             Assert.AreEqual(1, func(0));
+            func = EquationParser.GetDelegate("-x^2+4");
+            Assert.AreEqual(0, func(2));
         }
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]

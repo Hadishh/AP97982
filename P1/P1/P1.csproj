@@ -61,6 +61,7 @@
     <Compile Include="Clock\AroundPointsFactory.cs" />
     <Compile Include="Clock\Shape.cs" />
     <Compile Include="Clock\Square.cs" />
+    <Compile Include="Draw Diagram\Chart.cs" />
     <Compile Include="Taylor.cs" />
     <Compile Include="Taylor\TaylorEquation.cs" />
     <Compile Include="Taylor\TaylorSeries.cs" />
