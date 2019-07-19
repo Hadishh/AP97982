@@ -19,7 +19,7 @@ namespace P1
         protected (double X, double Y) Delta { get; set; }
         protected int Scale { get; set; }
         protected double Margin { get; set; }
-        protected bool IsDestroyed { get; set; }
+        public bool IsDestroyed { get; protected set; }
         public Axis(Canvas parentCanvas, (double X, double Y) delta, double lengthOfEachPart, int scale, double margin = 0)
         {
             ParentCanvas = parentCanvas;

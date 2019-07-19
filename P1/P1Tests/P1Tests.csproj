@@ -45,6 +45,8 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -56,6 +58,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Draw Diagram\AxisTests.cs" />
+    <Compile Include="Draw Diagram\EquationHandlerTests.cs" />
     <Compile Include="Draw Diagram\EquationParserTests.cs" />
     <Compile Include="EquationSolverTests.cs" />
     <Compile Include="Equations\LinearEquationTests.cs" />
@@ -71,6 +75,12 @@
       <Project>{D75DEB41-91BF-4877-A886-C7AA7F2B9B49}</Project>
       <Name>P1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CloseMenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CrossIcon.png" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

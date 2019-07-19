@@ -48,7 +48,7 @@ namespace P1
         {
             UpdateFunction();
             this.Color = DataTextBox.Background;
-            Draw(sender, this);
+                Draw(sender, this);
         }
 
         #region UIMethods
@@ -87,13 +87,19 @@ namespace P1
             try
             {
                 Function = EquationParser.GetDelegate(DataTextBox.Text);
+                double outputTest = Function(0.0000001);
             }
             catch (ArgumentException)
             {
                 Function = null;
             }
+            catch(KeyNotFoundException)
+            {
+                Function = null;
+            }
             catch
             {
+                Function = null;
                 throw;
             }
         }

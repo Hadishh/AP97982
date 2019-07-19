@@ -122,6 +122,9 @@ namespace P1
         /// <returns></returns>
         public static Func<double, double> GetDelegate(string inputEquation)
         {
+            double constant = 0;
+            if (double.TryParse(inputEquation.Replace(" ", ""), out constant))
+                return (x) => constant;
             SetData(inputEquation);
             CalculatePartsByOperator('^', (x, y) => Math.Pow(x, y));
             CalculatePartsByOperator('*', (x, y) => x * y);
