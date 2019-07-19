@@ -14,7 +14,12 @@ namespace P1
             
         }
         public int Size { get => this.RowCount; }
-        
+        /// <summary>
+        /// returns a new matrix with replacing column of this matrix.
+        /// </summary>
+        /// <param name="columnVector"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public SquareMatrix<_Type> ReplaceColumn(Vector<_Type> columnVector, int index)
         {
             SquareMatrix<_Type> matrix = new SquareMatrix<_Type>(this.Size);
@@ -30,6 +35,11 @@ namespace P1
             }
             return matrix;
         }
+        /// <summary>
+        /// calculate determinant of matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
         public static _Type Determinant(SquareMatrix<_Type> matrix)
         {
             if (matrix.Size == 2)

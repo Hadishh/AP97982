@@ -6,18 +6,35 @@ using System.Threading.Tasks;
 
 namespace P1
 {
+    /// <summary>
+    /// Parsing equations to
+    /// </summary>
     public static partial class EquationParser
     {
+        /// <summary>
+        /// Contains equation string that you want to parse it.
+        /// </summary>
         private static string Data;
+
         private static int Indexer;
+        /// <summary>
+        /// Dictionary of functions and last one is your delegate.
+        /// Note : At most cases last member needs other elements so becareful!
+        /// </summary>
         private static Dictionary<string, Func<double, double>> Functions { get; set; }
+        /// <summary>
+        /// Initialization for finding appropriate delegate.
+        /// </summary>
+        /// <param name="data"></param>
         private static void SetData(string data)
         {
             Data = data.Replace(" ", string.Empty).AddMissedCrosses();
             Functions = new Dictionary<string, Func<double, double>>(SingleFunctions);
             Indexer = 0;
         }
-        private static string GetData { get => Data; }
+        /// <summary>
+        /// Functions that can be calculated in equations you can add other functions to it.
+        /// </summary>
         private static Dictionary<string, Func<double, double>> SingleFunctions = new Dictionary<string, Func<double, double>>()
         {
             { "|x|", Math.Abs },
@@ -47,9 +64,13 @@ namespace P1
             { "logx", Math.Log },
             { "log(x)", Math.Log }
         };
+        /// <summary>
+        /// Supported operators.
+        /// </summary>
         private static List<char> Operators = new List<char> { '+', '-', '*', '/', '^' };
         /// <summary>
-        /// Calculates each side of the input operator and replace Zn to that for making equation shorter.
+        /// Calculates each side of the input operator and replace Zn to that for making equation shorter.Adds Zn Key to dictionary fo 
+        /// next calculations needed.
         /// </summary>
         /// <param name="operatorChr"></param>
         /// <param name="operatorFunction"></param>
@@ -118,7 +139,7 @@ namespace P1
 
         //Extention Methods
         /// <summary>
-        /// Adding missed * charaters
+        /// Adding missed * charaters.Normalize input string.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

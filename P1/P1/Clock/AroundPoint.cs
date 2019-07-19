@@ -16,14 +16,27 @@ namespace P1
         public Point Position { get; set; }
         public Brush Color = Brushes.Black;
         public string Label { get; set; }
-        public AroundPoint(Point position, double thikness, string label)
+        public double Teta { get; set; }
+        public AroundPoint(Point position, double thikness, double teta, string label)
         {
             Position = position;
             Thikness = thikness;
             Label = label;
+            Teta = teta;
         }
 
         public abstract UIElement GetUI();
-        public abstract UIElement GetLabel();
+        
+        /// <summary>
+        /// returns label of this around ponit;
+        /// </summary>
+        /// <returns></returns>
+        public virtual UIElement GetLabel()
+        {
+            Label label = new Label() { Content = Label, FontSize = 10 };
+            Canvas.SetTop(label, Position.Y + 15 * Math.Cos(Teta) - 15);
+            Canvas.SetLeft(label, Position.X - 15 * Math.Sin(Teta) - 8);
+            return label;
+        }
     }
 }

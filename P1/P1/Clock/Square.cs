@@ -13,13 +13,15 @@ namespace P1
     class Square : Shape
     {
 
-        Canvas ParentCanvas { get; set; }
         Point Center { get; set; }
-        public Square(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) : base (ratio, aroundPoints, enableLabel)
+        public Square(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) 
+            : base (ratio, aroundPoints, parentCanvas, enableLabel)
         {
-            ParentCanvas = parentCanvas;
             Center = new Point(ParentCanvas.ActualWidth / 2, ParentCanvas.ActualHeight / 2);
         }
+        /// <summary>
+        /// Draws a rectangle with all labels and around points.
+        /// </summary>
         public override void Draw()
         {
             foreach (var item in AroundPoints)

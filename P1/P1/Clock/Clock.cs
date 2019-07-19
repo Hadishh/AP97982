@@ -25,7 +25,10 @@ namespace P1
             Radius = radius;
             Center = new Point(parent.ActualWidth / 2, parent.ActualHeight / 2);
         }
-
+       /// <summary>
+       /// renders time input.
+       /// </summary>
+       /// <param name="time"></param>
         public void RenderTime(DateTime time)
         {
             ParentCanvas.Children.Clear();
@@ -36,7 +39,9 @@ namespace P1
             HoursHand = new Hand(Center, PositionOnClock(time.Hour * 5  + time.Minute / 12.0, 3 * Radius / 4));
             Draw();
         }
-
+        /// <summary>
+        /// draw each element in canvas and shows the clock
+        /// </summary>
         public void Draw()
         {
             ParentCanvas.Children.Add(SecondHand.GetUI());
@@ -44,6 +49,12 @@ namespace P1
             ParentCanvas.Children.Add(HoursHand.GetUI());
             Around.Draw();
         }
+        /// <summary>
+        /// returns positon on clock
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         private Point PositionOnClock(double seconds, double length)
         {
             double teta = (seconds / 30.0) * Math.PI;

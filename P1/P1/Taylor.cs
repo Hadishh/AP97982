@@ -26,6 +26,10 @@ namespace P1
             MainWindow = mainWindow;
             SetPlottingSpace(MainWindow.TaylorDrawingCanvas);
         }
+        /// <summary>
+        /// creates a plotting space
+        /// </summary>
+        /// <param name="drawingCanvas"></param>
         public void SetPlottingSpace(Canvas drawingCanvas)
         {
             double x = FindXBound();
@@ -34,6 +38,10 @@ namespace P1
             PlottingSpace.DrawEquation(Equation);
             PlottingSpace.DrawEquation(TaylorEquation);
         }
+        /// <summary>
+        /// find x bound as said in doc.
+        /// </summary>
+        /// <returns></returns>
         private double FindXBound()
         {
             double x = X0;

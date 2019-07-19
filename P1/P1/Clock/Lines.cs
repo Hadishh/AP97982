@@ -12,13 +12,15 @@ namespace P1
     public class Lines : AroundPoint
     {
         public double Length { get; set; }
-        public double Teta { get; set; }
         public Lines(Point position, double thickness, double teta, double length, string label = "")
-            :base(position, thickness, label)
+            :base(position, thickness, teta, label)
         {
-            Teta = teta;
             Length = length;
         }
+        /// <summary>
+        /// Returns a line for each around point.
+        /// </summary>
+        /// <returns></returns>
         public override UIElement GetUI()
         {
             Line line = new Line();
@@ -30,13 +32,6 @@ namespace P1
             line.Y2 = Position.Y + Length* Math.Cos(Teta);
             return line;
         }
-
-        public override UIElement GetLabel()
-        {
-            Label label = new Label() { Content =Label, FontSize = 10 };
-            Canvas.SetTop(label, Position.Y + 15 * Math.Cos(Teta) - 15 );
-            Canvas.SetLeft(label, Position.X - 15* Math.Sin(Teta) - 8);
-            return label;
-        }
+        
     }
 }

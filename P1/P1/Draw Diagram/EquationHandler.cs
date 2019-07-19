@@ -13,7 +13,6 @@ namespace P1
     {
         private StackPanel EquationListStack { get; set; }
 
-        public List<EquationUI> Equations { get; private set; }
 
         private List<Brush> AvailableColors = new List<Brush> {
             new SolidColorBrush(Colors.Black) {Opacity = 0.5 },
@@ -22,11 +21,14 @@ namespace P1
             new SolidColorBrush(Colors.Green) {Opacity = 0.5 },
             new SolidColorBrush(Colors.Magenta) {Opacity = 0.5 }
         };
-
+        private int CurrentColorIndex;
+        public List<EquationUI> Equations { get; private set; }
         public event EventHandler<Equation> DrawChart;
         public event EventHandler<Equation> DeleteChart;
-        private int CurrentColorIndex;
-        
+        /// <summary>
+        /// EquationHandler handles adding and removing equations,
+        /// </summary>
+        /// <param name="eqationListStack"></param>
         public EquationHandler(StackPanel eqationListStack)
         {
             EquationListStack = eqationListStack;
@@ -52,15 +54,18 @@ namespace P1
             Equations.Add(newEquation);
             CurrentColorIndex = ++CurrentColorIndex >= AvailableColors.Count ? 0 : CurrentColorIndex;
         }
-
+        /// <summary>
+        /// Calls draw event to send event to draw diagram for drawing new equation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewEquation_Draw(object sender, Equation e)
         {
             DrawChart(sender, e);
         }
 
         /// <summary>
-        /// this event show us which class send event and if conditions satisfies then delete it 
-        /// in this case we don't need to implement Equal for EquationUI Because we need refrence
+        /// If conditions satisfies then remove equation from list and calls DeleteChart event.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="ChoosedClass"></param>
@@ -87,7 +92,7 @@ namespace P1
         }
 
         /// <summary>
-        /// This event fo making another new textbox 
+        /// Makes new text box on equation list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -96,7 +101,9 @@ namespace P1
             if (Equations.Last().DataTextBox.Text != string.Empty)
                 AddEquation();
         }
-
+        /// <summary>
+        /// Destroy every thing in main stack.
+        /// </summary>
         public void Destroy()
         {
             EquationListStack.Children.Clear();

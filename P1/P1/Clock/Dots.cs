@@ -11,12 +11,14 @@ namespace P1
 {
     public class Dots : AroundPoint
     {
-        public double Teta { get; set; }
+
         public Dots(Point position, double thickness, double teta, string label = "")
-            : base(position, thickness, label)
-        {
-            Teta = teta;
-        }
+            : base(position, thickness, teta, label)
+        { }
+        /// <summary>
+        /// returns an around point with dot shape.
+        /// </summary>
+        /// <returns></returns>
         public override UIElement GetUI()
         {
             Ellipse ellipse = new Ellipse() { Width = Thikness, Height = Thikness };
@@ -26,14 +28,6 @@ namespace P1
             Canvas.SetTop(ellipse, Position.Y - Thikness / 2);
             Canvas.SetLeft(ellipse, Position.X - Thikness / 2);
             return ellipse;
-        }
-
-        public override UIElement GetLabel()
-        {
-            Label label = new Label() { Content = Label, FontSize = 10 };
-            Canvas.SetTop(label, Position.Y + 15 * Math.Cos(Teta) - 15);
-            Canvas.SetLeft(label, Position.X - 15 * Math.Sin(Teta) - 8);
-            return label;
         }
     }
 }

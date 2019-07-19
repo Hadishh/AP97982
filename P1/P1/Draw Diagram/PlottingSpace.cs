@@ -230,7 +230,9 @@ namespace P1
         /// <returns></returns>
         private Point ProjectOnPlot(Point p) 
             => new Point(Center.X + p.X * LengthOfEachPart / Scale, Center.Y + p.Y * LengthOfEachPart / Scale);
-
+        /// <summary>
+        /// Destroys all events that registered on main window and clears canvas.
+        /// </summary>
         public void Destroy()
         {
             Charts.Clear();

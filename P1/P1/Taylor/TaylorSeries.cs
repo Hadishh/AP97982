@@ -21,13 +21,18 @@ namespace P1
         };
         public double CurrentValue { get; private set; }
         private int Indexer;
-        Func<double, double> OriginalFunction { get; set; }
         public TaylorSeries(Func<double, double> function)
         {
             CurrentValue = 1;
             Indexer = 1;
-            OriginalFunction = function;
         }
+        /// <summary>
+        /// calculates taylor series with n sentences around x0 with value x.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="x0"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public double Calculate(int n, double x0,double x)
         {
             var func = Derivations[0];
@@ -43,7 +48,6 @@ namespace P1
                 result += value;
                 CurrentValue = CurrentValue * (x - x0) / Indexer++;
                 func = Derivations[(Indexer) % 4];
-                double k = func(0);
             }
             CurrentValue = 1;
             Indexer = 1;

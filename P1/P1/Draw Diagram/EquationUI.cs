@@ -61,7 +61,10 @@ namespace P1
         {
             Delete(sender, this);
         }
-
+        /// <summary>
+        /// returns a grid that contains equation text box and delete button.
+        /// </summary>
+        /// <returns></returns>
         public Grid GetGrid()
         {
             Grid grid = new Grid();

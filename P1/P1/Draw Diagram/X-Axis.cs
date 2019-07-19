@@ -25,7 +25,7 @@ namespace P1
             this.Label = new Label() { Content = "X" };
         }
         /// <summary>
-        /// Draws Main Line And the emplate Lines that are parallel to main line 
+        /// Draws Main Line And the template Lines that are parallel to main line 
         /// </summary>
         public override void DrawGrid()
         {
@@ -52,7 +52,7 @@ namespace P1
             return base.MainLine;
         }
         /// <summary>
-        /// Draws template lines with distance LengthofEachPart 
+        /// Draws template lines that are parallel to X axis with distance LengthofEachPart .
         /// Draws Lables of each scale with difference Scale
         /// </summary>
         /// <returns></returns>

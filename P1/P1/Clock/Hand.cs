@@ -23,6 +23,10 @@ namespace P1
             HandLine.Stroke = Brushes.Black;
             HandLine.StrokeThickness = 3;
         }
+        /// <summary>
+        /// Retruns the hand of the clock
+        /// </summary>
+        /// <returns></returns>
         public UIElement GetUI()
           => HandLine;
     }

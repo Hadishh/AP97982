@@ -9,13 +9,15 @@ namespace P1
 {
     public class Circle : Shape
     {
-        Canvas ParentCanvas { get; set; }
         Point Center { get; set; }
-        public Circle(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) : base(ratio, aroundPoints, enableLabel)
+        public Circle(double ratio, Canvas parentCanvas, List<AroundPoint> aroundPoints, bool enableLabel = false) 
+            : base(ratio, aroundPoints, parentCanvas, enableLabel)
         {
-            ParentCanvas = parentCanvas;
             Center = new Point(ParentCanvas.ActualWidth / 2, ParentCanvas.ActualHeight / 2);
         }
+        /// <summary>
+        /// Draws a circle with all around points and labels
+        /// </summary>
         public override void Draw()
         {
             foreach (var item in AroundPoints)

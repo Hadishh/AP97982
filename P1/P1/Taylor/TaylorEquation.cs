@@ -20,6 +20,11 @@ namespace P1
             TaylorSeries = new TaylorSeries(function);
             Function = TaylorValue;
         }
+        /// <summary>
+        /// Calculate taylor series with N sentences and returns it.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         double TaylorValue(double x) => TaylorSeries.Calculate(N, X0, x);
 
     }

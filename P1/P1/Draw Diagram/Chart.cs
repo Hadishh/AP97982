@@ -22,12 +22,20 @@ namespace P1
             };
             Polyline.Points = new PointCollection();
         }
+        /// <summary>
+        /// Deletes chart from canvas with ellipses.
+        /// </summary>
+        /// <param name="parentCanvas"></param>
         public void Delete(Canvas parentCanvas)
         {
             foreach (var item in Ellipses)
                 parentCanvas.Children.Remove(item);
             parentCanvas.Children.Remove(Polyline);
         }
+        /// <summary>
+        /// Draws chart pn canvas with ellipses.
+        /// </summary>
+        /// <param name="parentCanvas"></param>
         public void Draw(Canvas parentCanvas)
         {
             foreach (var item in Ellipses)

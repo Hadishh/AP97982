@@ -12,7 +12,9 @@ namespace P1
 {
     public class Y_Axis : Axis
     {
-        
+        /// <summary>
+        /// returns x of the parent canvas center.
+        /// </summary>
         public double CenterX => (ParentCanvas.ActualWidth + Margin) / 2 + Delta.X;
         public Y_Axis(Canvas parentCanvas, (double X, double Y) delta, double lengthofEachPart, int scale, double margin = 0) :
             base(parentCanvas, delta, lengthofEachPart, scale, margin)
@@ -20,11 +22,18 @@ namespace P1
             base.MainLine = new Line();
             this.Label = new Label() { Content = "Y" };
         }
+        /// <summary>
+        /// Draws Main Line And the template Lines that are parallel to main line 
+        /// </summary>
         public override void DrawGrid()
         {
             DrawMainLine();
             DrawTemplateLines();
         }
+        /// <summary>
+        /// Drawins main line by finding center of canvas 
+        /// </summary>
+        /// <returns></returns>
         private Line DrawMainLine()
         {
             double Y1 = 0;
@@ -40,6 +49,11 @@ namespace P1
             ParentCanvas.Children.Add(MainLine);
             return base.MainLine;
         }
+        /// <summary>
+        /// Draws template lines that are parallel to Y axis with distance LengthofEachPart .
+        /// Draws Lables of each scale with difference Scale
+        /// </summary>
+        /// <returns></returns>
         private void DrawTemplateLines()
         {
             Application.Current.Dispatcher.BeginInvoke(

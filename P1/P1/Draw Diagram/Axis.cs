@@ -30,17 +30,18 @@ namespace P1
             Scale = scale;
             IsDestroyed = false;
         }
-        protected List<int> SetNewNumbers(List<int> numbers, int v)
-        {
-            int multiple = numbers.Count / v;
-            return numbers.Select(d => d * multiple).ToList();
-        }
+        /// <summary>
+        /// Destroies anything in canvas.
+        /// </summary>
         public void Destroy()
         {
             IsDestroyed = true;
             ParentCanvas.Children.Clear();
             ParentCanvas = null;
         }
+        /// <summary>
+        /// Draws main line and templines on canvas.
+        /// </summary>
         public abstract void DrawGrid();
     }
 }
