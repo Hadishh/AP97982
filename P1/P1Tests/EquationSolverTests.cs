@@ -56,6 +56,8 @@ namespace P1.Tests
             Assert.AreEqual("No Unique Solution", eqs.Answer());
             eqs = new EquationSolver("3a+1b+2f+2r+9e=9,3a+9b+3f+3r+0e=1,3a+8b+5f+1r+2e=4,3a+7b+7f+4r+7e=5,3a+b+8f+2r+4e=4");
             Assert.AreEqual("a=1.284,b=0.032,e=0.801,f=-0.166,r=-0.881", eqs.Answer());
+            eqs = new EquationSolver("2y+3x+z=1,4y + 6x + 2z = 1,7x + 8y + 9z = 3");
+            Assert.AreEqual("No Solution", eqs.Answer());
         }
 
     }

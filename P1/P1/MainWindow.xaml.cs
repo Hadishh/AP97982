@@ -30,7 +30,7 @@ namespace P1
         #region EquationSolverEvents
         private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
         {
-            Answers.Text = string.Empty;
+          Answers.Text = string.Empty;
             EquationsText.Text = string.Empty;
         }
 
