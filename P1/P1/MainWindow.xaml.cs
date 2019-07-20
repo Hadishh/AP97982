@@ -27,26 +27,6 @@ namespace P1
             CalculateLinearEquation.Click += CalculateLinearEquation_Click;
             ClearLinearEquation.Click += ClearLinearEquation_Click;
         }
-        #region EquationSolverEvents
-        private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
-        {
-          Answers.Text = string.Empty;
-            EquationsText.Text = string.Empty;
-        }
-
-        private void CalculateLinearEquation_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                EquationSolver = new EquationSolver(EquationsText.Text);
-                Answers.Text = EquationSolver.Answer();
-            }
-            catch (ArgumentException)
-            {
-                MessageBox.Show("Can't Solve This Equations!", "Error");
-            }
-        }
-        #endregion
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DrawDiagram.IsSelected)
@@ -80,12 +60,32 @@ namespace P1
                 }
             }
         }
-
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        #region EquationSolverEvents
+        private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
+        {
+          Answers.Text = string.Empty;
+            EquationsText.Text = string.Empty;
+        }
+
+        private void CalculateLinearEquation_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                EquationSolver = new EquationSolver(EquationsText.Text);
+                Answers.Text = EquationSolver.Answer();
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Can't Solve This Equations!", "Error");
+            }
+        }
+        #endregion
+        #region ClockEvents
         /// <summary>
         /// On clock canvas loaded clock must start Working
         /// </summary>
@@ -109,8 +109,9 @@ namespace P1
             t.IsBackground = true;
             t.Start();
         }
-
-    private void DrawTaylor_Click(object sender, RoutedEventArgs e)
+        #endregion
+        #region TaylorEvents
+        private void DrawTaylor_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -131,5 +132,6 @@ namespace P1
             TaylorDrawer.Destroy();
             TaylorDrawer = null;
         }
+        #endregion
     }
 }
