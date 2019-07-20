@@ -35,8 +35,8 @@ namespace P1
         {
             Dispatcher.Invoke(() =>
             {
-                PrintDialog pd = new PrintDialog();
-                pd.PrintVisual(EquationCanvas, "Saved Diagrams");
+                PrintDialog printDialog = new PrintDialog();
+                printDialog.PrintVisual(EquationCanvas, "Saved Diagrams");
             });
         }
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
