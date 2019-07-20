@@ -93,7 +93,7 @@ namespace P1
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("Can't Solve This Equations!", "Error");
+                MessageBox.Show("Can't Solve This Equations!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         #endregion
@@ -105,7 +105,7 @@ namespace P1
         /// <param name="e"></param>
         private void ClockCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            MainClock = ClockFactory.CircleWithTwelveLinesWithoutLabel(this.ClockCanvas);
+            MainClock = ClockFactory.CircleWithSixtyDotsWithLabel(this.ClockCanvas);
             Thread t = new Thread(() =>
             {
                 while (true)
@@ -135,7 +135,7 @@ namespace P1
             }
             catch(FormatException)
             {
-                MessageBox.Show("Please enter Correct Entries!", "Error!");
+                MessageBox.Show("Please enter correct entries!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
