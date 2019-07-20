@@ -5,6 +5,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace P1
 {
@@ -26,6 +28,16 @@ namespace P1
             MainTabControl.SelectionChanged += MainTabControl_SelectionChanged;
             CalculateLinearEquation.Click += CalculateLinearEquation_Click;
             ClearLinearEquation.Click += ClearLinearEquation_Click;
+            SaveButton.Click += SaveButton_Click;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                PrintDialog pd = new PrintDialog();
+                pd.PrintVisual(EquationCanvas, "Saved Diagrams");
+            });
         }
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,7 +76,7 @@ namespace P1
         {
             Application.Current.Shutdown();
         }
-
+        
         #region EquationSolverEvents
         private void ClearLinearEquation_Click(object sender, RoutedEventArgs e)
         {

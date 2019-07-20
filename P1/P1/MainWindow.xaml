@@ -28,7 +28,6 @@
                 <Border Padding="0">
                     <Grid Background="#eee">
                         <Grid.RowDefinitions>
-                            <!-- RowDefinition Height="*"-->
                             <RowDefinition Height="21*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -113,7 +112,13 @@
                                 <TextBox Name="MaxX" Padding="1" Grid.Column="1" Background="Black" Foreground="Yellow"/>
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="2" Background="DarkGray"/>
+                        <Grid Grid.Row="2" Background="DarkGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Name="SaveButton" Content="Save Diagrams" Margin="10, 2"/>
+                        </Grid>
                     </Grid>
                 </Border>
             </TabItem>
