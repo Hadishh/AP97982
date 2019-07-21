@@ -8,10 +8,10 @@
     public class ErrorState : CalculatorState
     {
         public ErrorState(Calculator calc) : base(calc) { }
-        public override IState EnterEqual() => this;
-        public override IState EnterNonZeroDigit(char c) => EnterNonZeroDigit('0');
-        public override IState EnterZeroDigit() => new AccumulateState(this.Calc);
-        public override IState EnterOperator(char c) => this;
-        public override IState EnterPoint() => new PointState(this.Calc);
+        public override IState EnterEqual() => new StartState(Calc);
+        public override IState EnterNonZeroDigit(char c) => new StartState(Calc);
+        public override IState EnterZeroDigit() => new StartState(Calc);
+        public override IState EnterOperator(char c) => new StartState(Calc);
+        public override IState EnterPoint() => new StartState(Calc);
     }
 }
