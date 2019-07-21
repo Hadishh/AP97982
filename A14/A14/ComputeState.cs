@@ -31,7 +31,6 @@
 
         public override IState EnterPoint()
         {
-            Calc.Evalute();
             Calc.Display = "0.";
             return new PointState(this.Calc);
         }
