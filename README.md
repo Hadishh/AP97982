@@ -68,7 +68,7 @@ Build a simple WPF application.
 
 ### Screenshot 1
 <p align="center">
-  <img width="100%" src="https://github.com/Hadishh/AP97982/blob/master/ScreenShots/screenshot1.png?raw=true" alt="Math Analyzer screenshot1">
+  <img width="100%" src="https://github.com/Hadishh/AP97982/blob/master/P1/screenshots/screenshot1.png?raw=true" alt="Math Analyzer screenshot1">
 </p>
 
 ### Screenshot 2
