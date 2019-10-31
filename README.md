@@ -1,20 +1,82 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This repository contains my programming assignments for advanced programming course in Iran University of Technology (IUST)
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Instractor: [Sauleh Eetemadi](http://sauleh.github.io/)
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+[Cousre Website](http://sauleh.github.io/ap97)
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+# Assignments
+## HW3 (Files and String methods)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A1/HW3.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A1)
+## HW4 (Understanding a few notes in C#)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A2/HW3.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A2/A2)
+## HW5 (Class and Objects)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A3/HW5.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A3/A3)
+## HW6 (Value type and reference type)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A6/HW6.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A6/A6)
+## HW7 (Interfaces)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A7/HW7.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A7/A7)
+## HW8 (Operator overloading)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A8/HW8.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A8/A8)
+## HW9 (Exception Handling)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A9/HW9.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A9/A9)
+## HW10 (Operator overloading and .NET interfaces)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A10/HW10.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A10/A10)
+## HW11 (Inheritance)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A11/HW11.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A11/A11)
+## HW12 (LINQ)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A12/HW12.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A12/A12)
+## HW13 (Thread and concurrency)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A13/HW13.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A13/A13)
+## HW14 (State pattern)
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/A14/HW14.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/A14/A14)
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+# Exams
++ E1
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/E1/E1.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/E1/E1)
++ E2
+  + [Document](https://github.com/Hadishh/AP97982/blob/master/E2/E2.fa.pdf)
+  + [Solution](https://github.com/Hadishh/AP97982/blob/master/E2/E2)
+
+# Project
+Build a simple WPF application.
+
+[Document](https://github.com/Hadishh/AP97982/blob/master/P1/final_project.pdf)
+
+[Source code](https://github.com/Hadishh/AP97982/blob/master/P1/P1)
+
+## Features:
+1. Draw digram for polynomial functions
+2. Solve n equation n variable
+3. Draw Tylor series
+
+
+## Screenshots
+
+### Screenshot 1
+<p align="center">
+  <img width="100%" src="https://github.com/Hadishh/AP97982/blob/master/ScreenShots/screenshot1.png?raw=true" alt="Math Analyzer screenshot1">
+</p>
+
+### Screenshot 2
+<p align="center">
+  <img width="100%" src="https://github.com/Hadishh/AP97982/blob/master/P1/screenshots/screenshot2.png?raw=true" alt="Math Analyzer screenshot2">
+</p>
+
+### Screenshot 3
+<p align="center">
+  <img width="100%" src="https://github.com/Hadishh/AP97982/blob/master/P1/screenshots/screenshot3.png?raw=true" alt="Math Analyzer screenshot3">
+</p>
